@@ -15,11 +15,8 @@
         document.addEventListener('DOMContentLoaded', function() {
           document.querySelectorAll('script[src*="unicornstudio"]').forEach(function(s) { s.remove(); });
           document.querySelectorAll('.unicorn-background, [data-us-project]').forEach(function(el) {
-            el.style.cssText = 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-size: 200% 200%; animation: gradient-shift 15s ease infinite;';
+            el.style.cssText = 'background: linear-gradient(180deg, #f9fafb 0%, #f0fdf4 100%);';
           });
-          var style = document.createElement('style');
-          style.textContent = '@keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; }}';
-          document.head.appendChild(style);
         });
         return;
       }

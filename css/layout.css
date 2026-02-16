@@ -1251,8 +1251,11 @@
   animation: intro-spinner 0.8s linear infinite;
 }
 
-/* Show branded fallback loader only on smaller screens, not on desktop */
+/* On mobile: hide desktop Unicorn scene, show only branded fallback (CLETHOS + spinner) */
 @media (max-width: 768px) {
+  .intro-overlay__scene-shell {
+    display: none;
+  }
   .intro-overlay__brand {
     display: flex;
   }
