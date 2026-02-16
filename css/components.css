@@ -250,6 +250,11 @@
   border-top: 1px solid var(--color-border);
 }
 
+/* Landing page only: no footer on any device */
+body.page-landing .site-footer {
+  display: none;
+}
+
 .site-footer__inner {
   max-width: var(--container-wide);
   margin: 0 auto;
