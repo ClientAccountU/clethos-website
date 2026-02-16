@@ -273,8 +273,11 @@ if (menuBtn && mainNav && siteHeader) {
     menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Toggle menu');
     backdrop.classList.toggle('is-visible', open);
 
-    // On mobile, lock body scroll so the menu is always fully visible on top
-    if (media.matches && open) {
+    // On mobile-like widths, lock body scroll so the menu is always fully visible on top
+    const vw = window.innerWidth || document.documentElement.clientWidth || 0;
+    const isMobileLikeWidth = vw <= 900;
+
+    if (open && isMobileLikeWidth) {
       menuScrollY = window.scrollY || window.pageYOffset || 0;
       body.dataset.menuLock = '1';
       body.style.position = 'fixed';

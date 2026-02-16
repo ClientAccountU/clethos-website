@@ -204,10 +204,10 @@
     padding: max(var(--space-10), var(--safe-top)) var(--space-8) var(--space-8);
     padding-right: max(var(--space-8), var(--safe-right));
     background: var(--color-bg-elevated);
-    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.12);
     transform: translateX(100%);
     transition: transform var(--duration-normal) var(--ease-out-expo);
-    z-index: var(--z-header);
+    z-index: calc(var(--z-header) + 1);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
