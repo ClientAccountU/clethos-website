@@ -8,6 +8,39 @@
   <meta name="description" content="CLETHOS — Treasury infrastructure for modern business. Secure B2B payments, multi-currency accounts, and customizable wallets.">
   <title>CLETHOS — Treasury Infrastructure for Business</title>
   <script>
+    (function() {
+      var cached = sessionStorage.getItem('deviceCapable');
+      if (cached === 'false') {
+        window.unicornStudioBlocked = true;
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('script[src*="unicornstudio"]').forEach(function(s) { s.remove(); });
+          document.querySelectorAll('.unicorn-background, [data-us-project]').forEach(function(el) {
+            el.style.cssText = 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-size: 200% 200%; animation: gradient-shift 15s ease infinite;';
+          });
+          var style = document.createElement('style');
+          style.textContent = '@keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; }}';
+          document.head.appendChild(style);
+        });
+        return;
+      }
+      if (cached === 'true') return;
+      try {
+        var canvas = document.createElement('canvas');
+        var gl = canvas.getContext('webgl');
+        if (!gl) { sessionStorage.setItem('deviceCapable', 'false'); window.location.reload(); return; }
+        var debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        var renderer = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : '';
+        var memory = navigator.deviceMemory || 4;
+        var cores = navigator.hardwareConcurrency || 4;
+        var isIncapable = (renderer.indexOf('SwiftShader') !== -1) || (renderer.indexOf('llvmpipe') !== -1) || memory < 2 || (cores <= 2 && memory <= 4);
+        sessionStorage.setItem('deviceCapable', !isIncapable);
+        if (isIncapable) window.location.reload();
+      } catch (e) {
+        sessionStorage.setItem('deviceCapable', 'true');
+      }
+    })();
+  </script>
+  <script>
     (function () {
       try {
         var params = new URLSearchParams(window.location.search);
@@ -247,6 +280,7 @@
   <script>
     (function () {
       function initLandingUnicorn() {
+        if (window.unicornStudioBlocked) return;
         if (window.UnicornStudio) {
           UnicornStudio.init();
           setTimeout(function () { window.__unicornLandingReady = true; }, 1200);
