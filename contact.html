@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f9fafb">
+  <meta name="description" content="Contact CLETHOS — Get in touch about treasury and payment infrastructure.">
+  <title>Contact — CLETHOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <style>
+    .contact-form { max-width: 32rem; margin: 0 auto; }
+    .contact-form label { display: block; font-weight: 500; margin-bottom: var(--space-2); color: var(--color-text); }
+    .contact-form input, .contact-form textarea {
+      width: 100%; padding: var(--space-3); margin-bottom: var(--space-4);
+      background: var(--color-bg-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); color: var(--color-text); font-size: var(--text-base);
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent-muted);
+    }
+    .contact-form textarea { min-height: 8rem; resize: vertical; }
+    .contact-form__hint { display: block; font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-2); margin-bottom: var(--space-4); }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" id="site-header" role="banner">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo" aria-label="CLETHOS home"><img src="./assets+/LOGO TRANSP.png" alt="CLETHOS" class="site-header__logo-img" width="140" height="32"></a>
+      <nav class="site-header__nav" id="main-nav" aria-label="Main navigation">
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="contact.html" class="btn btn--primary">Get in touch</a>
+      </nav>
+      <button type="button" class="site-header__menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav" hidden>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section hero" style="min-height: 40vh;">
+      <div class="container container--narrow page-hero__inner">
+        <span class="section-header__label">Contact</span>
+        <h1 class="hero__title" style="margin-bottom: var(--space-4);">Get in touch</h1>
+        <p class="hero__subtitle" style="margin-bottom: 0;">Tell us about your use case. We’ll respond within one business day.</p>
+      </div>
+    </section>
+
+    <section class="contact-main">
+      <div class="container container--wide contact-layout">
+        <div class="contact-panel">
+          <h2 class="contact-panel__title">The right team for treasury and payments questions</h2>
+          <p class="contact-panel__text">Share a bit about your flows, currencies, and volumes. We’ll map where stablecoins, on-chain rails, and multi-currency accounts can actually improve your stack—not just add complexity.</p>
+
+          <div class="contact-email-block">
+            <p class="contact-email-block__label">Email us</p>
+            <a href="mailto:support@clethos.com" class="contact-email-block__address">support@clethos.com</a>
+            <p class="contact-email-block__note">We typically respond within one business day. For general inquiries, partnerships, or support—reach out anytime.</p>
+          </div>
+
+          <ul class="contact-bullets">
+            <li>Existing banks, payment providers, or wallets you use today</li>
+            <li>Currencies and corridors that matter most to your business</li>
+            <li>Rough monthly volumes or number of payments (ranges are fine)</li>
+          </ul>
+        </div>
+
+        <div class="contact-form-card">
+          <form class="contact-form" id="contact-form" action="https://formspree.io/f/xkovryyv" method="post" aria-label="Contact form">
+            <div class="contact-form__row contact-form__row--two">
+              <div class="contact-form__field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required autocomplete="name">
+              </div>
+              <div class="contact-form__field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+              </div>
+            </div>
+
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="company">Company (optional)</label>
+                <input type="text" id="company" name="company" autocomplete="organization" placeholder="e.g. Acme Inc" spellcheck="true">
+              </div>
+            </div>
+
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Tell us a little bit about you" spellcheck="true"></textarea>
+              </div>
+            </div>
+
+            <div class="contact-form__row">
+              <button type="submit" class="btn btn--primary contact-form__submit" id="contact-submit">Send message</button>
+            </div>
+          </form>
+
+          <div class="contact-form-success" id="contact-success" role="status" aria-live="polite" hidden>
+            <span class="contact-form-success__icon" aria-hidden="true">✓</span>
+            <h3 class="contact-form-success__title">Message Received!</h3>
+            <p class="contact-form-success__text">We will get back to you shortly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <footer class="site-footer site-footer--compact" role="contentinfo">
+    <div class="site-footer__inner">
+      <nav class="site-footer__nav" aria-label="Footer links">
+        <a href="about.html">About</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="services.html">Services</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="privacy.html">Privacy</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="contact.html">Contact</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="terms.html">Terms &amp; Conditions</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="legal.html">Legal disclosures</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="website-terms.html">Website Terms</a>
+      </nav>
+      <div class="site-footer__bottom">
+        <p>© 2026 CLETHOS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  </main>
+
+  <script type="module" src="./js/main.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var successEl = document.getElementById('contact-success');
+      var submitBtn = document.getElementById('contact-submit');
+      var formspreeUrl = 'https://formspree.io/f/xkovryyv';
+      if (!form || !successEl) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) return;
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending…';
+        }
+
+        var formData = new FormData(form);
+        fetch(formspreeUrl, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        })
+          .then(function (res) {
+            if (res.ok) {
+              form.setAttribute('aria-hidden', 'true');
+              form.style.display = 'none';
+              successEl.hidden = false;
+              successEl.offsetHeight;
+              successEl.classList.add('is-visible');
+            } else {
+              throw new Error('Submit failed');
+            }
+          })
+          .catch(function () {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Send message';
+            }
+            alert('Something went wrong. Please try again or email us at support@clethos.com.');
+          })
+          .finally(function () {
+            if (submitBtn) submitBtn.textContent = 'Send message';
+            if (submitBtn) submitBtn.disabled = false;
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f9fafb">
+  <meta name="description" content="CLETHOS — Treasury infrastructure for modern business. Secure B2B payments, multi-currency accounts, and customizable wallets.">
+  <title>CLETHOS — Treasury Infrastructure for Business</title>
+  <script>
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (!params.has('fromLoader')) {
+          // First entry: go to loader cutscene
+          window.location.replace('loader.html');
+        } else {
+          // Came from loader: clean the URL so a future hard refresh will show loader again
+          params.delete('fromLoader');
+          if (window.history && window.history.replaceState) {
+            var newSearch = params.toString();
+            var newUrl = window.location.pathname + (newSearch ? '?' + newSearch : '') + window.location.hash;
+            window.history.replaceState(null, '', newUrl);
+          }
+        }
+      } catch (e) {
+        // Fail silently if URLSearchParams is not available
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/layout.css">
+</head>
+<body>
+  <div class="landing-bg" aria-hidden="true">
+    <div class="landing-bg__scene" data-us-project="IFH1jBpGWPa6H1pQWHHi" style="width: 100%; height: 100%;"></div>
+  </div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" id="site-header" role="banner">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo" aria-label="CLETHOS home"><img src="./assets+/LOGO TRANSP.png" alt="CLETHOS" class="site-header__logo-img" width="140" height="32"></a>
+      <nav class="site-header__nav" id="main-nav" aria-label="Main navigation">
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn--primary">Get in touch</a>
+      </nav>
+      <button type="button" class="site-header__menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav" hidden>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero section" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <h1 id="hero-title" class="hero__title">Treasury infrastructure for modern business</h1>
+        <p class="hero__subtitle">Move, store and spend money across borders faster and cheaper. Multi-currency accounts, customizable wallets, and stablecoin rails—without the complexity and with the best security systems available.</p>
+        <div class="hero__cta">
+          <a href="contact.html" class="btn btn--primary">Get in touch</a>
+          <a href="services.html" class="btn btn--secondary">Explore services</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-labelledby="stats-heading">
+      <div class="stats__viewport">
+        <div class="stats__belt">
+          <div class="stats__item">
+            <div class="stats__value">&lt; 5 min</div>
+            <div class="stats__label">Settlement time</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value" data-counter>120</div>
+            <div class="stats__label">+ currency pairs</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">24/7</div>
+            <div class="stats__label">Global operations</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">99.99%</div>
+            <div class="stats__label">Uptime SLA</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value" data-counter>80</div>
+            <div class="stats__label">+ markets</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">24hr</div>
+            <div class="stats__label">To go live</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">API-first</div>
+            <div class="stats__label">Integration</div>
+          </div>
+          <!-- Duplicate set for seamless conveyor loop -->
+          <div class="stats__item">
+            <div class="stats__value">&lt; 5 min</div>
+            <div class="stats__label">Settlement time</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">120</div>
+            <div class="stats__label">+ currency pairs</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">24/7</div>
+            <div class="stats__label">Global operations</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">99.99%</div>
+            <div class="stats__label">Uptime SLA</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">80</div>
+            <div class="stats__label">+ markets</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">24hr</div>
+            <div class="stats__label">To go live</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__value">API-first</div>
+            <div class="stats__label">Integration</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section services-feature services-feature--stacked" aria-labelledby="about-heading">
+      <div class="container container--wide">
+        <div class="services-feature__content services-feature__content--below">
+          <span class="section-header__label" id="about-heading">About CLETHOS</span>
+          <h2 class="section-header__title">Built for how business moves money today</h2>
+          <p class="section-header__text">Cross-border payments are slow, costly, and opaque. We give businesses treasury and payment infrastructure that settles in minutes, at a fraction of traditional cost, with full visibility.</p>
+          <p class="section-header__text" style="margin-top: var(--space-4);">Our platform combines multi-currency fiat accounts, customizable wallets, and stablecoin rails (including USDT, USDC and other leading assets) so you can collect, hold, and pay globally from a single stack—maximising cross-border liquidity and financial fluidity, via dashboard, API or appointed consultant.</p>
+        </div>
+        <div class="services-feature__media services-feature__media--top">
+          <video
+            class="about-section__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+          >
+            <source src="./assets+/GGFINAL.MP4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section class="section expertise-section" aria-labelledby="expertise-heading">
+      <div class="container container--wide">
+        <div class="two-col two-col--expertise">
+          <div class="two-col__content expertise-section__content">
+            <span class="section-header__label" id="expertise-heading">Expertise</span>
+            <h2 class="section-header__title">Finance is shifting on-chain</h2>
+            <p class="section-header__text">The cross-border FX market is being rebuilt on-chain. Stablecoins, tokenized deposits, and programmable money are unlocking real-time settlement, lower fees, and richer data—without asking businesses to become blockchain experts.</p>
+            <p class="section-header__text">We focus on B2B use cases where on-chain rails make a tangible difference: high-volume collections and payouts, corporate treasury, and programmable flows like splits, escrow, and revenue sharing. CLETHOS helps you operate borderlessly and internationally—lifting traditional banking restrictions without sacrificing bank-grade security and compliance. We abstract the wallets, keys, and chains so your teams work with familiar currencies and dashboards.</p>
+          </div>
+          <div class="two-col__media expertise-section__media">
+            <div class="expertise-media-card">
+              <img
+                src="./assets+/hfhfhf.png"
+                alt="CLETHOS expertise illustration"
+                loading="lazy"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="services-heading">
+      <div class="container container--wide">
+        <div class="section-header">
+          <span class="section-header__label" id="services-heading">Services</span>
+          <h2 class="section-header__title">What we offer</h2>
+          <p class="section-header__text">End-to-end capabilities for global treasury and payments.</p>
+        </div>
+        <div class="services-grid">
+          <article class="card">
+            <h3 class="card__title">Collections, transfers & payments</h3>
+            <p class="card__text">Secure international cross-border collections and payments in minutes. Compliant rails, local fiat and stablecoins—via dashboard, API or appointed consultant.</p>
+            <a href="services.html#collections" class="btn btn--secondary" style="margin-top: var(--space-4);">Learn more</a>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Multi-currency accounts</h3>
+            <p class="card__text">Dedicated fiat and crypto accounts in one stack. Streamlined treasury, lower FX and processing costs—lifting banking restrictions and greater financial fluidity.</p>
+            <a href="services.html#accounts" class="btn btn--secondary" style="margin-top: var(--space-4);">Learn more</a>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Customizable wallets</h3>
+            <p class="card__text">Wallets that work the way you do. Configure splits, escrow, and refunds and more, specifically tailored to your flows and business—no confusion, no delays.</p>
+            <a href="services.html#wallets" class="btn btn--secondary" style="margin-top: var(--space-4);">Learn more</a>
+          </article>
+        </div>
+        <p style="text-align: center; margin-top: var(--space-8);">
+          <a href="services.html" class="btn btn--primary">View all services</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-block" aria-labelledby="cta-heading">
+      <h2 id="cta-heading" class="cta-block__title">Ready to upgrade your treasury?</h2>
+      <p class="cta-block__text">Talk to our team about collections, payouts, and programmable infrastructure tailored to your business.</p>
+      <a href="contact.html" class="btn btn--primary cta-block__btn">Get in touch</a>
+    </section>
+    <div class="landing-end-spacer" aria-hidden="true"></div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner">
+      <div class="site-footer__grid">
+        <div>
+          <div class="site-footer__brand">CLETHOS</div>
+          <p class="site-footer__tagline">Treasury infrastructure for modern business.</p>
+        </div>
+        <div class="site-footer__links">
+          <h4>Product</h4>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="site-footer__links">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="research.html">Research</a>
+          <a href="legal.html">Legal</a>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 CLETHOS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js"></script>
+  <script>
+    UnicornStudio.init();
+    setTimeout(function () { window.__unicornLandingReady = true; }, 800);
+  </script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

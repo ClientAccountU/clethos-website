@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f9fafb">
+  <meta name="description" content="CLETHOS — Loading experience">
+  <title>CLETHOS — Loading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/layout.css">
+</head>
+<body class="intro-active">
+  <div id="intro-overlay" class="intro-overlay" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+    <div class="intro-overlay__visual" aria-hidden="true">
+      <div class="intro-overlay__scene-shell">
+        <div
+          id="unicorn-loader"
+          class="intro-overlay__scene"
+          data-us-project="n4rWNgDEw116RUxckhl8"
+          style="width: 100%; height: 100%;"
+        ></div>
+      </div>
+    </div>
+    <h1 id="intro-title" class="visually-hidden">CLETHOS is loading</h1>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js"></script>
+  <script>
+    (function () {
+      if (window.UnicornStudio) {
+        UnicornStudio.init();
+      } else {
+        window.addEventListener('load', function () {
+          if (window.UnicornStudio) UnicornStudio.init();
+        });
+      }
+    })();
+  </script>
+  <script src="./js/loader.js"></script>
+</body>
+</html>
+

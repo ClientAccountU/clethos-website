@@ -1,0 +1,107 @@
+/**
+ * CLETHOS Design System — Design Tokens
+ * Original tokens; not derived from any third-party site.
+ */
+
+:root {
+  /* Brand */
+  --brand-name: "CLETHOS";
+  --brand-tagline: "Treasury infrastructure for modern business";
+
+  /* Colors — light theme palette */
+  --color-bg: #f9fafb;            /* page background */
+  --color-bg-elevated: #ffffff;   /* elevated sections / strips */
+  --color-bg-surface: #ffffff;    /* cards, surfaces */
+  --color-bg-muted: #e5e7eb;      /* footer / subtle bands */
+
+  --color-text: #0f172a;          /* primary text */
+  --color-text-muted: #4b5563;    /* body copy */
+  --color-text-subtle: #6b7280;   /* secondary meta text */
+
+  --color-accent: #22c55e;        /* CLETHOS green accent */
+  --color-accent-hover: #16a34a;
+  --color-accent-muted: rgba(34, 197, 94, 0.12);
+  --color-accent-strong: #15803d;
+
+  --color-border: #e5e7eb;
+  --color-border-strong: #cbd5f5;
+
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3rem;
+  --text-hero: clamp(2.5rem, 5vw + 1rem, 4rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tight: -0.03em;
+  --tracking-normal: 0;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Layout */
+  --container-narrow: 42rem;
+  --container-default: 72rem;
+  --container-wide: 80rem;
+  --section-padding-y: clamp(3rem, 8vw, 5rem);
+  --section-padding-x: clamp(1rem, 4vw, 2rem);
+  /* Safe area for notched devices (e.g. iPhone) */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  /* Minimum touch target (accessibility) */
+  --touch-min: 44px;
+
+  /* Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.35s;
+  --duration-slow: 0.5s;
+
+  /* Z-index */
+  --z-header: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+
+  /* Hero slides section (dark theme) */
+  --ink: #0d1117;
+  --ink-soft: #161b22;
+  --text-inverse: #f0f4f8;
+  --hero-accent: #0d9488;
+  --hero-accent-glow: rgba(13, 148, 136, 0.25);
+  --header-height: 80px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

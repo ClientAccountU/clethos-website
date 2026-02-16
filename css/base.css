@@ -1,0 +1,156 @@
+/**
+ * CLETHOS — Base styles (reset, typography)
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* Prevent rubber-band overscroll on iOS while keeping momentum scroll in #main-content */
+  overscroll-behavior-x: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Safe area padding for notched devices */
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
+}
+
+/* Mobile: tap highlight, touch-friendly, prevent double-tap zoom delay */
+@media (hover: none) and (pointer: coarse) {
+  a, button {
+    -webkit-tap-highlight-color: rgba(34, 197, 94, 0.2);
+    tap-highlight-color: rgba(34, 197, 94, 0.2);
+  }
+  button, .btn {
+    touch-action: manipulation;
+  }
+}
+
+#main-content {
+  will-change: transform;
+}
+
+/* Lock scroll while intro overlay is active */
+body.intro-active {
+  overflow: hidden;
+  /* Match loader background to Unicorn scene (light version) so the viewport feels like one surface */
+  background-color: var(--color-bg);
+}
+
+/* Hide main content until intro overlay is dismissed */
+.intro-active #main-content {
+  opacity: 0;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent horizontal overflow from long words or fixed-width content */
+#main-content,
+.container {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out-quart);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+h1 { font-size: var(--text-hero); }
+h2 { font-size: var(--text-4xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+
+p {
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+/* Utility: visually hidden (for accessible labels) */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Skip link for keyboard/screen reader */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-accent);
+  /* Ensure strong contrast on accent background in light theme */
+  color: #022c22;
+  font-weight: 600;
+  transform: translateY(-100%);
+  transition: transform var(--duration-fast) var(--ease-out-quart);
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--color-bg);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .solutions-hero__video {
+    animation: none !important;
+  }
+}

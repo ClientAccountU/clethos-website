@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f9fafb">
+  <meta name="description" content="CLETHOS services: collections, transfers, payouts, multi-currency accounts, and customizable wallets for business.">
+  <title>Services — CLETHOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/layout.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" id="site-header" role="banner">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo" aria-label="CLETHOS home"><img src="./assets+/LOGO TRANSP.png" alt="CLETHOS" class="site-header__logo-img" width="140" height="32"></a>
+      <nav class="site-header__nav" id="main-nav" aria-label="Main navigation">
+        <a href="services.html" aria-current="page">Services</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn--primary">Get in touch</a>
+      </nav>
+      <button type="button" class="site-header__menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav" hidden>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section hero solutions-hero" style="min-height: 60vh;">
+      <div class="solutions-hero__media" aria-hidden="true">
+        <video
+          class="solutions-hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source src="./assets+/videoplayback (2) - Trim.mp4" type="video/mp4">
+        </video>
+        <div class="solutions-hero__scrim"></div>
+      </div>
+      <div class="container container--narrow solutions-hero__content page-hero__inner">
+        <span class="section-header__label">Services</span>
+        <h1 class="hero__title" style="margin-bottom: var(--space-4);">What we offer</h1>
+        <p class="hero__subtitle" style="margin-bottom: 0;">From collections and payouts to customizable wallets and multi-currency accounts—we design solutions around your workflows.</p>
+      </div>
+    </section>
+
+    <!-- Collections: content left, image right — strip layout with asymmetric grid -->
+    <section class="services-feature services-feature--strip" id="collections" aria-labelledby="collections-heading">
+      <div class="services-feature__strip-inner">
+        <div class="services-feature__content">
+          <span class="section-header__label" id="collections-heading">Collections & payouts</span>
+          <h2 class="section-header__title">Secure cross-border payments, global collections & transfers</h2>
+          <p class="section-header__text">Move money securely across borders in minutes. Traditional bank transfers in non-G10 currencies are slow and expensive—we provide compliant cross-border payment rails, plus local fiat and stablecoin collections and disbursements via dashboard, API or appointed consultant.</p>
+        </div>
+        <div class="services-feature__media services-feature__media--right">
+          <div class="expertise-media-card expertise-media-card--collections">
+            <img
+              src="./assets+/hhj.png"
+              alt="Global collections and payouts"
+              class="expertise-media-card__img expertise-media-card__img--fit"
+              loading="lazy"
+              width="800"
+              height="500"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accounts: card layout with future media placeholder -->
+    <section class="section services-feature services-feature--card" id="accounts" aria-labelledby="accounts-heading">
+      <div class="container container--wide">
+        <div class="services-feature__card-inner">
+          <div class="services-feature__content">
+            <span class="section-header__label" id="accounts-heading">Accounts</span>
+            <h2 class="section-header__title">Multi-currency fiat & crypto accounts</h2>
+            <p class="section-header__text">Operate globally with greater financial fluidity—lifting banking restrictions. Dedicated accounts in multiple fiat and crypto assets for streamlined treasury, higher efficiency, and lower FX and processing costs.</p>
+          </div>
+          <div class="services-feature__media">
+            <div class="services-feature__media-fill">
+              <img
+                src="./assets+/accounts-illustration.png"
+                alt="Illustration of multi-currency fiat and crypto accounts connected globally"
+                class="services-feature__img"
+                loading="lazy"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wallets: mirrored card layout with future media placeholder -->
+    <section class="section services-feature services-feature--card services-feature--card-reverse" id="wallets" aria-labelledby="wallets-heading">
+      <div class="container container--wide">
+        <div class="services-feature__card-inner">
+          <div class="services-feature__media">
+            <div class="services-feature__media-fill">
+              <img
+                src="./assets+/wallets-illustration.png"
+                alt="Illustration of secure customizable wallets with automated payment flows"
+                class="services-feature__img"
+                loading="lazy"
+              >
+            </div>
+          </div>
+          <div class="services-feature__content">
+            <span class="section-header__label" id="wallets-heading">Wallets</span>
+            <h2 class="section-header__title">Secure customizable wallets</h2>
+            <p class="section-header__text">Granular control and automation for complex flows: splits, refunds, and custom logic without coding on-chain. Reduce operational friction and missed revenue from refunds and ownership splits.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security: centered card, unique layout, image space reserved -->
+    <section class="section services-feature services-feature--card-security" id="security" aria-labelledby="security-heading">
+      <div class="container container--wide">
+        <div class="services-feature__card-inner services-feature__card-inner--security">
+          <div class="services-feature__content services-feature__content--security">
+            <span class="section-header__label" id="security-heading">Security</span>
+            <h2 class="section-header__title">Bank-grade security for your global treasury</h2>
+            <p class="section-header__text">Safeguard balances and flows with institutional-grade custody, segregated accounts, multi-layer access controls, and continuous monitoring across all cross-border payments.</p>
+          </div>
+          <div class="security-image-placeholder">
+            <div class="security-image-box">
+              <img
+                src="./assets+/gggh.png"
+                alt="Illustration representing secure infrastructure for global treasury"
+                class="security-image-placeholder__img"
+                loading="lazy"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Former Solutions “who we serve” section folded into Services -->
+    <section class="section section--who-we-work-with" aria-labelledby="who-we-for-heading">
+      <div class="container container--wide">
+        <div class="section-header section-header--centered" style="margin-bottom: var(--space-8);">
+          <span class="section-header__label" id="who-we-for-heading">Who we also work with</span>
+          <p class="section-header__text">
+            While we primarily provide B2B treasury infrastructure and financial fluidity for businesses, we also integrate with
+            platforms and teams that need secure, scalable money movement—marketplaces, treasury and finance teams, and developer-led products.
+          </p>
+        </div>
+        <div class="services-grid">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">
+              <svg class="card__icon-svg" viewBox="0 0 32 32" role="img" focusable="false">
+                <circle cx="10" cy="11" r="3.5" />
+                <circle cx="22" cy="9" r="3.5" />
+                <circle cx="16" cy="21" r="3.5" />
+                <path d="M12.5 12.5 14.5 18.5" />
+                <path d="M19.5 11 17.5 17" />
+              </svg>
+            </div>
+            <h3 class="card__title">Marketplaces & platforms</h3>
+            <p class="card__text">Collect from buyers and pay sellers in multiple currencies. Split payments, hold in escrow, and settle in minutes.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon card__icon--accent" aria-hidden="true">
+              <svg class="card__icon-svg" viewBox="0 0 32 32" role="img" focusable="false">
+                <rect x="7" y="10" width="18" height="12" rx="3" />
+                <path d="M10 14h6" />
+                <path d="M10 18h4" />
+                <path d="M9 23.5h14" />
+              </svg>
+            </div>
+            <h3 class="card__title">Treasury & finance teams</h3>
+            <p class="card__text">Centralize global cash, reduce FX cost, and automate payouts. One stack for collections, holding, and disbursements.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon card__icon--outline" aria-hidden="true">
+              <svg class="card__icon-svg" viewBox="0 0 32 32" role="img" focusable="false">
+                <path d="M11 9 6 16l5 7" />
+                <path d="M21 9 26 16l-5 7" />
+              </svg>
+            </div>
+            <h3 class="card__title">Developers & builders</h3>
+            <p class="card__text">API-first infrastructure for programmable flows. Webhooks, idempotency, and docs you can ship on.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-block">
+      <h2 class="cta-block__title">Ready to get started?</h2>
+      <p class="cta-block__text">Talk to our team about your use case and how we can support your treasury and payments.</p>
+      <a href="contact.html" class="btn btn--primary cta-block__btn">Get in touch</a>
+    </section>
+
+  <footer class="site-footer site-footer--compact" role="contentinfo">
+    <div class="site-footer__inner">
+      <nav class="site-footer__nav" aria-label="Footer links">
+        <a href="about.html">About</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="services.html">Services</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="privacy.html">Privacy</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="contact.html">Contact</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="terms.html">Terms &amp; Conditions</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="legal.html">Legal disclosures</a><span class="site-footer__sep" aria-hidden="true">·</span>
+        <a href="website-terms.html">Website Terms</a>
+      </nav>
+      <div class="site-footer__bottom">
+        <p>© 2026 CLETHOS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  </main>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
