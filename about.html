@@ -201,22 +201,7 @@
   </footer>
   </main>
 
-  <script>
-    (function () {
-      function isLowEnd() {
-        var c = typeof navigator.hardwareConcurrency === 'number' ? navigator.hardwareConcurrency : 8;
-        var m = typeof navigator.deviceMemory === 'number' ? navigator.deviceMemory : 8;
-        return c <= 4 || m <= 4;
-      }
-      if (!isLowEnd()) {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js';
-        s.async = true;
-        s.onload = function () { if (window.__initJourneyUnicorn) window.__initJourneyUnicorn(); };
-        document.head.appendChild(s);
-      }
-    })();
-  </script>
+  <script src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js"></script>
   <script>
     (function () {
       var inited = false;
@@ -243,8 +228,6 @@
         UnicornStudio.init();
       }
 
-      window.__initJourneyUnicorn = initWhenVisible;
-
       if (section && 'IntersectionObserver' in window) {
         var obs = new IntersectionObserver(
           function (entries) {
@@ -256,7 +239,7 @@
           { rootMargin: '0px', threshold: 0.1 }
         );
         obs.observe(section);
-        document.addEventListener('load', function () {
+        window.addEventListener('load', function () {
           if (!inited && section.getBoundingClientRect().top < window.innerHeight) initWhenVisible();
         });
       } else {
