@@ -237,11 +237,28 @@ if (menuBtn && mainNav && siteHeader) {
   backdrop.setAttribute('aria-hidden', 'true');
   siteHeader.insertBefore(backdrop, siteHeader.firstChild);
 
+  const body = document.body;
+  let menuScrollY = 0;
+
+  const unlockBodyScroll = () => {
+    if (body.dataset.menuLock === '1') {
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      body.style.width = '';
+      body.style.overflow = '';
+      window.scrollTo(0, menuScrollY || 0);
+      delete body.dataset.menuLock;
+    }
+  };
+
   const closeMenu = () => {
     mainNav.classList.remove('is-open');
     menuBtn.setAttribute('aria-expanded', 'false');
     menuBtn.setAttribute('aria-label', 'Toggle menu');
     backdrop.classList.remove('is-visible');
+    unlockBodyScroll();
   };
 
   const media = window.matchMedia('(max-width: 768px)');
@@ -255,6 +272,20 @@ if (menuBtn && mainNav && siteHeader) {
     menuBtn.setAttribute('aria-expanded', open);
     menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Toggle menu');
     backdrop.classList.toggle('is-visible', open);
+
+    // On mobile, lock body scroll so the menu is always fully visible on top
+    if (media.matches && open) {
+      menuScrollY = window.scrollY || window.pageYOffset || 0;
+      body.dataset.menuLock = '1';
+      body.style.position = 'fixed';
+      body.style.top = `-${menuScrollY}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+      body.style.overflow = 'hidden';
+    } else {
+      unlockBodyScroll();
+    }
   });
 
   backdrop.addEventListener('click', () => { if (media.matches) closeMenu(); });
@@ -304,9 +335,45 @@ if (!prefersReducedMotion()) {
 // ——— About section video: ensure loop works (fallback for browsers that ignore loop attribute) ———
 const aboutVideo = document.querySelector('.about-section__video');
 if (aboutVideo) {
+  const ensureAboutVideoPlaying = () => {
+    if (aboutVideo.paused || aboutVideo.ended) {
+      if (aboutVideo.ended) aboutVideo.currentTime = 0;
+      aboutVideo.play().catch(() => {});
+    }
+  };
+
   aboutVideo.addEventListener('ended', () => {
     aboutVideo.currentTime = 0;
-    aboutVideo.play().catch(() => {});
+    ensureAboutVideoPlaying();
+  });
+
+  // If the browser pauses the video when it goes off-screen, resume when possible
+  aboutVideo.addEventListener('pause', () => {
+    if (!document.hidden) {
+      ensureAboutVideoPlaying();
+    }
+  });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          ensureAboutVideoPlaying();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(aboutVideo);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      ensureAboutVideoPlaying();
+    }
+  });
+
+  window.addEventListener('pageshow', () => {
+    ensureAboutVideoPlaying();
   });
 }
 
