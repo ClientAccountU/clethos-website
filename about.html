@@ -64,7 +64,7 @@
           </div>
           <div class="two-col__media two-col__media--mission">
             <div class="mission-logo-wrap">
-              <img src="./assets+/LOGO TRANSP.png" alt="CLETHOS" class="two-col__media-logo" width="400" height="auto">
+              <img src="./assets+/LOGO TRANSP.png" alt="CLETHOS" class="two-col__media-logo" width="400" height="auto" loading="lazy">
             </div>
           </div>
         </div>
@@ -201,16 +201,50 @@
   </footer>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js"></script>
+  <script>
+    (function () {
+      function isLowEnd() {
+        var c = typeof navigator.hardwareConcurrency === 'number' ? navigator.hardwareConcurrency : 8;
+        var m = typeof navigator.deviceMemory === 'number' ? navigator.deviceMemory : 8;
+        return c <= 4 || m <= 4;
+      }
+      if (!isLowEnd()) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js';
+        s.async = true;
+        s.onload = function () { if (window.__initJourneyUnicorn) window.__initJourneyUnicorn(); };
+        document.head.appendChild(s);
+      }
+    })();
+  </script>
   <script>
     (function () {
       var inited = false;
+      var section = document.querySelector('.journey-section');
+      var bgEl = section ? section.querySelector('.journey-section__bg') : null;
+
+      function isLowEnd() {
+        var c = typeof navigator.hardwareConcurrency === 'number' ? navigator.hardwareConcurrency : 8;
+        var m = typeof navigator.deviceMemory === 'number' ? navigator.deviceMemory : 8;
+        return c <= 4 || m <= 4;
+      }
+
       function initWhenVisible() {
-        if (inited || !window.UnicornStudio || typeof window.UnicornStudio.init !== 'function') return;
+        if (inited) return;
+        if (section && bgEl && isLowEnd()) {
+          section.classList.add('journey-section--fallback');
+          bgEl.removeAttribute('data-us-project');
+          bgEl.removeAttribute('style');
+          inited = true;
+          return;
+        }
+        if (!window.UnicornStudio || typeof window.UnicornStudio.init !== 'function') return;
         inited = true;
         UnicornStudio.init();
       }
-      var section = document.querySelector('.journey-section');
+
+      window.__initJourneyUnicorn = initWhenVisible;
+
       if (section && 'IntersectionObserver' in window) {
         var obs = new IntersectionObserver(
           function (entries) {

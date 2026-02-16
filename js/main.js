@@ -22,6 +22,13 @@ const isTouchLikeDevice = () => {
   return coarse || smallScreen || hasTouch;
 };
 
+const isLowEndDevice = () => {
+  if (typeof navigator === 'undefined') return false;
+  const cores = typeof navigator.hardwareConcurrency === 'number' ? navigator.hardwareConcurrency : 8;
+  const mem = typeof navigator.deviceMemory === 'number' ? navigator.deviceMemory : 8;
+  return cores <= 4 || mem <= 4;
+};
+
 const header = document.getElementById('site-header');
 
 // Enable momentum scroll on desktop only; mobile and touch devices use native scroll.
@@ -114,11 +121,12 @@ function momentumRender() {
   const renderedY = Math.round(momentumData.current);
   scrollContainer.style.transform = `translateY(-${renderedY}px)`;
 
-  // Throttle heavier GSAP work slightly and skip when essentially idle
-  if (Math.abs(velocity) > 0.01 && (momentumFrame++ % 2) === 0) {
-    ScrollTrigger.update();
-    if (typeof window.__timelineUpdate === 'function') window.__timelineUpdate();
+  // Throttle heavier GSAP and timeline work to reduce load on low-end devices
+  if (Math.abs(velocity) > 0.01) {
+    if ((momentumFrame % 2) === 0) ScrollTrigger.update();
+    if ((momentumFrame % 4) === 0 && typeof window.__timelineUpdate === 'function') window.__timelineUpdate();
   }
+  momentumFrame++;
 
   if (header) header.classList.toggle('is-scrolled', renderedY > 40);
   momentumRaf = requestAnimationFrame(momentumRender);
@@ -147,6 +155,7 @@ window.__getScrollTop = USE_MOMENTUM_SCROLL ? () => momentumData.current : () =>
 
 // Start momentum scroll only when not preferring reduced motion and USE_MOMENTUM_SCROLL is true
 function startMomentumScroll() {
+  document.body.classList.add('momentum-scroll-active');
   initMomentumScroll();
   momentumRender();
   window.addEventListener('wheel', onMomentumWheel, { passive: false });
@@ -345,7 +354,7 @@ const reveal = (selector, opts = {}) => {
   });
 };
 
-if (!prefersReducedMotion()) {
+if (!prefersReducedMotion() && !isLowEndDevice()) {
   reveal('.hero__title', { y: 40 });
   reveal('.hero__subtitle', { y: 24, delay: 0.1 });
   reveal('.hero__cta', { y: 24, delay: 0.2 });
@@ -401,8 +410,8 @@ if (aboutVideo) {
   });
 }
 
-// ——— Counter animation for stats (respect reduced motion) ———
-if (!prefersReducedMotion()) {
+// ——— Counter animation for stats (respect reduced motion, skip on low-end) ———
+if (!prefersReducedMotion() && !isLowEndDevice()) {
   document.querySelectorAll('[data-counter]').forEach((el) => {
     const end = parseInt(el.textContent, 10);
     if (Number.isNaN(end)) return;

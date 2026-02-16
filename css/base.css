@@ -44,7 +44,8 @@ body {
   }
 }
 
-#main-content {
+/* will-change only when momentum scroll is active (desktop) to avoid extra layer on mobile/low-end */
+body.momentum-scroll-active #main-content {
   will-change: transform;
 }
 

@@ -35,6 +35,15 @@
   height: 100%;
 }
 
+/* Low-end device fallback: no WebGL, gradient only (same tone as Unicorn scene) */
+.journey-section--fallback .journey-section__bg-wrap {
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(34, 197, 94, 0.12), transparent 70%),
+              linear-gradient(180deg, rgba(249, 250, 251, 0.97) 0%, var(--color-bg) 100%);
+}
+.journey-section--fallback .journey-section__bg {
+  display: none;
+}
+
 .journey-section .timeline-container {
   position: relative;
   z-index: 1;
@@ -91,14 +100,14 @@
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
   width: 4px;
+  height: 100%;
+  transform-origin: top center;
+  transform: translateX(-50%) scaleY(var(--timeline-progress, 0));
   background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-accent-strong) 100%);
   border-radius: 2px;
-  height: 0;
-  transition: height 0.1s ease-out;
+  transition: transform 0.12s ease-out;
   z-index: 10;
-  will-change: height;
 }
 
 .timeline-items {
@@ -203,7 +212,7 @@
 
   .timeline-line-progress {
     left: 30px;
-    transform: none;
+    transform: scaleY(var(--timeline-progress, 0));
   }
 
   .timeline-item:nth-child(odd) .timeline-content,
@@ -238,6 +247,10 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .timeline-item.visible {
+    opacity: 1;
+    transform: none;
   }
   .timeline-item.active .timeline-dot {
     animation: none;
