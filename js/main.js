@@ -13,10 +13,19 @@ injectSpeedInsights();
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const isTouchLikeDevice = () => {
+  if (typeof window === 'undefined') return false;
+  const mq = window.matchMedia ? window.matchMedia.bind(window) : null;
+  const coarse = mq ? mq('(pointer: coarse)').matches : false;
+  const smallScreen = mq ? mq('(max-width: 768px)').matches : false;
+  const hasTouch = 'ontouchstart' in window;
+  return coarse || smallScreen || hasTouch;
+};
+
 const header = document.getElementById('site-header');
 
-// Set to true to enable momentum scroll. When false, native scroll is used.
-const USE_MOMENTUM_SCROLL = true;
+// Enable momentum scroll on desktop only; mobile and touch devices use native scroll.
+const USE_MOMENTUM_SCROLL = !isTouchLikeDevice();
 
 // ——— Momentum scroll (ease: 0.030, multiplier: 1.3) ——— [disabled when USE_MOMENTUM_SCROLL is false]
 const momentumConfig = {
