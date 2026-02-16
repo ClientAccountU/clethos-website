@@ -18,6 +18,24 @@
   height: 100%;
 }
 
+/* By default, show desktop scene and hide mobile one */
+.landing-bg__scene--desktop {
+  display: block;
+}
+.landing-bg__scene--mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* On mobile, use the mobile-optimised Unicorn project instead */
+  .landing-bg__scene--desktop {
+    display: none;
+  }
+  .landing-bg__scene--mobile {
+    display: block;
+  }
+}
+
 .landing-bg::after {
   content: "";
   position: absolute;
