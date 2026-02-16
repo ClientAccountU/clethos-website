@@ -34,10 +34,10 @@ const header = document.getElementById('site-header');
 // Enable momentum scroll on desktop only; mobile and touch devices use native scroll.
 const USE_MOMENTUM_SCROLL = !isTouchLikeDevice();
 
-// ——— Momentum scroll (ease: 0.030, multiplier: 1.3) ——— [disabled when USE_MOMENTUM_SCROLL is false]
+// ——— Momentum scroll: higher ease = snappier, less lag; multiplier = scroll distance per tick ———
 const momentumConfig = {
-  ease: 0.030,
-  multiplier: 1.3,
+  ease: 0.085,
+  multiplier: 1.4,
 };
 
 const momentumData = {
@@ -112,8 +112,8 @@ function momentumRender() {
   const velocity = momentumData.target - momentumData.current;
   momentumData.current += velocity * momentumData.ease;
 
-  // Snap when extremely close to the target to avoid tiny jitter at rest
-  if (Math.abs(velocity) < 0.05) {
+  // Snap to target when very close to avoid slow drift at rest
+  if (Math.abs(velocity) < 0.5) {
     momentumData.current = momentumData.target;
   }
 
