@@ -213,6 +213,8 @@
   .timeline-line-progress {
     left: 30px;
     transform: scaleY(var(--timeline-progress, 0));
+    transition: transform 0.28s ease-out;
+    backface-visibility: hidden;
   }
 
   .timeline-item:nth-child(odd) .timeline-content,

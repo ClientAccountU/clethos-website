@@ -1176,6 +1176,17 @@
     min-height: 200px;
   }
   .services-feature--card .services-feature__img { min-height: 200px; }
+
+  /* Wallets section: no image on mobile, content fills card */
+  #wallets.services-feature .services-feature__media {
+    display: none;
+  }
+  #wallets.services-feature .services-feature__card-inner {
+    grid-template-rows: auto;
+  }
+  #wallets.services-feature .services-feature__content {
+    padding: var(--space-8);
+  }
 }
 
 /* Intro overlay */

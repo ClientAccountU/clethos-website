@@ -16,6 +16,7 @@
 
   var rafScheduled = false;
   var wrapperHeight = 0;
+  var lastProgress = -1;
 
   function updateTimeline() {
     var rect = wrapper.getBoundingClientRect();
@@ -24,6 +25,7 @@
 
     if (rect.bottom <= 0 || rect.top >= windowHeight) {
       progressEl.style.setProperty('--timeline-progress', '0');
+      lastProgress = 0;
       rafScheduled = false;
       return;
     }
@@ -32,7 +34,12 @@
     var centerY = viewportCenter - rect.top;
     var fillHeight = Math.max(0, Math.min(centerY, wrapperHeight));
     var scale = wrapperHeight > 0 ? fillHeight / wrapperHeight : 0;
-
+    scale = Math.round(scale * 100) / 100;
+    if (window.matchMedia('(max-width: 768px)').matches && lastProgress >= 0 && Math.abs(scale - lastProgress) < 0.03) {
+      rafScheduled = false;
+      return;
+    }
+    lastProgress = scale;
     progressEl.style.setProperty('--timeline-progress', String(scale));
 
     var triggerPoint = windowHeight * 0.75;
