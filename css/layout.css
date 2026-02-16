@@ -346,6 +346,8 @@
 .contact-main {
   padding-top: var(--space-16);
   padding-bottom: var(--space-16);
+  padding-left: max(var(--section-padding-x), var(--safe-left));
+  padding-right: max(var(--section-padding-x), var(--safe-right));
   background:
     radial-gradient(circle at top left, rgba(16, 185, 129, 0.08), transparent 55%),
     radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.06), transparent 55%),
