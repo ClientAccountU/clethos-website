@@ -213,7 +213,7 @@
   .timeline-line-progress {
     left: 30px;
     transform: scaleY(var(--timeline-progress, 0));
-    transition: transform 0.28s ease-out;
+    transition: transform 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
     backface-visibility: hidden;
   }
 
