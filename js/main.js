@@ -328,15 +328,39 @@ if (menuBtn && mainNav && siteHeader) {
   });
 }
 
-// ——— Hero background videos: keep autoplaying reliably ———
+// ——— Hero background videos: keep autoplaying reliably (incl. mobile autoplay) ———
 document.querySelectorAll('.solutions-hero__video').forEach((video) => {
   const ensurePlaying = () => {
-    if (video.paused && !video.ended) {
+    if (video.paused || video.ended) {
+      if (video.ended) video.currentTime = 0;
       video.play().catch(() => {});
     }
   };
   video.addEventListener('canplay', ensurePlaying, { once: true });
+  video.addEventListener('loadeddata', ensurePlaying, { once: true });
   video.addEventListener('pause', ensurePlaying);
+  if (video.readyState >= 2) ensurePlaying();
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) ensurePlaying(); });
+    }, { threshold: 0.1 });
+    observer.observe(video);
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) ensurePlaying(); });
+  window.addEventListener('pageshow', ensurePlaying);
+});
+
+// One-time user interaction unlock for mobile: first tap/click starts muted videos if autoplay was blocked
+const tryStartVideosOnInteraction = () => {
+  document.querySelectorAll('.solutions-hero__video, .about-section__video').forEach((v) => {
+    if (v.paused || v.ended) {
+      if (v.ended) v.currentTime = 0;
+      v.play().catch(() => {});
+    }
+  });
+};
+['touchstart', 'touchend', 'click'].forEach((ev) => {
+  document.addEventListener(ev, tryStartVideosOnInteraction, { once: true, passive: true });
 });
 
 // ——— Scroll-triggered reveals (respect reduced motion) ———
@@ -365,7 +389,7 @@ if (!prefersReducedMotion() && !isLowEndDevice()) {
   reveal('.two-col__media');
 }
 
-// ——— About section video: ensure loop works (fallback for browsers that ignore loop attribute) ———
+// ——— About section video: ensure loop + autoplay on mobile (same as hero) ———
 const aboutVideo = document.querySelector('.about-section__video');
 if (aboutVideo) {
   const ensureAboutVideoPlaying = () => {
@@ -379,35 +403,27 @@ if (aboutVideo) {
     aboutVideo.currentTime = 0;
     ensureAboutVideoPlaying();
   });
+  aboutVideo.addEventListener('loadeddata', ensureAboutVideoPlaying, { once: true });
+  if (aboutVideo.readyState >= 2) ensureAboutVideoPlaying();
 
-  // If the browser pauses the video when it goes off-screen, resume when possible
   aboutVideo.addEventListener('pause', () => {
-    if (!document.hidden) {
-      ensureAboutVideoPlaying();
-    }
+    if (!document.hidden) ensureAboutVideoPlaying();
   });
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          ensureAboutVideoPlaying();
-        }
+        if (entry.isIntersecting) ensureAboutVideoPlaying();
       });
-    }, { threshold: 0.3 });
-
+    }, { threshold: 0.1 });
     observer.observe(aboutVideo);
   }
 
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-      ensureAboutVideoPlaying();
-    }
+    if (!document.hidden) ensureAboutVideoPlaying();
   });
 
-  window.addEventListener('pageshow', () => {
-    ensureAboutVideoPlaying();
-  });
+  window.addEventListener('pageshow', ensureAboutVideoPlaying);
 }
 
 // ——— Counter animation for stats (respect reduced motion, skip on low-end) ———
