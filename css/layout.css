@@ -204,6 +204,51 @@
   color: var(--color-text-muted);
 }
 
+/* Mobile layout for stats strip */
+@media (max-width: 640px) {
+  .stats__belt {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stats__item {
+    flex: 0 0 50%;
+    padding: var(--space-3) var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .stats__value {
+    font-size: var(--text-2xl);
+  }
+
+  .stats__label {
+    font-size: var(--text-xs);
+  }
+}
+
+/* Mobile spacing and type tweaks for services features */
+@media (max-width: 768px) {
+  .services-feature {
+    padding-top: calc(var(--section-padding-y) * 0.75);
+    padding-bottom: calc(var(--section-padding-y) * 0.75);
+  }
+
+  .services-feature__card-inner,
+  .services-feature__strip-inner {
+    gap: var(--space-8);
+  }
+
+  .services-feature__content .section-header__title {
+    font-size: var(--text-2xl);
+  }
+
+  .services-feature__content .section-header__text {
+    font-size: var(--text-base);
+  }
+}
+
 /* Section header */
 .section-header {
   margin-bottom: var(--space-12);

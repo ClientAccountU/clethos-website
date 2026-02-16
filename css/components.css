@@ -39,7 +39,11 @@
 @media (max-width: 768px) {
   .btn {
     min-height: var(--touch-min);
-    padding: var(--space-3) var(--space-5);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
   }
 }
 
