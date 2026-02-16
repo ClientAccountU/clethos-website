@@ -1185,6 +1185,38 @@
   filter: brightness(1.3);
 }
 
+.intro-overlay__brand {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  color: var(--color-text);
+}
+
+.intro-overlay__brand-name {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+
+.intro-overlay__spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 3px solid rgba(148, 163, 184, 0.4);
+  border-top-color: var(--color-accent);
+  animation: intro-spinner 0.8s linear infinite;
+}
+
+@keyframes intro-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .intro-overlay--fade-out {
   opacity: 0;
   pointer-events: none;
