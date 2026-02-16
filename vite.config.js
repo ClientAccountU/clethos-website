@@ -56,33 +56,38 @@ export default defineConfig({
           });
         }
 
-        let indexHtml = readFileSync(join(outDir, 'index.html'), 'utf-8');
+        const indexPath = join(outDir, 'index.html');
+        if (existsSync(indexPath)) {
+          let indexHtml = readFileSync(indexPath, 'utf-8');
 
-        // Ensure loader has tokens+base: inject main CSS (first stylesheet from index) into loader
-        const mainCssMatch = indexHtml.match(/href="(\.\/assets\/main-[^"]+\.css)"/);
-        if (mainCssMatch) {
-          const loaderPath = join(outDir, 'loader.html');
-          let loaderHtml = readFileSync(loaderPath, 'utf-8');
-          const mainCssLink = `<link rel="stylesheet" crossorigin href="${mainCssMatch[1]}">`;
-          if (!loaderHtml.includes(mainCssMatch[1])) {
-            loaderHtml = loaderHtml.replace(
-              /(<link rel="stylesheet" crossorigin href="\.\/assets\/layout-[^"]+\.css">)/,
-              mainCssLink + '\n  ' + '$1'
-            );
-            writeFileSync(loaderPath, loaderHtml);
+          // Ensure loader has tokens+base: inject main CSS (first stylesheet from index) into loader
+          const mainCssMatch = indexHtml.match(/href="(\.\/assets\/main-[^"]+\.css)"/);
+          if (mainCssMatch) {
+            const loaderPath = join(outDir, 'loader.html');
+            if (existsSync(loaderPath)) {
+              let loaderHtml = readFileSync(loaderPath, 'utf-8');
+              const mainCssLink = `<link rel="stylesheet" crossorigin href="${mainCssMatch[1]}">`;
+              if (!loaderHtml.includes(mainCssMatch[1])) {
+                loaderHtml = loaderHtml.replace(
+                  /(<link rel="stylesheet" crossorigin href="\.\/assets\/layout-[^"]+\.css">)/,
+                  mainCssLink + '\n  ' + '$1'
+                );
+                writeFileSync(loaderPath, loaderHtml);
+              }
+            }
           }
-        }
 
-        // Move module script to end of body
-        const moduleScriptMatch = indexHtml.match(/<script type="module"[^>]*src="([^"]+)"[^>]*><\/script>/);
-        if (moduleScriptMatch) {
-          const scriptTag = moduleScriptMatch[0];
-          indexHtml = indexHtml.replace(scriptTag, '');
-          indexHtml = indexHtml.replace(
-            '</body>',
-            `  ${scriptTag}\n</body>`
-          );
-          writeFileSync(join(outDir, 'index.html'), indexHtml);
+          // Move module script to end of body
+          const moduleScriptMatch = indexHtml.match(/<script type="module"[^>]*src="([^"]+)"[^>]*><\/script>/);
+          if (moduleScriptMatch) {
+            const scriptTag = moduleScriptMatch[0];
+            indexHtml = indexHtml.replace(scriptTag, '');
+            indexHtml = indexHtml.replace(
+              '</body>',
+              `  ${scriptTag}\n</body>`
+            );
+            writeFileSync(indexPath, indexHtml);
+          }
         }
       },
     },

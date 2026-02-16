@@ -4,7 +4,7 @@
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { inject as injectSpeedInsights } from '@vercel/speed-insights';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 gsap.registerPlugin(ScrollTrigger);
 // Vercel Speed Insights — collects performance metrics in production on Vercel
