@@ -209,11 +209,27 @@
     padding-top: var(--space-6);
     padding-bottom: var(--space-6);
   }
+  /* Show 3 stats at a time on small screens */
+  .stats__viewport {
+    max-width: none;
+  }
+  .stats__belt {
+    width: 466.6667%;
+  }
+  .stats__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
   .stats__value {
     font-size: var(--text-2xl);
   }
   .stats__label {
     font-size: var(--text-xs);
+    max-width: 11ch;
+    margin: 0 auto;
+    min-height: 2.6em; /* keep rows visually aligned even with longer labels */
   }
 }
 
