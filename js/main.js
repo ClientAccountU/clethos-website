@@ -264,6 +264,17 @@ if (menuBtn && mainNav && siteHeader) {
   });
 }
 
+// ——— Hero background videos: keep autoplaying reliably ———
+document.querySelectorAll('.solutions-hero__video').forEach((video) => {
+  const ensurePlaying = () => {
+    if (video.paused && !video.ended) {
+      video.play().catch(() => {});
+    }
+  };
+  video.addEventListener('canplay', ensurePlaying, { once: true });
+  video.addEventListener('pause', ensurePlaying);
+});
+
 // ——— Scroll-triggered reveals (respect reduced motion) ———
 const reveal = (selector, opts = {}) => {
   const el = document.querySelector(selector);
