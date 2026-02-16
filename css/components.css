@@ -201,7 +201,7 @@
     max-width: 100%;
     flex-direction: column;
     align-items: stretch;
-    padding: max(var(--space-20), var(--safe-top)) var(--space-8) var(--space-8);
+    padding: max(var(--space-10), var(--safe-top)) var(--space-8) var(--space-8);
     padding-right: max(var(--space-8), var(--safe-right));
     background: var(--color-bg-elevated);
     box-shadow: -8px 0 24px rgba(0, 0, 0, 0.08);
@@ -218,10 +218,14 @@
     align-items: center;
     padding-top: var(--space-2);
     padding-bottom: var(--space-2);
+    font-size: var(--text-base);
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-border);
   }
   .site-header__nav a.btn {
     justify-content: center;
     min-height: var(--touch-min);
+    margin-top: var(--space-4);
   }
 }
 
