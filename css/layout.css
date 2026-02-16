@@ -5,7 +5,12 @@
 /* Landing page background — Unicorn Studio WebGL scene */
 .landing-bg {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
@@ -13,27 +18,13 @@
 
 .landing-bg__scene {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-}
-
-/* By default, show desktop scene and hide mobile one */
-.landing-bg__scene--desktop {
-  display: block;
-}
-.landing-bg__scene--mobile {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  /* On mobile, use the mobile-optimised Unicorn project instead */
-  .landing-bg__scene--desktop {
-    display: none;
-  }
-  .landing-bg__scene--mobile {
-    display: block;
-  }
+  min-width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .landing-bg::after {

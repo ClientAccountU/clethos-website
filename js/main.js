@@ -227,7 +227,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// ——— Mobile menu ———
+// ——— Mobile menu (portal on mobile so it is never clipped by header) ———
 const menuBtn = document.getElementById('menu-btn');
 const mainNav = document.getElementById('main-nav');
 const siteHeader = document.getElementById('site-header');
@@ -238,6 +238,7 @@ if (menuBtn && mainNav && siteHeader) {
   siteHeader.insertBefore(backdrop, siteHeader.firstChild);
 
   const body = document.body;
+  const headerInner = siteHeader.querySelector('.site-header__inner');
   let menuScrollY = 0;
 
   const unlockBodyScroll = () => {
@@ -262,9 +263,29 @@ if (menuBtn && mainNav && siteHeader) {
   };
 
   const media = window.matchMedia('(max-width: 768px)');
-  const showBtn = () => { menuBtn.removeAttribute('hidden'); };
-  const hideBtn = () => { menuBtn.setAttribute('hidden', ''); closeMenu(); };
-  media.addEventListener('change', (e) => e.matches ? showBtn() : hideBtn());
+
+  // On mobile, move nav and backdrop to body so nothing can clip the menu
+  const moveMenuToBody = () => {
+    if (!headerInner || mainNav.parentNode === body) return;
+    headerInner.removeChild(mainNav);
+    siteHeader.removeChild(backdrop);
+    body.appendChild(backdrop);
+    body.appendChild(mainNav);
+    body.classList.add('mobile-menu-portal');
+  };
+
+  const moveMenuToHeader = () => {
+    if (mainNav.parentNode !== body) return;
+    body.removeChild(backdrop);
+    body.removeChild(mainNav);
+    body.classList.remove('mobile-menu-portal');
+    siteHeader.insertBefore(backdrop, siteHeader.firstChild);
+    headerInner.insertBefore(mainNav, menuBtn);
+  };
+
+  const showBtn = () => { menuBtn.removeAttribute('hidden'); moveMenuToBody(); };
+  const hideBtn = () => { menuBtn.setAttribute('hidden', ''); moveMenuToHeader(); closeMenu(); };
+  media.addEventListener('change', (e) => (e.matches ? showBtn() : hideBtn()));
   if (media.matches) showBtn();
 
   menuBtn.addEventListener('click', () => {
@@ -273,11 +294,11 @@ if (menuBtn && mainNav && siteHeader) {
     menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Toggle menu');
     backdrop.classList.toggle('is-visible', open);
 
-    // On mobile-like widths, lock body scroll so the menu is always fully visible on top
     const vw = window.innerWidth || document.documentElement.clientWidth || 0;
     const isMobileLikeWidth = vw <= 900;
 
     if (open && isMobileLikeWidth) {
+      mainNav.scrollTop = 0;
       menuScrollY = window.scrollY || window.pageYOffset || 0;
       body.dataset.menuLock = '1';
       body.style.position = 'fixed';

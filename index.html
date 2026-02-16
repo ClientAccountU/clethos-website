@@ -38,18 +38,7 @@
 </head>
 <body>
   <div class="landing-bg" aria-hidden="true">
-    <!-- Desktop Unicorn scene (unchanged) -->
-    <div
-      class="landing-bg__scene landing-bg__scene--desktop"
-      data-us-project="IFH1jBpGWPa6H1pQWHHi"
-      style="width: 100%; height: 100%;"
-    ></div>
-    <!-- Mobile-optimised Unicorn scene -->
-    <div
-      class="landing-bg__scene landing-bg__scene--mobile"
-      data-us-project="Vejoix6YlOaRD9C3Pi93"
-      style="width: 100%; height: 100%;"
-    ></div>
+    <div class="landing-bg__scene" data-us-project="IFH1jBpGWPa6H1pQWHHi" style="width: 100vw; height: 100vh;"></div>
   </div>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="site-header" id="site-header" role="banner">
@@ -256,8 +245,19 @@
 
   <script src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.5/dist/unicornStudio.umd.js"></script>
   <script>
-    UnicornStudio.init();
-    setTimeout(function () { window.__unicornLandingReady = true; }, 800);
+    (function () {
+      function initLandingUnicorn() {
+        if (window.UnicornStudio) {
+          UnicornStudio.init();
+          setTimeout(function () { window.__unicornLandingReady = true; }, 1200);
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLandingUnicorn);
+      } else {
+        initLandingUnicorn();
+      }
+    })();
   </script>
   <script type="module" src="./js/main.js"></script>
 </body>

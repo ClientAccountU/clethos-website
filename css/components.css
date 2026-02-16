@@ -199,10 +199,13 @@
     bottom: 0;
     width: min(320px, 85vw);
     max-width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
     flex-direction: column;
     align-items: stretch;
     padding: max(var(--space-10), var(--safe-top)) var(--space-8) var(--space-8);
     padding-right: max(var(--space-8), var(--safe-right));
+    padding-bottom: max(var(--space-8), var(--safe-bottom));
     background: var(--color-bg-elevated);
     box-shadow: -8px 0 24px rgba(0, 0, 0, 0.12);
     transform: translateX(100%);
@@ -226,6 +229,14 @@
     justify-content: center;
     min-height: var(--touch-min);
     margin-top: var(--space-4);
+  }
+
+  /* When menu is portaled to body, ensure it is always on top and never clipped */
+  body.mobile-menu-portal .site-header__nav-backdrop {
+    z-index: 9998;
+  }
+  body.mobile-menu-portal .site-header__nav {
+    z-index: 9999;
   }
 }
 
