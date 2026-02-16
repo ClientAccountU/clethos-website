@@ -328,7 +328,7 @@ if (menuBtn && mainNav && siteHeader) {
   });
 }
 
-// ——— Hero background videos: keep autoplaying reliably (incl. mobile autoplay) ———
+// ——— Hero background videos: keep autoplaying and looping reliably (incl. mobile) ———
 document.querySelectorAll('.solutions-hero__video').forEach((video) => {
   const ensurePlaying = () => {
     if (video.paused || video.ended) {
@@ -336,6 +336,10 @@ document.querySelectorAll('.solutions-hero__video').forEach((video) => {
       video.play().catch(() => {});
     }
   };
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    ensurePlaying();
+  });
   video.addEventListener('canplay', ensurePlaying, { once: true });
   video.addEventListener('loadeddata', ensurePlaying, { once: true });
   video.addEventListener('pause', ensurePlaying);
