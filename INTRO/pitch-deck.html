@@ -461,18 +461,28 @@
       padding-top: 0.5rem;
     }
 
-    .logo {
+    .cover-logo {
       display: block;
-      width: auto;
-      max-width: min(280px, 78vw);
-      height: auto;
-      max-height: clamp(40px, 10vw, 56px);
-      object-fit: contain;
+      width: min(280px, 88vw);
       margin: 0 auto 1.25rem;
+      flex-shrink: 0;
+      line-height: 0;
     }
 
-    .slide--cover .logo {
-      flex-shrink: 0;
+    .cover-logo .logo,
+    .logo {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      max-height: none;
+      object-fit: contain;
+      object-position: center;
+      margin: 0;
+    }
+
+    .slide--cover .cover-logo {
+      min-height: 0;
     }
 
     .slide__label {
@@ -2098,8 +2108,30 @@
       .intro-point:last-child { border-bottom: none; }
       .intro-lanes { grid-template-columns: repeat(2, 1fr); }
       .intro-steps { grid-template-columns: 1fr; }
-      .fee-visual { grid-template-columns: 1fr; }
-      .fee-visual__arrow { transform: rotate(90deg); }
+      .fee-visual {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 20rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .fee-visual__box {
+        width: 100%;
+        align-self: stretch;
+      }
+
+      .fee-visual__arrow {
+        transform: none;
+        display: block;
+        text-align: center;
+        align-self: center;
+        padding: 0.2rem 0;
+        line-height: 1;
+      }
       .steps--compact { grid-template-columns: 1fr; }
       .ideal-for-grid { grid-template-columns: 1fr; }
 
@@ -2200,6 +2232,10 @@
       .deck-tap {
         width: min(18vw, 3.5rem);
       }
+
+      .cover-logo {
+        width: min(240px, 92vw);
+      }
     }
 
     @media (hover: hover) {
@@ -2251,7 +2287,9 @@
     <!-- 1 Cover -->
     <section class="slide slide--cover is-active" data-slide="1">
       <div class="slide__scroll slide__scroll--cover">
-        <img src="../assets+/LOGO TRANSP.png" alt="CLETHOS" class="logo" width="320" height="80">
+        <div class="cover-logo">
+          <img src="../assets+/LOGO%20TRANSP.png" alt="CLETHOS" class="logo" decoding="async" onerror="this.onerror=null;this.src='art/brand-wordmark.svg';">
+        </div>
         <p class="slide__label">Alternative service</p>
         <h1 class="slide__title">CLETHOS Introductions</h1>
         <p class="slide__subtitle">Curated connections to specialist partners—when you need one piece of the market done well, not a full platform rollout.</p>
@@ -2741,7 +2779,9 @@
     <!-- 11 CTA -->
     <section class="slide slide--cover slide--cover-end" data-slide="11">
       <div class="slide__scroll slide__scroll--cover">
-        <img src="../assets+/LOGO TRANSP.png" alt="CLETHOS" class="logo" width="280" height="72">
+        <div class="cover-logo">
+          <img src="../assets+/LOGO%20TRANSP.png" alt="CLETHOS" class="logo" decoding="async" onerror="this.onerror=null;this.src='art/brand-wordmark.svg';">
+        </div>
         <p class="slide__label">Next steps</p>
         <h2 class="slide__title">Start a conversation</h2>
         <p class="slide__subtitle">Tell us what you’re solving—we’ll confirm fit, outline the fee, and introduce the right partner when Introductions is the right model.</p>
