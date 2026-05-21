@@ -1126,10 +1126,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 1.25rem;
+      justify-content: flex-start;
+      flex: 0 0 auto;
+      min-height: 0;
+      gap: 1rem;
       width: 100%;
       text-align: center;
+      padding-top: 0.25rem;
     }
 
     .slide--lanes-interactive .slide__title {
@@ -2058,8 +2061,7 @@
         justify-content: flex-start;
       }
 
-      .slide--intro-overview .slide__inner,
-      .slide--lanes-interactive .slide__inner {
+      .slide--intro-overview .slide__inner {
         justify-content: flex-start;
       }
 
