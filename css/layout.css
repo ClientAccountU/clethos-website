@@ -672,6 +672,118 @@
   .services-grid { grid-template-columns: 1fr; }
 }
 
+/* CLETHOS Introductions */
+.services-feature--introductions .services-feature__card-inner {
+  align-items: stretch;
+}
+
+.services-feature--introductions .services-feature__content {
+  gap: var(--space-6);
+  padding: var(--space-12);
+}
+
+.services-feature--introductions .section-header__label,
+.services-feature--introductions .section-header__title {
+  margin-bottom: 0;
+}
+
+.services-feature--introductions .section-header__text {
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.introductions-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-10);
+  background-color: var(--color-bg-muted);
+  border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
+}
+
+.introductions-panel__block {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+}
+
+.introductions-panel__block--fee {
+  border-color: var(--color-accent);
+  background: linear-gradient(180deg, rgba(34, 197, 94, 0.06) 0%, var(--color-bg-surface) 100%);
+}
+
+.introductions-panel__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 var(--space-4);
+}
+
+.introductions-panel__text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.introductions-panel__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.introductions-panel__list li {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  padding-left: var(--space-6);
+  position: relative;
+}
+
+.introductions-panel__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .services-feature--introductions .services-feature__card-inner:hover {
+    transform: none;
+  }
+
+  .services-feature--introductions .services-feature__content {
+    padding: var(--space-8);
+    gap: var(--space-5);
+  }
+
+  .services-feature--introductions .section-header__text {
+    font-size: var(--text-base);
+  }
+
+  .services-feature--introductions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .introductions-panel {
+    border-radius: 0;
+    padding: var(--space-8);
+    gap: var(--space-5);
+  }
+
+  .introductions-panel__block {
+    padding: var(--space-5);
+  }
+}
+
 /* Who we also work with: center-focused section */
 .section--who-we-work-with .section-header--centered {
   text-align: center;
@@ -1186,6 +1298,10 @@
   }
   #wallets.services-feature .services-feature__content {
     padding: var(--space-8);
+  }
+
+  .services-feature--introductions .services-feature__card-inner {
+    grid-template-columns: 1fr;
   }
 }
 
