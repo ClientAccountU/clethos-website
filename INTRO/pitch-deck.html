@@ -2018,18 +2018,10 @@
         padding: 2.75rem 0.875rem 1.25rem;
         padding-top: max(2.75rem, calc(2.25rem + env(safe-area-inset-top)));
         padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
-        height: 100%;
-        max-height: 100dvh;
-        min-height: 0;
         overflow-x: hidden;
-        overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior-y: contain;
         touch-action: pan-y;
-      }
-
-      .slide.is-active {
-        z-index: 1;
       }
 
       .slide.slide--cover:not(.slide--cover-grid):not(.slide--cover-end) {
@@ -3318,21 +3310,13 @@
         return el && el.closest && el.closest('.lane-picker__btn, .agenda__btn, .agenda, .compare-scroll, button:not(.deck-tap), a, input, textarea, select, label');
       }
 
-      function activeSlideEl() {
-        return slides[index] || null;
-      }
-
-      function slideIsScrollable(slide) {
-        return !!slide && slide.scrollHeight > slide.clientHeight + 6;
-      }
-
       deckEl.addEventListener('touchstart', function (e) {
         if (e.touches.length !== 1) return;
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
         touchIgnoreSwipe = !!touchInteractiveTarget(e.target);
         touchAxisLocked = false;
-        var active = activeSlideEl();
+        var active = slides[index];
         touchScrollStart = active ? active.scrollTop : 0;
       }, { passive: true });
 
@@ -3340,26 +3324,12 @@
         if (touchIgnoreSwipe || touchAxisLocked || e.touches.length !== 1) return;
         var dx = e.touches[0].clientX - touchStartX;
         var dy = e.touches[0].clientY - touchStartY;
-        if (Math.abs(dy) <= Math.abs(dx) || Math.abs(dy) <= 12) return;
-
-        var active = activeSlideEl();
-        if (slideIsScrollable(active)) {
-          var atTop = active.scrollTop <= 2;
-          var atBottom = active.scrollTop + active.clientHeight >= active.scrollHeight - 2;
-          var scrollingDown = dy > 0;
-          var scrollingUp = dy < 0;
-          if ((scrollingDown && !atTop) || (scrollingUp && !atBottom)) {
-            touchAxisLocked = true;
-          }
-          return;
-        }
-
-        touchAxisLocked = true;
+        if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) touchAxisLocked = true;
       }, { passive: true });
 
       deckEl.addEventListener('touchend', function (e) {
         if (touchIgnoreSwipe || !e.changedTouches.length) return;
-        var activeSlide = activeSlideEl();
+        var activeSlide = slides[index];
         if (activeSlide && Math.abs(activeSlide.scrollTop - touchScrollStart) > 12) return;
         if (touchAxisLocked) return;
         var dx = e.changedTouches[0].clientX - touchStartX;
@@ -3372,7 +3342,18 @@
       show(0);
     }
 
-    window.addEventListener('clethos-intro-unlock', initPitchDeck, { once: true });
+    function bootPitchDeck() {
+      if (window.__clethosPitchDeckInit) return;
+      window.__clethosPitchDeckInit = true;
+      initPitchDeck();
+    }
+
+    window.addEventListener('clethos-intro-unlock', bootPitchDeck, { once: true });
+
+    /* Session auto-unlock can fire before this script runs; start if gate already cleared. */
+    if (document.body.classList.contains('intro-reveal')) {
+      bootPitchDeck();
+    }
   </script>
 </body>
 </html>

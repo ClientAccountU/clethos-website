@@ -21,7 +21,10 @@
       gate.hidden = true;
       gate.classList.remove('intro-gate--exit');
     }
-    window.dispatchEvent(new CustomEvent('clethos-intro-unlock'));
+    /* Defer so pitch-deck.js can register its listener (same-tick unlock misses it). */
+    window.setTimeout(function () {
+      window.dispatchEvent(new CustomEvent('clethos-intro-unlock'));
+    }, 0);
   }
 
   function unlock(options) {
