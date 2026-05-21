@@ -55,20 +55,16 @@
       inset: 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: stretch;
       align-items: stretch;
-      padding: clamp(3rem, 8vh, 3.5rem) clamp(1.25rem, 4vw, 3.5rem) clamp(1.25rem, 3vw, 2rem);
-      padding-top: max(3rem, calc(2.75rem + env(safe-area-inset-top)));
+      padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3.5rem);
+      padding-bottom: clamp(4rem, 9vh, 5rem);
       background: var(--bg);
       opacity: 0;
       visibility: hidden;
       transform: translateX(20px);
       transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-      overflow-x: hidden;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-y: contain;
-      touch-action: pan-y;
     }
 
     .slide__scroll {
@@ -87,14 +83,13 @@
     }
 
     .slide__inner {
-      flex: 0 0 auto;
+      flex: 1;
       width: 100%;
       max-width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      min-height: 0;
-      padding-bottom: 1.5rem;
+      justify-content: center;
+      min-height: min(100%, calc(100dvh - 7rem));
     }
 
     .slide.is-active {
@@ -109,7 +104,8 @@
     }
 
     .slide.slide--cover:not(.slide--cover-grid):not(.slide--cover-end) {
-      align-items: stretch;
+      justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
@@ -205,26 +201,26 @@
       background: #fff;
       border-color: rgba(255, 255, 255, 0.5);
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-      min-height: 0;
+      min-height: min(76vh, 700px);
       max-height: none;
-      height: auto;
-      flex: 0 0 auto;
+      height: 100%;
+      flex: 1;
       align-self: stretch;
       border-radius: 1rem;
     }
 
     .slide--accent.slide--split .illus--tall.illus--why {
-      min-height: 0;
+      min-height: min(76vh, 700px);
       max-height: none;
       width: 100%;
     }
 
     .slide--accent.slide--split .illus--tall.illus--why img {
-      padding: 0.5rem;
-      min-height: 0;
+      padding: 0.15rem 0.25rem;
+      min-height: min(74vh, 680px);
       max-height: none;
       width: 100%;
-      height: auto;
+      height: 100%;
       object-fit: contain;
       object-position: center;
     }
@@ -356,8 +352,8 @@
 
     .offer-diagram img {
       width: 100%;
-      height: auto;
-      min-height: 0;
+      height: 100%;
+      min-height: 240px;
       max-height: none;
       object-fit: contain;
       object-position: center center;
@@ -365,8 +361,7 @@
     }
 
     .slide--about .illus--logo {
-      min-height: 0;
-      height: auto;
+      min-height: min(52vh, 480px);
       background: linear-gradient(160deg, #f9fafb 0%, #ecfdf5 55%, #f0fdf4 100%);
       border-color: #bbf7d0;
     }
@@ -415,7 +410,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       width: 100%;
       text-align: center;
     }
@@ -463,26 +458,22 @@
 
     .cover-logo {
       display: block;
-      width: min(280px, 88vw);
       margin: 0 auto 1.25rem;
       flex-shrink: 0;
       line-height: 0;
     }
 
-    .cover-logo .logo,
     .logo {
+      height: clamp(40px, 7vh, 56px);
+      width: auto;
+      max-width: min(280px, 78vw);
       display: block;
-      width: 100%;
-      height: auto;
-      max-width: 100%;
-      max-height: none;
+      margin: 0 auto 1.25rem;
       object-fit: contain;
-      object-position: center;
-      margin: 0;
     }
 
-    .slide--cover .cover-logo {
-      min-height: 0;
+    .cover-logo .logo {
+      margin: 0;
     }
 
     .slide__label {
@@ -528,8 +519,8 @@
 
     .illus {
       width: 100%;
-      min-height: 0;
-      height: auto;
+      height: 100%;
+      min-height: min(62vh, 540px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -543,14 +534,13 @@
     .illus img,
     .illus object {
       width: 100%;
-      height: auto;
-      max-height: none;
+      height: 100%;
       object-fit: contain;
       display: block;
       padding: 1rem;
     }
 
-    .illus--tall { min-height: 0; }
+    .illus--tall { min-height: min(65vh, 520px); }
 
     .illus--wide {
       min-height: 14rem;
@@ -695,7 +685,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       text-align: center;
       max-width: min(44rem, 92vw);
       margin: 0 auto;
@@ -715,7 +705,7 @@
     .slide--intro-overview .slide__inner {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       gap: clamp(1.25rem, 2.5vh, 1.75rem);
       width: 100%;
       max-width: min(68rem, 96vw);
@@ -1136,7 +1126,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 1.25rem;
       width: 100%;
       text-align: center;
@@ -1659,8 +1649,8 @@
       flex-direction: column;
       gap: 0.75rem;
       justify-content: flex-start;
-      overflow: visible;
-      max-height: none;
+      overflow-y: auto;
+      max-height: calc(100dvh - 5rem);
     }
 
     .slide--fee-process .slide__title {
@@ -1893,10 +1883,56 @@
     }
 
     .deck-ui {
-      display: none !important;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: var(--fs-ui);
+    }
+
+    .deck-ui button {
+      font-family: inherit;
+      font-size: var(--fs-ui);
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 0.5rem;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .deck-ui button:hover { background: rgba(255, 255, 255, 0.1); }
+    .deck-ui button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .progress {
+      flex: 1;
+      max-width: 12rem;
+      height: 4px;
+      margin: 0 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress__bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.35s ease;
     }
 
     .deck-tap-nav {
+      display: none;
       position: fixed;
       inset: 0;
       z-index: 40;
@@ -1927,20 +1963,19 @@
 
     .help {
       position: fixed;
-      top: max(0.5rem, env(safe-area-inset-top));
-      left: max(0.5rem, env(safe-area-inset-left));
-      right: max(0.5rem, env(safe-area-inset-right));
+      top: max(0.75rem, env(safe-area-inset-top));
+      right: max(0.75rem, env(safe-area-inset-right));
+      left: auto;
       z-index: 100;
       font-size: var(--fs-sm);
       color: var(--muted);
-      background: rgba(255, 255, 255, 0.96);
+      background: var(--surface);
       border: 1px solid var(--border);
-      padding: 0.45rem 0.75rem;
+      padding: 0.4rem 0.65rem;
       border-radius: 0.5rem;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      text-align: center;
+      text-align: left;
       line-height: 1.35;
-      backdrop-filter: blur(6px);
     }
 
     .help__counter {
@@ -1958,10 +1993,37 @@
         --fs-sm: 0.9375rem;
       }
 
+      .deck-ui {
+        display: none !important;
+      }
+
+      .deck-tap-nav {
+        display: block;
+      }
+
+      .help {
+        top: max(0.5rem, env(safe-area-inset-top));
+        left: max(0.5rem, env(safe-area-inset-left));
+        right: max(0.5rem, env(safe-area-inset-right));
+        text-align: center;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(6px);
+      }
+
       .slide {
+        justify-content: flex-start;
         padding: 2.75rem 0.875rem 1.25rem;
         padding-top: max(2.75rem, calc(2.25rem + env(safe-area-inset-top)));
         padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+        touch-action: pan-y;
+      }
+
+      .slide.slide--cover:not(.slide--cover-grid):not(.slide--cover-end) {
+        justify-content: flex-start;
+        align-items: stretch;
       }
 
       .slide__inner,
@@ -1981,7 +2043,23 @@
         height: auto;
       }
 
+      .cover-logo {
+        width: min(280px, 88vw);
+      }
+
+      .cover-logo .logo {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: none;
+      }
+
       .slide--compare .slide__inner {
+        justify-content: flex-start;
+      }
+
+      .slide--intro-overview .slide__inner,
+      .slide--lanes-interactive .slide__inner {
         justify-content: flex-start;
       }
 
@@ -2276,7 +2354,7 @@
   </style>
 </head>
 <body>
-  <p class="help" id="deckHelp"><span class="help__desktop">← → keys · scroll · <span class="help__counter" id="helpCounterDesktop">1 / 11</span></span><span class="help__mobile">Scroll to read · swipe or tap sides · <span class="help__counter" id="helpCounter">1 / 11</span></span></p>
+  <p class="help" id="deckHelp"><span class="help__desktop">← → Space · F fullscreen</span><span class="help__mobile">Scroll to read · swipe or tap sides · <span class="help__counter" id="helpCounter">1 / 11</span></span></p>
 
   <div class="deck-tap-nav" aria-hidden="true">
     <button type="button" class="deck-tap deck-tap--prev" id="tapPrev" aria-label="Previous slide" tabindex="-1"></button>
@@ -2733,9 +2811,9 @@
           <h3 class="slide__subhead">Ideal for</h3>
           <div class="ideal-for-grid">
             <div class="card">
-              <div class="card__icon" aria-hidden="true">↗</div>
-              <h3 class="card__title">Growing businesses</h3>
-              <p class="card__text">Entering new markets—need banking, FX, or liquidity without a six-month platform rollout.</p>
+              <div class="card__icon" aria-hidden="true">▣</div>
+              <h3 class="card__title">Established enterprises</h3>
+              <p class="card__text">Large, mature businesses that need regulated banking, FX, or treasury in new corridors—without committing to a full CLETHOS stack or a heavy, months-long platform onboarding.</p>
             </div>
             <div class="card">
               <div class="card__icon" aria-hidden="true">◎</div>
@@ -2793,22 +2871,33 @@
     </section>
   </div>
 
+  <div class="deck-ui">
+    <button type="button" id="prev" aria-label="Previous slide">← Previous</button>
+    <div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+    <span id="counter">1 / 11</span>
+    <button type="button" id="next" aria-label="Next slide">Next →</button>
+    <button type="button" id="fullscreen" aria-label="Fullscreen">Fullscreen</button>
+  </div>
+
   <script>
     (function () {
       var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
       var total = slides.length;
       var index = 0;
+      var prevBtn = document.getElementById('prev');
+      var nextBtn = document.getElementById('next');
+      var counter = document.getElementById('counter');
+      var progressBar = document.getElementById('progressBar');
+      var fullscreenBtn = document.getElementById('fullscreen');
       var tapPrev = document.getElementById('tapPrev');
       var tapNext = document.getElementById('tapNext');
       var helpCounter = document.getElementById('helpCounter');
-      var helpCounterDesktop = document.getElementById('helpCounterDesktop');
       var yearEl = document.getElementById('year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
       function updateHelpCounter() {
         var text = (index + 1) + ' / ' + total;
         if (helpCounter) helpCounter.textContent = text;
-        if (helpCounterDesktop) helpCounterDesktop.textContent = text;
       }
 
       function resetSlideScroll() {
@@ -2892,6 +2981,8 @@
       function updateDeckNav() {
         var atStart = index === 0 && (!isOnLanesSlide() || getActiveLaneIndex() === 0);
         var atEnd = index === total - 1 && (!isOnLanesSlide() || getActiveLaneIndex() === LANE_ORDER.length - 1);
+        if (prevBtn) prevBtn.disabled = atStart;
+        if (nextBtn) nextBtn.disabled = atEnd;
         if (tapPrev) tapPrev.disabled = atStart;
         if (tapNext) tapNext.disabled = atEnd;
       }
@@ -2957,14 +3048,27 @@
         slides.forEach(function (slide, n) {
           slide.classList.toggle('is-active', n === index);
         });
+        if (counter) counter.textContent = (index + 1) + ' / ' + total;
+        if (progressBar) progressBar.style.width = ((index + 1) / total * 100) + '%';
         resetSlideScroll();
         updateHelpCounter();
         updateDeckNav();
         updateAgendaHighlight();
       }
 
+      if (prevBtn) prevBtn.addEventListener('click', deckPrev);
+      if (nextBtn) nextBtn.addEventListener('click', deckNext);
       if (tapPrev) tapPrev.addEventListener('click', deckPrev);
       if (tapNext) tapNext.addEventListener('click', deckNext);
+      if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', function () {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+          } else {
+            document.exitFullscreen && document.exitFullscreen();
+          }
+        });
+      }
 
       document.addEventListener('keydown', function (e) {
         if (e.target && e.target.closest && e.target.closest('.agenda__btn, .lane-picker__btn')) return;
@@ -2978,6 +3082,7 @@
         }
         if (e.key === 'Home') { e.preventDefault(); show(0); }
         if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+        if ((e.key === 'f' || e.key === 'F') && fullscreenBtn) fullscreenBtn.click();
       });
 
       /* Touch swipe — only when not vertically scrolling slide content */
