@@ -30,7 +30,7 @@ Standalone presentation assets. **Not linked from the public website** and not i
 2. Use **Next / Previous**, **arrow keys**, or **Space** to advance slides.
 3. Press **F** or click **Fullscreen** for client meetings.
 
-**Mobile / tablet:** Layout stacks for narrow screens; swipe left/right to change slides; comparison table scrolls horizontally. Bottom nav respects safe areas (notched phones).
+**Mobile / tablet:** Each slide scrolls vertically to read full content. Swipe or tap the left/right edges to change slides; slide counter is in the top hint bar (no bottom nav bar). Comparison table scrolls horizontally within its slide.
 
 ## Export to PDF or PowerPoint
 
