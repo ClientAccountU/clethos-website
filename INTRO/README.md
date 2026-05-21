@@ -24,7 +24,7 @@ Standalone presentation assets. **Not linked from the public website** and not i
 10. Why CLETHOS — `security-trust.svg`  
 11. Next steps — centered CTA + logo  
 
-**Art is deck-only:** custom SVG diagrams in `INTRO/art/` (treasury stack, process flow, partner lanes, etc.). Cover/closing slides use `../assets+/LOGO TRANSP.png` and `hhj.png`. Open `pitch-deck.html` from the `INTRO` folder so paths resolve correctly.
+**Art is deck-only:** custom SVG diagrams in `INTRO/art/` (treasury stack, process flow, partner lanes, etc.). Deck logos use `INTRO/art/clethos-logo.png` (synced from `assets+/LOGO TRANSP.png` on `npm run build`). Cover hero uses `../assets+/hhj.png`. Open `pitch-deck.html` from the `INTRO` folder so paths resolve correctly.
 
 ## Client access (password)
 

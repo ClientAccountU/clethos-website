@@ -71,6 +71,13 @@ export default defineConfig({
 
         const introDir = join(process.cwd(), 'INTRO');
         if (existsSync(introDir)) {
+          const logoSrc = join(assetsPlus, 'LOGO TRANSP.png');
+          const logoDeck = join(introDir, 'art', 'clethos-logo.png');
+          if (existsSync(logoSrc)) {
+            const artDir = join(introDir, 'art');
+            if (!existsSync(artDir)) mkdirSync(artDir, { recursive: true });
+            copyFileSync(logoSrc, logoDeck);
+          }
           copyDirRecursive(introDir, join(outDir, 'INTRO'));
         }
 
