@@ -2351,11 +2351,205 @@
         page-break-after: always;
         min-height: 100vh;
       }
-      .deck-ui, .help { display: none !important; }
+      .deck-ui, .help, .intro-gate { display: none !important; }
+      body.intro-locked .deck { visibility: visible !important; }
+    }
+
+    /* Client access gate */
+    body.intro-locked {
+      overflow: hidden;
+    }
+
+    body.intro-locked .deck,
+    body.intro-locked .deck-ui,
+    body.intro-locked .deck-tap-nav,
+    body.intro-locked .help {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    body.intro-reveal .deck,
+    body.intro-reveal .deck-ui,
+    body.intro-reveal .deck-tap-nav,
+    body.intro-reveal .help {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .deck,
+    .deck-ui,
+    .deck-tap-nav,
+    .help {
+      transition: opacity 0.55s ease 0.18s, visibility 0.55s ease 0.18s;
+    }
+
+    .intro-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: linear-gradient(160deg, #0f172a 0%, #134e4a 45%, #0f172a 100%);
+      opacity: 1;
+      transition: opacity 0.48s ease;
+    }
+
+    .intro-gate--exit {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .intro-gate[hidden] {
+      display: none !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .intro-gate,
+      .deck,
+      .deck-ui,
+      .deck-tap-nav,
+      .help {
+        transition: none !important;
+      }
+    }
+
+    .intro-gate__panel {
+      width: min(100%, 24rem);
+      padding: clamp(1.75rem, 4vw, 2.25rem);
+      border-radius: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    .intro-gate__badge {
+      display: inline-block;
+      font-size: var(--fs-label);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      margin-bottom: 0.75rem;
+    }
+
+    .intro-gate__title {
+      font-size: clamp(1.35rem, 4vw, 1.65rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.65rem;
+    }
+
+    .intro-gate__text {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-gate__form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+
+    .intro-gate__label {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .intro-gate__input {
+      font-family: inherit;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-align: center;
+      padding: 0.85rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 0.75rem;
+      background: var(--bg);
+      color: var(--text);
+      width: 100%;
+    }
+
+    .intro-gate__input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-muted);
+    }
+
+    .intro-gate__submit {
+      font-family: inherit;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      padding: 0.85rem 1.25rem;
+      border: none;
+      border-radius: 0.75rem;
+      background: var(--accent);
+      color: var(--on-accent);
+      cursor: pointer;
+    }
+
+    .intro-gate__submit:hover {
+      background: var(--accent-hover);
+    }
+
+    .intro-gate__error {
+      font-size: var(--fs-sm);
+      color: #b91c1c;
+      margin: 0;
+      text-align: center;
+    }
+
+    .intro-gate__error[hidden] {
+      display: none;
+    }
+
+    .intro-gate__note {
+      margin-top: 1.25rem;
+      font-size: var(--fs-sm);
+      color: var(--subtle);
+      line-height: 1.45;
     }
   </style>
 </head>
-<body>
+<body class="intro-locked">
+  <div id="introGate" class="intro-gate" role="dialog" aria-modal="true" aria-labelledby="introGateTitle">
+    <div class="intro-gate__panel">
+      <p class="intro-gate__badge">Confidential</p>
+      <h1 class="intro-gate__title" id="introGateTitle">CLETHOS Introductions</h1>
+      <p class="intro-gate__text">This client presentation is <strong>confidential</strong> and intended for <strong>invited clients only</strong>. Enter your access code to continue.</p>
+      <form id="introGateForm" class="intro-gate__form" autocomplete="off">
+        <label class="intro-gate__label" for="introGatePin">Access code</label>
+        <input
+          id="introGatePin"
+          class="intro-gate__input"
+          name="pin"
+          type="password"
+          inputmode="numeric"
+          pattern="[0-9]{4,8}"
+          maxlength="8"
+          minlength="4"
+          required
+          autocomplete="one-time-code"
+          aria-describedby="introGateError"
+          placeholder="••••••"
+        >
+        <p id="introGateError" class="intro-gate__error" hidden role="alert">Incorrect code. This presentation is confidential and for invited clients only.</p>
+        <button type="submit" class="intro-gate__submit">View presentation</button>
+      </form>
+      <p class="intro-gate__note">Do not share this deck or access code outside your organisation. Contact CLETHOS if you need access.</p>
+    </div>
+  </div>
+
   <p class="help" id="deckHelp"><span class="help__desktop">← → Space · F fullscreen</span><span class="help__mobile">Scroll to read · swipe or tap sides · <span class="help__counter" id="helpCounter">1 / 11</span></span></p>
 
   <div class="deck-tap-nav" aria-hidden="true">
@@ -2881,8 +3075,10 @@
     <button type="button" id="fullscreen" aria-label="Fullscreen">Fullscreen</button>
   </div>
 
+  <script src="access-config.js"></script>
+  <script src="intro-gate.js"></script>
   <script>
-    (function () {
+    function initPitchDeck() {
       var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
       var total = slides.length;
       var index = 0;
@@ -3128,7 +3324,9 @@
       }, { passive: true });
 
       show(0);
-    })();
+    }
+
+    window.addEventListener('clethos-intro-unlock', initPitchDeck, { once: true });
   </script>
 </body>
 </html>

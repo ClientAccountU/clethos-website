@@ -7,6 +7,8 @@ Standalone presentation assets. **Not linked from the public website** and not i
 | File | Purpose |
 |------|---------|
 | `pitch-deck.html` | Full slide deck (open in any browser) |
+| `access-config.js` | **6-digit client access code** (edit before sharing) |
+| `intro-gate.js` | Password gate logic (session unlock) |
 
 ## Slides (11)
 
@@ -24,9 +26,19 @@ Standalone presentation assets. **Not linked from the public website** and not i
 
 **Art is deck-only:** custom SVG diagrams in `INTRO/art/` (treasury stack, process flow, partner lanes, etc.). Cover/closing slides use `../assets+/LOGO TRANSP.png` and `hhj.png`. Open `pitch-deck.html` from the `INTRO` folder so paths resolve correctly.
 
+## Client access (password)
+
+The deck is gated for **invited clients only**. Footer links and direct URLs to `INTRO/pitch-deck.html` show a confidential access screen first.
+
+1. Edit **`INTRO/access-config.js`** and set `CLETHOS_INTRO_ACCESS_PIN` to your 6-digit code (e.g. `'482916'`).
+2. Share that code with clients separately from the link.
+3. After a correct code, access is remembered for the **browser tab session** (`sessionStorage`).
+
+This is light protection for a static HTML deck (not server-grade security). For stronger control, use hosting with HTTP auth or a private link.
+
 ## How to present
 
-1. Open `INTRO/pitch-deck.html` in Chrome, Edge, or Safari (double-click or drag into the browser).
+1. Open `INTRO/pitch-deck.html` in Chrome, Edge, or Safari (double-click or drag into the browser), or use the site footer link **CLETHOS Introductions**.
 2. Use **Next / Previous**, **arrow keys**, or **Space** to advance slides.
 3. Press **F** or click **Fullscreen** for client meetings.
 
