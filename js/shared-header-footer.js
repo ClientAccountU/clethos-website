@@ -40,6 +40,7 @@ export function getFooter() {
         <div class="site-footer__links">
           <h4>Product</h4>
           <a href="services.html">Services</a>
+          <a href="INTRO/pitch-deck.html">CLETHOS Introductions</a>
           <a href="contact.html">Contact</a>
         </div>
         <div class="site-footer__links">

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" role="img" aria-labelledby="ih-title">
+  <title id="ih-title">CLETHOS Introductions connection flow</title>
+  <defs>
+    <marker id="ih-arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0L8 4L0 8z" fill="#16a34a"/>
+    </marker>
+  </defs>
+  <rect width="640" height="520" rx="20" fill="#ecfdf5"/>
+  <text x="320" y="40" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0f172a">How Introductions connects you</text>
+
+  <!-- Your business -->
+  <rect x="40" y="80" width="160" height="200" rx="16" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+  <circle cx="120" cy="130" r="32" fill="#f3f4f6"/>
+  <text x="120" y="136" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#4b5563">You</text>
+  <text x="120" y="180" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#0f172a">Your business</text>
+  <text x="64" y="208" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Define need &amp;</text>
+  <text x="64" y="226" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">corridor/volume</text>
+  <text x="64" y="252" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Pay escrow fee</text>
+
+  <path d="M200 180h72" stroke="#16a34a" stroke-width="3" marker-end="url(#ih-arr)"/>
+
+  <!-- CLETHOS -->
+  <rect x="240" y="80" width="160" height="200" rx="16" fill="#fff" stroke="#22c55e" stroke-width="3"/>
+  <circle cx="320" cy="130" r="32" fill="#22c55e"/>
+  <text x="320" y="136" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#fff">C</text>
+  <text x="320" y="180" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#15803d">CLETHOS</text>
+  <text x="264" y="208" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Confirm fit</text>
+  <text x="264" y="226" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Match vetted partner</text>
+  <rect x="264" y="240" width="112" height="28" rx="6" fill="#dcfce7"/>
+  <text x="320" y="258" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#15803d">Fee in escrow</text>
+
+  <path d="M400 180h72" stroke="#16a34a" stroke-width="3" marker-end="url(#ih-arr)"/>
+
+  <!-- Partner -->
+  <rect x="440" y="80" width="160" height="200" rx="16" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+  <circle cx="520" cy="130" r="32" fill="#15803d"/>
+  <text x="520" y="136" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#fff">P</text>
+  <text x="520" y="180" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#0f172a">Partner</text>
+  <text x="464" y="208" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Direct commercial</text>
+  <text x="464" y="226" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">terms with you</text>
+  <text x="464" y="252" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">FX, banking, etc.</text>
+
+  <!-- Outcomes -->
+  <rect x="80" y="320" width="480" height="168" rx="16" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="320" y="352" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f172a">Outcomes</text>
+  <rect x="104" y="368" width="200" height="96" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="2"/>
+  <text x="204" y="400" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#15803d">Proceed with partner</text>
+  <text x="204" y="424" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">Escrow fee claimed</text>
+  <text x="204" y="444" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">CLETHOS steps back</text>
+  <rect x="336" y="368" width="200" height="96" rx="12" fill="#f9fafb" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="436" y="400" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#4b5563">No match / no proceed</text>
+  <text x="436" y="424" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">Full fee refund</text>
+  <text x="436" y="444" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">No obligation</text>
+</svg>

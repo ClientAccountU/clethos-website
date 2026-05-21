@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 560" fill="none" role="img" aria-labelledby="tp-title">
+  <title id="tp-title">Choose full platform or Introductions</title>
+  <defs>
+    <marker id="tp-arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0L8 4L0 8z" fill="#16a34a"/>
+    </marker>
+  </defs>
+  <rect width="480" height="560" rx="20" fill="#f0fdf4"/>
+  <text x="240" y="36" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#0f172a">Two ways to work with CLETHOS</text>
+
+  <circle cx="240" cy="88" r="36" fill="#22c55e"/>
+  <text x="240" y="86" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#fff">Your</text>
+  <text x="240" y="102" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#fff">goal</text>
+
+  <path d="M200 124 L120 200" stroke="#16a34a" stroke-width="3" marker-end="url(#tp-arr)"/>
+  <path d="M280 124 L360 200" stroke="#16a34a" stroke-width="3" marker-end="url(#tp-arr)"/>
+
+  <rect x="24" y="200" width="200" height="300" rx="18" fill="#fff" stroke="#d1d5db" stroke-width="2"/>
+  <rect x="24" y="200" width="200" height="48" rx="18" fill="#f3f4f6"/>
+  <rect x="24" y="224" width="200" height="24" fill="#f3f4f6"/>
+  <text x="124" y="232" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#0f172a">Full platform</text>
+  <text x="44" y="272" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">• Treasury stack &amp; rails</text>
+  <text x="44" y="296" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">• Dashboard + API access</text>
+  <text x="44" y="320" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">• Collections, FX, payouts</text>
+  <text x="44" y="344" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">• Ongoing operations</text>
+  <text x="44" y="376" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#6b7280">Best when:</text>
+  <text x="44" y="400" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">Daily treasury is core</text>
+  <text x="44" y="424" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">to the business</text>
+  <rect x="44" y="448" width="160" height="36" rx="8" fill="#f3f4f6"/>
+  <text x="124" y="472" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#4b5563">Platform economics</text>
+
+  <rect x="256" y="200" width="200" height="300" rx="18" fill="#fff" stroke="#22c55e" stroke-width="3"/>
+  <rect x="256" y="200" width="200" height="48" rx="18" fill="#dcfce7"/>
+  <rect x="256" y="224" width="200" height="24" fill="#dcfce7"/>
+  <text x="356" y="232" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#15803d">Introductions</text>
+  <text x="276" y="272" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">• One specialist lane</text>
+  <text x="276" y="296" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">• Curated partner intro</text>
+  <text x="276" y="320" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">• Direct partner contract</text>
+  <text x="276" y="344" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">• Escrow onboarding fee</text>
+  <text x="276" y="376" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#15803d">Best when:</text>
+  <text x="276" y="400" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">Single corridor or</text>
+  <text x="276" y="424" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">capability is urgent</text>
+  <rect x="276" y="448" width="160" height="36" rx="8" fill="#dcfce7"/>
+  <text x="356" y="472" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#15803d">Refund if no match</text>
+
+  <rect x="80" y="516" width="320" height="32" rx="8" fill="#15803d"/>
+  <text x="240" y="538" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#fff">Can upgrade to full CLETHOS later</text>
+</svg>

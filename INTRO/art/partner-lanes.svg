@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" fill="none" role="img" aria-labelledby="pl-title">
+  <title id="pl-title">Partner introduction lanes</title>
+  <rect width="640" height="360" rx="16" fill="#f8fafc"/>
+  <text x="320" y="32" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#0f172a">Four lanes we introduce today</text>
+
+  <!-- Lane 1 FX -->
+  <rect x="20" y="52" width="140" height="280" rx="14" fill="#fff" stroke="#22c55e" stroke-width="3"/>
+  <rect x="20" y="52" width="140" height="56" rx="14" fill="#dcfce7"/>
+  <rect x="20" y="84" width="140" height="24" fill="#dcfce7"/>
+  <text x="90" y="88" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#15803d">$</text>
+  <text x="90" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#15803d">FX</text>
+  <text x="36" y="156" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">130+ currencies</text>
+  <text x="36" y="176" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Hedging &amp; rates</text>
+  <text x="36" y="196" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Collections</text>
+  <rect x="36" y="220" width="108" height="28" rx="6" fill="#f0fdf4"/>
+  <text x="90" y="238" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#15803d">Vetted specialists</text>
+  <text x="90" y="300" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9ca3af">Lane 01</text>
+
+  <!-- Lane 2 Banking -->
+  <rect x="172" y="52" width="140" height="280" rx="14" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="172" y="52" width="140" height="56" rx="14" fill="#f3f4f6"/>
+  <rect x="172" y="84" width="140" height="24" fill="#f3f4f6"/>
+  <path d="M222 72h40v24H242v-8h-8v8h-8V72z" fill="#9ca3af"/>
+  <text x="242" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f172a">Banking</text>
+  <text x="188" y="156" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Account opening</text>
+  <text x="188" y="176" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Local rails</text>
+  <text x="188" y="196" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Hard-to-reach markets</text>
+  <text x="242" y="300" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9ca3af">Lane 02</text>
+
+  <!-- Lane 3 Treasury -->
+  <rect x="324" y="52" width="140" height="280" rx="14" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="324" y="52" width="140" height="56" rx="14" fill="#f3f4f6"/>
+  <rect x="324" y="84" width="140" height="24" fill="#f3f4f6"/>
+  <circle cx="394" cy="84" r="16" fill="none" stroke="#9ca3af" stroke-width="2"/>
+  <path d="M386 84h16M394 76v16" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+  <text x="394" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f172a">Treasury</text>
+  <text x="340" y="156" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Multi-currency</text>
+  <text x="340" y="176" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Liquidity moves</text>
+  <text x="340" y="196" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Balance optimisation</text>
+  <text x="394" y="300" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9ca3af">Lane 03</text>
+
+  <!-- Lane 4 Niche -->
+  <rect x="476" y="52" width="144" height="280" rx="14" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="476" y="52" width="144" height="56" rx="14" fill="#f3f4f6"/>
+  <rect x="476" y="84" width="144" height="24" fill="#f3f4f6"/>
+  <path d="M528 76l12 8-12 8-12-8 12-8z" stroke="#9ca3af" stroke-width="2" fill="none"/>
+  <circle cx="548" cy="84" r="6" fill="#9ca3af"/>
+  <text x="548" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f172a">Niche</text>
+  <text x="492" y="156" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Regulated specialists</text>
+  <text x="492" y="176" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Market-specific</text>
+  <text x="492" y="196" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Compliance-led</text>
+  <text x="548" y="300" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#9ca3af">Lane 04</text>
+
+  <rect x="20" y="340" width="600" height="12" rx="4" fill="#e5e7eb"/>
+  <rect x="20" y="340" width="140" height="12" rx="4" fill="#22c55e"/>
+  <text x="320" y="352" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Matched to corridor, entity type &amp; volume</text>
+</svg>

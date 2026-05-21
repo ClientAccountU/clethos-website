@@ -1,0 +1,2955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CLETHOS Introductions — Client Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #4b5563;
+      --subtle: #6b7280;
+      --accent: #22c55e;
+      --accent-hover: #16a34a;
+      --accent-strong: #15803d;
+      --accent-muted: rgba(34, 197, 94, 0.12);
+      --border: #e5e7eb;
+      --on-accent: #022c22;
+      /* Deck typography scale */
+      --fs-base: clamp(1.0625rem, 1.35vw, 1.1875rem);
+      --fs-sm: clamp(0.9375rem, 1.15vw, 1.0625rem);
+      --fs-label: 0.9375rem;
+      --fs-ui: 1rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    button, .lane-picker__btn, .agenda__btn {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      background: #0f172a;
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    .deck {
+      height: 100vh;
+      height: 100dvh;
+      position: relative;
+      font-size: var(--fs-base);
+      line-height: 1.55;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+      align-items: stretch;
+      padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3.5rem);
+      padding-bottom: clamp(4rem, 9vh, 5rem);
+      background: var(--bg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+      overflow-y: auto;
+    }
+
+    .slide__inner {
+      flex: 1;
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: min(100%, calc(100dvh - 7rem));
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      z-index: 1;
+    }
+
+    .slide--cover {
+      background: linear-gradient(160deg, #f9fafb 0%, #ecfdf5 45%, #f0fdf4 100%);
+    }
+
+    .slide.slide--cover:not(.slide--cover-grid):not(.slide--cover-end) {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide--cover .slide__hero-visual {
+      width: min(100%, 720px);
+      margin: 2rem auto 0;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+      border: 1px solid var(--border);
+    }
+
+    .slide--cover .slide__hero-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 38vh;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .slide--cover-grid .slide__inner {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: center;
+      text-align: left;
+    }
+
+    .slide--cover-grid .cover__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide--cover-grid .slide__subtitle { max-width: none; margin: 0; }
+
+    .slide--cover-end .slide__inner {
+      text-align: center;
+      align-items: center;
+    }
+
+    .slide--cover-end .slide__subtitle { margin: 0 auto; }
+
+    .slide--accent {
+      background: linear-gradient(135deg, var(--accent-strong) 0%, var(--accent) 55%, #34d399 100%);
+      color: #fff;
+    }
+
+    .slide--accent .slide__label,
+    .slide--accent .slide__lead,
+    .slide--accent .slide__list li,
+    .slide--accent .card__text,
+    .slide--accent p { color: rgba(255, 255, 255, 0.9); }
+
+    .slide--accent .slide__title,
+    .slide--accent .card__title { color: #fff; }
+
+    .slide--accent .card {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+    }
+
+    .slide--accent.slide--split .slide__inner {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: stretch;
+      gap: clamp(1.25rem, 2.5vw, 2rem);
+    }
+
+    .slide--accent .slide__list--why {
+      gap: 0.45rem;
+    }
+
+    .slide--accent .slide__list--why li {
+      margin-bottom: 0;
+      font-size: var(--fs-sm);
+      line-height: 1.42;
+    }
+
+    .slide--accent .slide__list--why strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .slide--accent .slide__col--media {
+      align-items: stretch;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .slide--accent .illus--why {
+      background: #fff;
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+      min-height: min(76vh, 700px);
+      max-height: none;
+      height: 100%;
+      flex: 1;
+      align-self: stretch;
+      border-radius: 1rem;
+    }
+
+    .slide--accent.slide--split .illus--tall.illus--why {
+      min-height: min(76vh, 700px);
+      max-height: none;
+      width: 100%;
+    }
+
+    .slide--accent.slide--split .illus--tall.illus--why img {
+      padding: 0.15rem 0.25rem;
+      min-height: min(74vh, 680px);
+      max-height: none;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .slide--split .slide__inner {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .slide--split .slide__col--text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .slide--split .slide__col--media {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .slide--split .illus--tall {
+      min-height: 0;
+      width: 100%;
+      height: auto;
+      max-height: min(58vh, 500px);
+      align-self: center;
+    }
+
+    .slide--split .illus--tall img {
+      max-height: min(58vh, 500px);
+      width: 100%;
+      height: auto;
+      padding: 0.75rem;
+    }
+
+    /* Stacked offer slide — no empty split columns */
+    .slide--offer .slide__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      justify-content: flex-start;
+      min-height: min(100%, calc(100dvh - 7rem));
+      height: 100%;
+    }
+
+    .slide--offer .slide__title {
+      font-size: clamp(1.65rem, 3.2vw, 2.15rem);
+      margin-bottom: 0.35rem;
+    }
+
+    .slide--offer .slide__lead {
+      font-size: var(--fs-base);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .offer-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .offer-pillar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 0.875rem 1rem;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    }
+
+    .offer-pillar--highlight {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%);
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.12);
+    }
+
+    .offer-pillar__icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      background: var(--accent-muted);
+      color: var(--accent-strong);
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.65rem;
+    }
+
+    .offer-pillar h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .offer-pillar p {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .offer-diagram {
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: clamp(260px, 50vh, 520px);
+      margin-top: 0.25rem;
+      background: #fff;
+      border: 1px solid #bbf7d0;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(1rem, 2vw, 1.75rem);
+      box-shadow: inset 0 0 0 1px rgba(34, 197, 94, 0.06);
+    }
+
+    .offer-diagram img {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      max-height: none;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+    }
+
+    .slide--about .illus--logo {
+      min-height: min(52vh, 480px);
+      background: linear-gradient(160deg, #f9fafb 0%, #ecfdf5 55%, #f0fdf4 100%);
+      border-color: #bbf7d0;
+    }
+
+    .slide--about .illus--logo img {
+      width: auto;
+      max-width: min(90%, 360px);
+      height: auto;
+      max-height: min(38vh, 220px);
+      object-fit: contain;
+      padding: 2rem;
+    }
+
+    .slide__subhead {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    .intro-callout {
+      margin-top: 1.75rem;
+      padding: 1.125rem 1.25rem;
+      background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%);
+      border: 1px solid #bbf7d0;
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px rgba(34, 197, 94, 0.08);
+    }
+
+    .intro-callout .slide__label {
+      margin-bottom: 0.35rem;
+    }
+
+    .intro-callout p {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .intro-callout strong {
+      color: var(--accent-strong);
+    }
+
+    .slide--compare .slide__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+
+    .compare-slide__content {
+      width: 100%;
+      max-width: min(56rem, 94vw);
+    }
+
+    .slide--compare .slide__label,
+    .slide--compare .slide__title,
+    .slide--compare .slide__lead {
+      text-align: center;
+    }
+
+    .slide--compare .compare {
+      margin-top: 0;
+      max-width: none;
+      text-align: left;
+    }
+
+    .slide--compare .compare th,
+    .slide--compare .compare td {
+      padding: clamp(0.875rem, 1.5vh, 1.25rem) clamp(1rem, 2vw, 1.35rem);
+      font-size: var(--fs-base);
+      line-height: 1.5;
+    }
+
+    .slide--compare .slide__lead {
+      font-size: var(--fs-base);
+      max-width: none;
+    }
+
+    .slide--agenda .slide__inner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .slide--dense .slide__inner {
+      justify-content: flex-start;
+      padding-top: 0.5rem;
+    }
+
+    .logo {
+      height: clamp(40px, 7vh, 56px);
+      width: auto;
+      margin-bottom: 1.25rem;
+    }
+
+    .slide__label {
+      display: inline-block;
+      font-size: var(--fs-label);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      margin-bottom: 0.75rem;
+    }
+
+    .slide__title {
+      font-size: clamp(2.125rem, 4.75vw, 3.125rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      max-width: none;
+    }
+
+    .slide--cover-grid .slide__title {
+      font-size: clamp(2.5rem, 6vw, 3.75rem);
+    }
+
+    .slide__subtitle {
+      font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 46ch;
+    }
+
+    .slide--cover .slide__subtitle { margin: 0 auto; }
+
+    .slide__lead {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .slide__lead:last-of-type { margin-bottom: 0; }
+
+    .illus {
+      width: 100%;
+      height: 100%;
+      min-height: min(62vh, 540px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 20px 48px rgba(15, 23, 42, 0.1);
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .illus img,
+    .illus object {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      padding: 1rem;
+    }
+
+    .illus--tall { min-height: min(65vh, 520px); }
+
+    .illus--wide {
+      min-height: 14rem;
+      height: auto;
+      max-height: none;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .illus--wide img {
+      max-height: none;
+      height: auto;
+      min-height: 14rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .slide__points {
+      list-style: none;
+      margin: 0.75rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .slide__points li {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .slide__points li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .stat-row--4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .stat-row--4 .stat {
+      flex: none;
+      padding: 1rem;
+    }
+
+    .stat-row--4 .stat__value {
+      font-size: 1.5rem;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat {
+      flex: 1 1 140px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.875rem;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .stat__value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-strong);
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat__label {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .slide__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+      margin-top: 1.25rem;
+    }
+
+    .slide__grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+    .slide--partners .slide__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0.75rem;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .slide--partners .slide__title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 0.25rem;
+    }
+
+    .slide--partners .slide__lead {
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .slide--partners .slide__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-top: 0;
+      flex: 1 1 auto;
+      align-content: start;
+    }
+
+    .slide--partners .card--lane {
+      padding: 0.875rem 1rem;
+    }
+
+    .slide--partners .card__title {
+      font-size: 1.125rem;
+    }
+
+    .slide--partners .card__text {
+      font-size: 1.0625rem;
+      line-height: 1.45;
+    }
+
+    /* Slide 5 — Introductions overview (single clear story) */
+    .slide--opportunity .slide__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      max-width: min(44rem, 92vw);
+      margin: 0 auto;
+      gap: 0.5rem;
+    }
+
+    .slide--opportunity .slide__list {
+      width: 100%;
+      text-align: left;
+      margin-top: 0.75rem;
+    }
+
+    .slide--opportunity .slide__lead {
+      max-width: 40rem;
+    }
+
+    .slide--intro-overview .slide__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(1.25rem, 2.5vh, 1.75rem);
+      width: 100%;
+      max-width: min(68rem, 96vw);
+      margin: 0 auto;
+      overflow: visible;
+    }
+
+    .intro-overview__header {
+      text-align: center;
+      max-width: 44rem;
+      margin: 0 auto;
+    }
+
+    .slide--intro-overview .slide__title {
+      font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .slide--intro-overview .slide__lead {
+      margin: 0 auto;
+      max-width: 42rem;
+      line-height: 1.55;
+    }
+
+    .intro-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      background: linear-gradient(180deg, #f0fdf4 0%, var(--surface) 100%);
+      border: 1px solid #bbf7d0;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 28px rgba(34, 197, 94, 0.08);
+      overflow: hidden;
+    }
+
+    .intro-point {
+      padding: clamp(1rem, 2vh, 1.35rem) clamp(1rem, 2vw, 1.5rem);
+      text-align: center;
+      border-right: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .intro-point:last-child { border-right: none; }
+
+    .intro-point__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin: 0 auto 0.65rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--on-accent);
+      font-size: 1.125rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .intro-point__title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      line-height: 1.25;
+    }
+
+    .intro-point__text {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .intro-lanes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+
+    .intro-lane--unified {
+      border-color: #bbf7d0;
+      background: linear-gradient(180deg, #f0fdf4 0%, var(--surface) 100%);
+    }
+
+    .intro-lanes__label {
+      grid-column: 1 / -1;
+      font-size: var(--fs-label);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      text-align: center;
+      margin-bottom: -0.35rem;
+    }
+
+    .intro-lane {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: clamp(0.875rem, 1.5vh, 1.125rem) 0.75rem;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .intro-lane__icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      margin: 0 auto 0.5rem;
+      border-radius: 0.625rem;
+      background: var(--accent-muted);
+      color: var(--accent-strong);
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .intro-lane__title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .intro-lane__desc {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .intro-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+
+    .intro-step {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 1rem 1.15rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .intro-step--accent {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, #f0fdf4 0%, var(--surface) 100%);
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.1);
+    }
+
+    .intro-step__num {
+      font-size: var(--fs-label);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+    }
+
+    .intro-step__title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .intro-step__text {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    .card__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.625rem;
+      background: var(--accent-muted);
+      color: var(--accent-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+    }
+
+    .card__title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .card__text {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card--highlight {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, var(--accent-muted) 0%, var(--surface) 100%);
+    }
+
+    .card--lane {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 140px;
+    }
+
+    .card--lane .card__tag {
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-strong);
+      margin-bottom: 0.5rem;
+    }
+
+    .slide__head-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.25rem;
+      width: 100%;
+    }
+
+    .slide__head-row .slide__title { margin-bottom: 0; flex: 1; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1.25rem;
+      background: var(--text);
+      color: #fff;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .slide__inner--stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+    }
+
+    .treasury-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      flex: 1;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .treasury-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: clamp(1.25rem, 2.5vw, 2rem);
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      height: 100%;
+    }
+
+    .treasury-panel h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .treasury-panel p,
+    .treasury-panel li {
+      font-size: 1.125rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .treasury-panel__mid {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      padding: 1rem 1.125rem;
+      background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%);
+      border: 1px solid #bbf7d0;
+      border-radius: 1rem;
+    }
+
+    .treasury-panel__mid-lead {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .treasury-panel__mid-lead strong {
+      color: var(--text);
+    }
+
+    .treasury-panel__highlights {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .treasury-panel__highlights li {
+      font-size: var(--fs-sm);
+      line-height: 1.45;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .treasury-panel__highlights li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .treasury-panel__highlights strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .callout-dark {
+      background: var(--text);
+      color: #f8fafc;
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin-top: auto;
+    }
+
+    .callout-dark strong { color: #fff; }
+
+    .stat-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-grid-4 .stat {
+      flex: none;
+      text-align: left;
+      padding: 1.25rem;
+    }
+
+    .stat-grid-4 .stat__value {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+    }
+
+    .bullet-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .bullet-box h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .bullet-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .bullet-box li {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .bullet-box li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .slide--lanes-interactive .slide__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .slide--lanes-interactive .slide__title {
+      font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+      margin-bottom: 0;
+    }
+
+    .lane-picker {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem 0.85rem;
+      width: 100%;
+      max-width: min(52rem, 96vw);
+      justify-items: stretch;
+    }
+
+    .lane-picker__btn--unified {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: min(22rem, 72%);
+      margin-top: 0.35rem;
+      border-color: #86efac;
+      background: linear-gradient(180deg, #ecfdf5 0%, #fff 55%, #f0fdf4 100%);
+      box-shadow: 0 10px 32px rgba(34, 197, 94, 0.14);
+    }
+
+    .lane-picker__btn--unified .lane-picker__head {
+      background: linear-gradient(180deg, #bbf7d0 0%, #dcfce7 100%);
+    }
+
+    .lane-picker__btn--unified .lane-picker__icon {
+      color: var(--accent-strong);
+    }
+
+    .lane-picker__btn--unified .lane-picker__name {
+      font-size: 1.125rem;
+    }
+
+    .lane-picker__badge {
+      display: block;
+      font-size: var(--fs-label);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      padding: 0.4rem 0.5rem 0.1rem;
+    }
+
+    .lane-picker__btn--unified:hover {
+      border-color: var(--accent);
+      box-shadow: 0 12px 36px rgba(34, 197, 94, 0.22);
+    }
+
+    .lane-picker__btn--unified.is-active {
+      border-width: 2px;
+      border-color: var(--accent);
+      background: linear-gradient(180deg, #dcfce7 0%, #fff 50%, #ecfdf5 100%);
+      box-shadow: 0 14px 40px rgba(34, 197, 94, 0.28);
+      transform: translateY(-4px);
+    }
+
+    .lane-picker__btn--unified.is-active .lane-picker__head {
+      background: var(--accent);
+    }
+
+    .lane-picker__btn--unified.is-active .lane-picker__icon,
+    .lane-picker__btn--unified.is-active .lane-picker__badge {
+      color: #fff;
+    }
+
+    .lane-picker__btn--unified.is-active .lane-picker__name {
+      color: var(--text);
+    }
+
+    .lane-picker__btn {
+      appearance: none;
+      font: inherit;
+      cursor: pointer;
+      text-align: center;
+      padding: 0;
+      border: 2px solid var(--border);
+      border-radius: 0.875rem;
+      background: var(--surface);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+      overflow: hidden;
+    }
+
+    .lane-picker__btn:hover {
+      border-color: #bbf7d0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    .lane-picker__btn.is-active {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%);
+      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .lane-picker__btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .lane-picker__head {
+      padding: 0.65rem 0.5rem 0.45rem;
+      background: #f3f4f6;
+      transition: background 0.25s ease;
+    }
+
+    .lane-picker__btn.is-active .lane-picker__head {
+      background: #dcfce7;
+    }
+
+    .lane-picker__icon {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--muted);
+      line-height: 1;
+    }
+
+    .lane-picker__btn.is-active .lane-picker__icon {
+      color: var(--accent-strong);
+    }
+
+    .lane-picker__name {
+      display: block;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text);
+      padding: 0.5rem 0.35rem 0.25rem;
+    }
+
+    .lane-picker__list {
+      list-style: none;
+      margin: 0;
+      padding: 0 0.5rem 0.5rem;
+      font-size: 1.0625rem;
+      color: var(--subtle);
+      line-height: 1.45;
+    }
+
+    .lane-picker__list li {
+      list-style: none;
+    }
+
+    .lane-picker__lane-num {
+      display: block;
+      font-size: 1.0625rem;
+      color: var(--subtle);
+      padding-bottom: 0.45rem;
+      letter-spacing: 0.04em;
+    }
+
+    .lane-picker__track {
+      grid-column: 1 / -1;
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: -0.35rem;
+    }
+
+    .lane-picker__track-fill {
+      height: 100%;
+      width: 25%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(0%);
+    }
+
+    .lane-picker__track-fill[data-index="1"] { transform: translateX(100%); }
+    .lane-picker__track-fill[data-index="2"] { transform: translateX(200%); }
+    .lane-picker__track-fill[data-index="3"] { transform: translateX(300%); }
+
+    .lane-detail {
+      width: 100%;
+      max-width: min(52rem, 96vw);
+      display: grid;
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+
+    .lane-detail__panel {
+      grid-area: 1 / 1;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(14px);
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+      pointer-events: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+    }
+
+    .lane-detail__panel.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .lane-detail__panel.is-exiting {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    .lane-detail__label {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      margin-bottom: 0.35rem;
+    }
+
+    .lane-detail__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .lane-detail__lead {
+      font-size: 1.125rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+
+    .lane-detail__panel .feature-list {
+      margin-bottom: 1rem;
+    }
+
+    .lane-detail__panel .platform-tags {
+      margin-bottom: 0.75rem;
+    }
+
+    .lane-detail__panel .partner-note {
+      margin-top: 0;
+    }
+
+    .lane-detail__edge {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 0.75rem;
+      padding: 0.65rem 0.9rem;
+      margin: 0 0 0.75rem;
+      line-height: 1.45;
+    }
+
+    .lane-detail__edge strong {
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    .partner-spotlight .slide__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .partner-spotlight__brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .partner-spotlight__name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .partner-spotlight__tagline {
+      font-size: 1.125rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .feature-list li {
+      padding-left: 0;
+      font-size: 1.125rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .feature-list strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .platform-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .platform-tags span {
+      font-size: 1.125rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      background: var(--accent-muted);
+      color: var(--accent-strong);
+      border-radius: 0.5rem;
+    }
+
+    .partner-note {
+      font-size: 1.125rem;
+      color: var(--subtle);
+      margin-top: 1rem;
+      line-height: 1.45;
+    }
+
+    .compare-scroll {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 1rem;
+      box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .compare-scroll::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .compare-scroll::-webkit-scrollbar-thumb {
+      background: #bbf7d0;
+      border-radius: 999px;
+    }
+
+    .compare {
+      width: 100%;
+      min-width: 36rem;
+      margin-top: 0;
+      border-collapse: collapse;
+      font-size: var(--fs-base);
+      background: var(--surface);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: none;
+      border: none;
+    }
+
+    .compare th,
+    .compare td {
+      padding: clamp(1rem, 2vh, 1.35rem) clamp(1rem, 2vw, 1.5rem);
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .compare th {
+      background: var(--accent-muted);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .compare tr:last-child td { border-bottom: none; }
+
+    .compare td:first-child { font-weight: 600; color: var(--text); width: 28%; }
+
+    .compare .yes { color: var(--accent-strong); font-weight: 600; }
+
+    .steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      counter-reset: step;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 2.75rem 1fr;
+      gap: 1rem;
+      align-items: start;
+      counter-increment: step;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--on-accent);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .steps strong {
+      display: block;
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .steps span {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .flow__step {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.875rem;
+      font-size: var(--fs-base);
+      font-weight: 500;
+      color: var(--text);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .flow__step--accent {
+      border-color: var(--accent);
+      background: var(--accent-muted);
+    }
+
+    .flow__arrow {
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .fee-visual {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0.75rem 1rem;
+      align-items: center;
+      width: 100%;
+      max-width: none;
+      margin-top: 0.75rem;
+      flex: none;
+    }
+
+    .fee-visual__box {
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+      align-self: center;
+    }
+
+    .fee-visual__box--center {
+      border: 2px solid var(--accent);
+      background: linear-gradient(180deg, var(--accent-muted), var(--surface));
+    }
+
+    .fee-visual__box h4 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-strong);
+      margin-bottom: 0.25rem;
+    }
+
+    .fee-visual__box p {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .fee-visual__arrow {
+      font-size: 1.25rem;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .slide--fee-process .slide__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      justify-content: flex-start;
+      overflow-y: auto;
+      max-height: calc(100dvh - 5rem);
+    }
+
+    .slide--fee-process .slide__title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 0.25rem;
+    }
+
+    .slide--fee-process .slide__lead {
+      font-size: 1.125rem;
+      margin-bottom: 0;
+    }
+
+    .slide--fee-process .slide__points {
+      margin: 0;
+      gap: 0.35rem;
+    }
+
+    .slide--fee-process .slide__points li {
+      font-size: var(--fs-base);
+    }
+
+    .fee-process__how {
+      border-top: 1px solid var(--border);
+      padding-top: 0.875rem;
+      margin-top: 0.25rem;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .fee-process__how .slide__subhead {
+      margin: 0 0 0.65rem;
+      font-size: 1.0625rem;
+    }
+
+    .steps--compact {
+      gap: 0.65rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps--compact li {
+      gap: 0.65rem;
+      grid-template-columns: 2.25rem 1fr;
+    }
+
+    .steps--compact li::before {
+      width: 2.25rem;
+      height: 2.25rem;
+      font-size: 1.0625rem;
+    }
+
+    .steps--compact strong {
+      font-size: 1.125rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .steps--compact span {
+      font-size: var(--fs-base);
+      line-height: 1.4;
+    }
+
+    .fee-process__fit {
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+      margin-top: 0.15rem;
+    }
+
+    .fee-process__fit .slide__subhead {
+      margin: 0 0 0.5rem;
+      font-size: 1.0625rem;
+    }
+
+    .ideal-for-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      width: 100%;
+    }
+
+    .ideal-for-grid .card {
+      padding: 0.75rem 0.875rem;
+    }
+
+    .ideal-for-grid .card__icon {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ideal-for-grid .card__title {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .ideal-for-grid .card__text {
+      font-size: var(--fs-sm);
+      line-height: 1.4;
+    }
+
+    .ideal-for__note {
+      margin: 0.65rem 0 0;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .slide__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .slide__list li {
+      padding-left: 1.35rem;
+      position: relative;
+      font-size: var(--fs-base);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .slide__list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .agenda {
+      list-style: none;
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .agenda li {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      padding: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+
+    .agenda li:hover {
+      border-color: #bbf7d0;
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.12);
+      transform: translateX(4px);
+    }
+
+    .agenda li.is-current {
+      border-color: var(--accent);
+      background: linear-gradient(90deg, #f0fdf4 0%, var(--surface) 100%);
+      box-shadow: 0 6px 22px rgba(34, 197, 94, 0.15);
+    }
+
+    .agenda li::before {
+      content: attr(data-n);
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 1rem 0 1rem 1.25rem;
+      font-weight: 700;
+      color: var(--accent-strong);
+      font-size: 1.0625rem;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      text-align: left;
+      pointer-events: none;
+    }
+
+    .agenda__btn {
+      flex: 1;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 1rem 1.25rem 1rem 0.75rem;
+      border: none;
+      border-radius: 0 0.75rem 0.75rem 0;
+      background: transparent;
+      font: inherit;
+      font-size: clamp(1.125rem, 2.1vw, 1.375rem);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.4;
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .agenda__btn:hover {
+      color: var(--text);
+    }
+
+    .agenda__btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+
+    .agenda li.is-current .agenda__btn {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .cta-pill {
+      display: inline-flex;
+      padding: 0.875rem 1.75rem;
+      background: var(--accent);
+      color: var(--on-accent);
+      font-weight: 600;
+      font-size: 1.125rem;
+      border-radius: 0.75rem;
+    }
+
+    .meta {
+      margin-top: 1.5rem;
+      font-size: var(--fs-sm);
+      color: var(--subtle);
+    }
+
+    .deck-ui {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: var(--fs-ui);
+    }
+
+    .deck-ui button {
+      font-family: inherit;
+      font-size: var(--fs-ui);
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 0.5rem;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .deck-ui button:hover { background: rgba(255, 255, 255, 0.1); }
+    .deck-ui button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .progress {
+      flex: 1;
+      max-width: 12rem;
+      height: 4px;
+      margin: 0 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress__bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .help {
+      position: fixed;
+      top: max(0.75rem, env(safe-area-inset-top));
+      right: max(0.75rem, env(safe-area-inset-right));
+      z-index: 100;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.65rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .help__desktop { display: inline; }
+    .help__mobile { display: none; }
+
+    @media (max-width: 900px) {
+      :root {
+        --fs-base: 1rem;
+        --fs-sm: 0.9375rem;
+      }
+
+      .slide {
+        padding: 1rem 1rem 4.5rem;
+        padding-top: max(1rem, env(safe-area-inset-top));
+        padding-bottom: max(4.5rem, calc(4rem + env(safe-area-inset-bottom)));
+      }
+
+      .slide__inner {
+        min-height: min(100%, calc(100dvh - 6rem));
+        justify-content: flex-start;
+      }
+
+      .slide--cover .slide__hero-visual img {
+        max-height: 28vh;
+      }
+
+      .slide--cover-grid .slide__inner,
+      .slide--split .slide__inner,
+      .slide--agenda .slide__inner,
+      .treasury-grid,
+      .partner-spotlight .slide__inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .treasury-grid {
+        gap: 1rem;
+      }
+
+      .treasury-panel p,
+      .treasury-panel li,
+      .callout-dark,
+      .bullet-box li {
+        font-size: var(--fs-base);
+      }
+
+      .lane-picker {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+      }
+
+      .lane-picker__btn--unified {
+        width: 100%;
+        max-width: none;
+        margin-top: 0.5rem;
+      }
+
+      .lane-picker__track { display: none; }
+
+      .lane-detail,
+      .lane-detail__panel {
+        max-width: 100%;
+      }
+
+      .lane-detail__panel {
+        padding: 1rem 1.125rem;
+      }
+
+      .lane-detail__lead,
+      .feature-list li,
+      .partner-note {
+        font-size: var(--fs-base);
+      }
+
+      .platform-tags span {
+        font-size: var(--fs-sm);
+        padding: 0.3rem 0.6rem;
+      }
+
+      .compare-slide__content { max-width: 100%; }
+
+      .compare-scroll::after {
+        content: "Scroll →";
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--accent-strong);
+        text-align: center;
+        padding: 0.35rem 0 0.15rem;
+        letter-spacing: 0.04em;
+      }
+
+      .slide__head-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .pill {
+        font-size: var(--fs-sm);
+        padding: 0.4rem 1rem;
+      }
+
+      .slide--split .slide__col--media { order: -1; min-height: 0; }
+      .slide--accent.slide--split .slide__inner { grid-template-columns: 1fr; }
+      .slide--accent .illus--why,
+      .slide--accent.slide--split .illus--tall.illus--why {
+        min-height: min(42vh, 360px);
+      }
+
+      .slide--accent.slide--split .illus--tall.illus--why img {
+        min-height: min(40vh, 340px);
+        padding: 0.5rem;
+      }
+
+      .illus { min-height: 0; }
+      .illus--tall { min-height: min(40vh, 320px); }
+
+      .offer-pillars { grid-template-columns: 1fr; }
+      .offer-diagram {
+        min-height: 220px;
+      }
+      .offer-diagram img {
+        min-height: 200px;
+      }
+      .slide__grid--3 { grid-template-columns: 1fr; }
+      .slide--partners .slide__grid,
+      .intro-points { grid-template-columns: 1fr; }
+      .intro-point { border-right: none; border-bottom: 1px solid rgba(34, 197, 94, 0.2); }
+      .intro-point:last-child { border-bottom: none; }
+      .intro-lanes { grid-template-columns: repeat(2, 1fr); }
+      .intro-steps { grid-template-columns: 1fr; }
+      .fee-visual { grid-template-columns: 1fr; }
+      .fee-visual__arrow { transform: rotate(90deg); }
+      .steps--compact { grid-template-columns: 1fr; }
+      .ideal-for-grid { grid-template-columns: 1fr; }
+
+      .deck-ui {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.65rem 0.75rem;
+        padding-bottom: max(0.65rem, env(safe-area-inset-bottom));
+      }
+
+      .deck-ui button {
+        padding: 0.55rem 0.75rem;
+        min-height: 2.75rem;
+      }
+
+      .progress {
+        order: 3;
+        flex: 1 1 100%;
+        max-width: none;
+        margin: 0;
+      }
+
+      #counter {
+        order: 2;
+        flex: 1;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .help__desktop { display: none; }
+      .help__mobile { display: inline; }
+    }
+
+    @media (max-width: 600px) {
+      .slide__title {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+        line-height: 1.15;
+      }
+
+      .slide--intro-overview .slide__title {
+        font-size: clamp(1.35rem, 6vw, 1.75rem);
+      }
+
+      .slide--lanes-interactive .slide__title {
+        font-size: clamp(1.2rem, 5.5vw, 1.5rem);
+      }
+
+      .slide--fee-process .slide__title {
+        font-size: clamp(1.35rem, 6vw, 1.65rem);
+      }
+
+      .lane-picker {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .lane-picker__btn--unified {
+        grid-column: 1;
+      }
+
+      .lane-picker__list {
+        font-size: var(--fs-sm);
+      }
+
+      .lane-picker__name {
+        font-size: 1rem;
+      }
+
+      .lane-detail__label {
+        font-size: var(--fs-sm);
+      }
+
+      .lane-detail__title {
+        font-size: 1.125rem;
+      }
+
+      .lane-detail__edge {
+        font-size: 0.875rem;
+        padding: 0.55rem 0.75rem;
+      }
+
+      .intro-lanes {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-grid-4 {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+      }
+
+      .stat-grid-4 .stat {
+        padding: 0.875rem;
+      }
+
+      .agenda__btn {
+        font-size: 1rem;
+        padding: 0.875rem 1rem 0.875rem 0.5rem;
+      }
+
+      .agenda li::before {
+        padding: 0.875rem 0 0.875rem 1rem;
+        font-size: 1rem;
+      }
+
+      .compare {
+        min-width: 32rem;
+        font-size: var(--fs-sm);
+      }
+
+      .slide--compare .compare th,
+      .slide--compare .compare td {
+        padding: 0.65rem 0.75rem;
+      }
+
+      .deck-ui #fullscreen {
+        display: none;
+      }
+
+      .deck-ui button {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .deck-ui #prev,
+      .deck-ui #next {
+        font-size: 0.9375rem;
+      }
+
+      .help {
+        left: max(0.75rem, env(safe-area-inset-left));
+        right: max(0.75rem, env(safe-area-inset-right));
+        text-align: center;
+      }
+    }
+
+    @media (hover: hover) {
+      .agenda li:hover { transform: translateX(4px); }
+      .lane-picker__btn:hover { transform: translateY(-2px); }
+    }
+
+    @media (hover: none) {
+      .agenda li:hover {
+        transform: none;
+      }
+      .lane-picker__btn:hover {
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide,
+      .lane-detail__panel,
+      .lane-picker__track-fill {
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media print {
+      html, body { overflow: visible; background: #fff; }
+      .deck { height: auto; }
+      .slide {
+        position: relative;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        page-break-after: always;
+        min-height: 100vh;
+      }
+      .deck-ui, .help { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <p class="help" aria-hidden="true"><span class="help__desktop">← → Space · F fullscreen</span><span class="help__mobile">Swipe · tap Next / Previous</span></p>
+
+  <div class="deck" id="deck">
+    <!-- 1 Cover -->
+    <section class="slide slide--cover is-active" data-slide="1">
+      <img src="../assets+/LOGO TRANSP.png" alt="CLETHOS" class="logo" width="320" height="80">
+      <p class="slide__label">Alternative service</p>
+      <h1 class="slide__title">CLETHOS Introductions</h1>
+      <p class="slide__subtitle">Curated connections to specialist partners—when you need one piece of the market done well, not a full platform rollout.</p>
+      <figure class="slide__hero-visual">
+        <img src="../assets+/hhj.png" alt="Global payments and partner connectivity" width="800" height="450">
+      </figure>
+      <p class="meta">Client presentation · <span id="year"></span></p>
+    </section>
+
+    <!-- 2 Agenda -->
+    <section class="slide slide--agenda" data-slide="2">
+      <div class="slide__inner">
+        <div>
+          <p class="slide__label">Overview</p>
+          <h2 class="slide__title">Today’s agenda</h2>
+          <p class="slide__lead" style="margin-bottom: 0;">How Introductions fits alongside full CLETHOS treasury infrastructure.</p>
+        </div>
+        <ol class="agenda" aria-label="Jump to section">
+          <li data-n="01"><button type="button" class="agenda__btn" data-slide-target="3">CLETHOS &amp; the Introductions offer</button></li>
+          <li data-n="02"><button type="button" class="agenda__btn" data-slide-target="4">When you don’t need the full stack</button></li>
+          <li data-n="03"><button type="button" class="agenda__btn" data-slide-target="5">What CLETHOS Introductions is</button></li>
+          <li data-n="04"><button type="button" class="agenda__btn" data-slide-target="7">Full platform vs Introductions</button></li>
+          <li data-n="05"><button type="button" class="agenda__btn" data-slide-target="8">Money movement &amp; FX</button></li>
+          <li data-n="06"><button type="button" class="agenda__btn" data-slide-target="9">Fee, process &amp; who it’s ideal for</button></li>
+          <li data-n="07"><button type="button" class="agenda__btn" data-slide-target="10" data-slide-targets="10,11">Why CLETHOS &amp; next steps</button></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3 Who we are -->
+    <section class="slide slide--split slide--about slide--dense" data-slide="3">
+      <div class="slide__inner">
+        <div class="slide__col slide__col--text">
+          <p class="slide__label">Who we are</p>
+          <h2 class="slide__title">CLETHOS at a glance</h2>
+          <p class="slide__lead">CLETHOS is treasury infrastructure for modern business—helping B2B and B2C operators move, store, and spend money across borders with speed, visibility, and bank-grade security.</p>
+
+          <h3 class="slide__subhead">The full platform</h3>
+          <ul class="slide__list">
+            <li><strong>Cross-border payments</strong> — collections and payouts that settle in minutes, not days, on compliant rails</li>
+            <li><strong>Multi-currency accounts &amp; wallets</strong> — dedicated fiat balances and customizable wallets in one stack</li>
+            <li><strong>Stablecoin infrastructure</strong> — USDT, USDC, and other leading assets alongside fiat for liquidity and programmable flows</li>
+            <li><strong>Treasury &amp; FX</strong> — hold, convert, and optimise balances; partner-enabled access to global currency and settlement networks</li>
+            <li><strong>Programmable money</strong> — splits, escrow, revenue sharing, and API/dashboard control without managing keys and chains yourself</li>
+          </ul>
+
+          <div class="intro-callout">
+            <p class="slide__label">Why this deck focuses on Introductions</p>
+            <p>Not every business needs the full CLETHOS rollout on day one. <strong>CLETHOS Introductions</strong> is our alternative path: we connect you with closely vetted, in-house partners for FX, banking, treasury—or a single <strong>unified</strong> partner who covers the full fiat stack—so you work directly with the right provider while we handle matching and a fair, escrow-backed onboarding fee.</p>
+          </div>
+        </div>
+        <div class="slide__col slide__col--media">
+          <div class="illus illus--logo" aria-hidden="true">
+            <img src="../assets+/LOGO TRANSP.png" alt="CLETHOS" width="400" height="120">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Problem -->
+    <section class="slide slide--opportunity" data-slide="4">
+      <div class="slide__inner">
+        <p class="slide__label">The opportunity</p>
+        <h2 class="slide__title">You don’t always need the full stack</h2>
+        <p class="slide__lead">Many businesses need a single capability executed well—FX, banking access, treasury liquidity—not an end-to-end platform on day one.</p>
+        <ul class="slide__list">
+          <li>Full onboarding is heavy when the immediate need is narrow (one corridor, one product)</li>
+          <li>Finding a regulated partner in a new market takes months of research and compliance</li>
+          <li>Open directories and cold outreach rarely offer vetted, in-house relationships</li>
+          <li>Wrong partner fit wastes time, fees, and internal legal review</li>
+          <li>Teams still need expert FX, banking, or liquidity—without rebuilding treasury from zero</li>
+        </ul>
+        <p class="slide__lead" style="margin-top: 0.75rem;"><strong>Introductions</strong> is the lighter path: one curated partner, one escrow-backed fee, direct commercial terms.</p>
+      </div>
+    </section>
+
+    <!-- 5 What Introductions is -->
+    <section class="slide slide--intro-overview" data-slide="5">
+      <div class="slide__inner intro-overview">
+        <header class="intro-overview__header">
+          <p class="slide__label">CLETHOS Introductions</p>
+          <h2 class="slide__title">We introduce you to the right partner—you keep the relationship</h2>
+          <p class="slide__lead">When you need FX, banking, treasury—or one <strong>unified</strong> partner for all of it—<strong>without</strong> full CLETHOS infrastructure, we match you from our in-house network. You contract <strong>directly</strong> with the partner; we facilitate the intro and step back.</p>
+        </header>
+
+        <div class="intro-points" role="list" aria-label="How Introductions works">
+          <article class="intro-point" role="listitem">
+            <div class="intro-point__icon" aria-hidden="true">✓</div>
+            <h3 class="intro-point__title">Curated match</h3>
+            <p class="intro-point__text">Regulated specialists we already work with—not an open directory or cold referral.</p>
+          </article>
+          <article class="intro-point" role="listitem">
+            <div class="intro-point__icon" aria-hidden="true">→</div>
+            <h3 class="intro-point__title">Your relationship</h3>
+            <p class="intro-point__text">Commercial terms and contracts sit between you and the partner. CLETHOS is not in the middle.</p>
+          </article>
+          <article class="intro-point" role="listitem">
+            <div class="intro-point__icon" aria-hidden="true">◇</div>
+            <h3 class="intro-point__title">Fee only if it lands</h3>
+            <p class="intro-point__text">Modest introduction fee held in escrow—released on proceed, <strong>refunded</strong> if there is no fit.</p>
+          </article>
+        </div>
+
+        <div class="intro-lanes">
+          <p class="intro-lanes__label">Four partner lanes we cover</p>
+          <article class="intro-lane">
+            <div class="intro-lane__icon" aria-hidden="true">$</div>
+            <h3 class="intro-lane__title">FX</h3>
+            <p class="intro-lane__desc">Exchange, collections &amp; hedging</p>
+          </article>
+          <article class="intro-lane">
+            <div class="intro-lane__icon" aria-hidden="true">⌂</div>
+            <h3 class="intro-lane__title">Banking</h3>
+            <p class="intro-lane__desc">Accounts &amp; local rails</p>
+          </article>
+          <article class="intro-lane">
+            <div class="intro-lane__icon" aria-hidden="true">◎</div>
+            <h3 class="intro-lane__title">Treasury</h3>
+            <p class="intro-lane__desc">Liquidity across entities</p>
+          </article>
+          <article class="intro-lane intro-lane--unified">
+            <div class="intro-lane__icon" aria-hidden="true">⊞</div>
+            <h3 class="intro-lane__title">Unified</h3>
+            <p class="intro-lane__desc">Banking, FX &amp; treasury under one roof</p>
+          </article>
+        </div>
+
+        <div class="intro-steps" aria-label="Introductions in three steps">
+          <article class="intro-step">
+            <span class="intro-step__num">Step 1</span>
+            <h3 class="intro-step__title">You define the need</h3>
+            <p class="intro-step__text">Corridor, product, volume—light intake, no full platform rollout.</p>
+          </article>
+          <article class="intro-step intro-step--accent">
+            <span class="intro-step__num">Step 2</span>
+            <h3 class="intro-step__title">CLETHOS introduces</h3>
+            <p class="intro-step__text">We match you to the vetted partner that fits your lane and market.</p>
+          </article>
+          <article class="intro-step">
+            <span class="intro-step__num">Step 3</span>
+            <h3 class="intro-step__title">You work together</h3>
+            <p class="intro-step__text">Direct commercial relationship; CLETHOS steps back once the intro lands.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Partner lanes (interactive) -->
+    <section class="slide slide--lanes-interactive slide--dense" data-slide="6">
+      <div class="slide__inner">
+        <p class="slide__label">Partner lanes</p>
+        <h2 class="slide__title">Partner lanes we introduce</h2>
+
+        <div class="lane-picker" role="tablist" aria-label="Choose a partner lane">
+          <button type="button" class="lane-picker__btn is-active" data-lane="fx" data-index="0" role="tab" aria-selected="true" aria-controls="lane-panel-fx" id="lane-tab-fx">
+            <div class="lane-picker__head"><span class="lane-picker__icon" aria-hidden="true">$</span></div>
+            <span class="lane-picker__name">FX</span>
+            <ul class="lane-picker__list">
+              <li>130+ currencies</li>
+              <li>Hedging &amp; rates</li>
+              <li>Collections</li>
+            </ul>
+            <span class="lane-picker__lane-num">Lane 01</span>
+          </button>
+          <button type="button" class="lane-picker__btn" data-lane="banking" data-index="1" role="tab" aria-selected="false" aria-controls="lane-panel-banking" id="lane-tab-banking">
+            <div class="lane-picker__head"><span class="lane-picker__icon" aria-hidden="true">⌂</span></div>
+            <span class="lane-picker__name">Banking</span>
+            <ul class="lane-picker__list">
+              <li>Account opening</li>
+              <li>Local rails</li>
+              <li>Hard-to-reach markets</li>
+            </ul>
+            <span class="lane-picker__lane-num">Lane 02</span>
+          </button>
+          <button type="button" class="lane-picker__btn" data-lane="treasury" data-index="2" role="tab" aria-selected="false" aria-controls="lane-panel-treasury" id="lane-tab-treasury">
+            <div class="lane-picker__head"><span class="lane-picker__icon" aria-hidden="true">◎</span></div>
+            <span class="lane-picker__name">Treasury</span>
+            <ul class="lane-picker__list">
+              <li>Multi-currency</li>
+              <li>Liquidity moves</li>
+              <li>Balance optimisation</li>
+            </ul>
+            <span class="lane-picker__lane-num">Lane 03</span>
+          </button>
+          <button type="button" class="lane-picker__btn lane-picker__btn--unified" data-lane="unified" data-index="3" role="tab" aria-selected="false" aria-controls="lane-panel-unified" id="lane-tab-unified">
+            <span class="lane-picker__badge">Everything under one roof</span>
+            <div class="lane-picker__head"><span class="lane-picker__icon" aria-hidden="true">⊞</span></div>
+            <span class="lane-picker__name">Unified</span>
+            <ul class="lane-picker__list">
+              <li>Banking + global FX</li>
+              <li>Currency exchange</li>
+              <li>Treasury in one place</li>
+            </ul>
+            <span class="lane-picker__lane-num">Lane 04</span>
+          </button>
+          <div class="lane-picker__track" aria-hidden="true">
+            <div class="lane-picker__track-fill" id="laneTrackFill" data-index="0"></div>
+          </div>
+        </div>
+
+        <div class="lane-detail">
+          <article class="lane-detail__panel is-active" id="lane-panel-fx" data-lane-panel="fx" role="tabpanel" aria-labelledby="lane-tab-fx">
+            <p class="lane-detail__label">Lane 01 · FX &amp; currency</p>
+            <h3 class="lane-detail__title">What we introduce in this lane</h3>
+            <p class="lane-detail__lead">Through Introductions, we connect you to <strong>large, regulated</strong> currency and payments specialists from our in-house network—combining global platform capability with dedicated expert support for your corridor and volume.</p>
+            <p class="lane-detail__edge"><strong>Not a marketplace.</strong> Every partner here is a major, regulated institution. Your introduction carries <strong>CLETHOS relationship priority</strong> and access to <strong>special consideration on rates</strong> negotiated through our standing—not retail onboarding queues.</p>
+            <ul class="feature-list">
+              <li><strong>Payments &amp; collections</strong> Pay, collect, and convert in 130+ currencies. Named multi-currency accounts in 30+ currencies; convert balances or pay out directly.</li>
+              <li><strong>Currency risk management</strong> Hedging strategies aligned to your objectives and risk appetite—so FX volatility doesn’t dictate margins.</li>
+              <li><strong>Business finance</strong> Working-capital and growth finance options alongside payment needs, where partners offer them.</li>
+            </ul>
+            <div class="platform-tags" aria-label="Typical capabilities">
+              <span>130+ currencies</span><span>Named accounts</span><span>Hedging</span><span>Regulated custody</span><span>Relationship priority</span><span>Special consideration on rates</span>
+            </div>
+            <p class="partner-note">CLETHOS introduces you to the partner—you contract directly, with relationship priority and preferential commercial terms where our agreements apply. Funds safeguarded via regulated e-money institutions where applicable.</p>
+          </article>
+
+          <article class="lane-detail__panel" id="lane-panel-banking" data-lane-panel="banking" role="tabpanel" aria-labelledby="lane-tab-banking" hidden>
+            <p class="lane-detail__label">Lane 02 · Banking</p>
+            <h3 class="lane-detail__title">What we introduce in this lane</h3>
+            <p class="lane-detail__lead">When you need bank accounts and local payment rails—not a full digital treasury build—we introduce <strong>large, regulated banking partners</strong> who open and operate named accounts in the corridors that matter to you.</p>
+            <p class="lane-detail__edge"><strong>Established institutions only.</strong> We work with major regulated banks and banking groups—not introducers of unknown providers. You benefit from <strong>CLETHOS relationship priority</strong> and <strong>special consideration on rates</strong>, fees, and commercial terms where our partnerships allow.</p>
+            <ul class="feature-list">
+              <li><strong>Account opening</strong> Support for entity setup, KYC, and onboarding with banking partners in target markets.</li>
+              <li><strong>Local rails</strong> Access to domestic clearing and collection where cross-border fintech alone is not enough.</li>
+              <li><strong>Hard-to-reach markets</strong> Partners experienced in jurisdictions where traditional banking is slow or opaque.</li>
+            </ul>
+            <div class="platform-tags">
+              <span>Named accounts</span><span>Local rails</span><span>Multi-entity</span><span>Regulatory onboarding</span><span>Relationship priority</span><span>Special consideration on rates</span>
+            </div>
+            <p class="partner-note">CLETHOS introduces you to the partner—you contract directly for account terms, fees, and ongoing banking relationship, with preferential terms through our introduction where applicable.</p>
+          </article>
+
+          <article class="lane-detail__panel" id="lane-panel-treasury" data-lane-panel="treasury" role="tabpanel" aria-labelledby="lane-tab-treasury" hidden>
+            <p class="lane-detail__label">Lane 03 · Treasury</p>
+            <h3 class="lane-detail__title">What we introduce in this lane</h3>
+            <p class="lane-detail__lead">For teams that need to hold, move, and optimise balances across currencies and entities without adopting full CLETHOS infrastructure—we match you to <strong>large, regulated treasury and liquidity specialists</strong>.</p>
+            <p class="lane-detail__edge"><strong>Scale and regulation matter.</strong> Partners in this lane are substantial, regulated operators—not niche tools. Introductions reflect <strong>CLETHOS relationship priority</strong>, including <strong>special consideration on rates</strong> and faster access to senior coverage where our agreements apply.</p>
+            <ul class="feature-list">
+              <li><strong>Multi-currency balances</strong> Hold and view positions across currencies from a treasury-led operating model.</li>
+              <li><strong>Internal liquidity moves</strong> Transfers between entities, accounts, and corridors with less friction.</li>
+              <li><strong>Balance optimisation</strong> Guidance on where to hold cash and when to convert—aligned to your operating cycle.</li>
+            </ul>
+            <div class="platform-tags">
+              <span>Multi-currency</span><span>Liquidity</span><span>Internal transfers</span><span>Cash visibility</span><span>Relationship priority</span><span>Special consideration on rates</span>
+            </div>
+            <p class="partner-note">CLETHOS introduces you to the partner—you contract directly for treasury services and commercial terms, with relationship priority and preferential pricing through our standing where applicable.</p>
+          </article>
+
+          <article class="lane-detail__panel" id="lane-panel-unified" data-lane-panel="unified" role="tabpanel" aria-labelledby="lane-tab-unified" hidden>
+            <p class="lane-detail__label">Lane 04 · Unified partner</p>
+            <h3 class="lane-detail__title">Everything under one roof</h3>
+            <p class="lane-detail__lead">When you want <strong>banking, global FX, currency exchange, and treasury</strong> from one <strong>large, regulated institution</strong>—not three separate introductions—we connect you to <strong>tier-one unified providers</strong> from our in-house network who operate the full fiat money movement stack at scale.</p>
+            <p class="lane-detail__edge"><strong>Big, regulated companies—one relationship.</strong> Lane 04 is for businesses that need a single major, fully regulated partner covering banking, FX, and treasury. Your introduction comes with <strong>CLETHOS relationship priority</strong>—faster routing, senior coverage, and <strong>special consideration on rates</strong> across the stack that reflect our ongoing partnerships, not standard retail pricing.</p>
+            <ul class="feature-list">
+              <li><strong>Banking &amp; named accounts</strong> Multi-currency accounts, local rails, and collections in the corridors you operate—without stitching together separate banking introductions.</li>
+              <li><strong>Global FX &amp; currency exchange</strong> Pay, collect, convert, and hedge across currencies on the same platform and commercial relationship as your accounts.</li>
+              <li><strong>Treasury &amp; liquidity</strong> Hold, move, and optimise balances across entities and currencies with treasury tooling built into the same partner stack.</li>
+              <li><strong>One contract, one relationship</strong> Single onboarding with a regulated institution at scale—unified support, aligned economics, and <strong>preferential terms through CLETHOS</strong> when breadth matters more than best-of-breed point solutions.</li>
+            </ul>
+            <div class="platform-tags" aria-label="Typical capabilities">
+              <span>Banking</span><span>Global FX</span><span>Currency exchange</span><span>Treasury</span><span>Regulated tier-one</span><span>Relationship priority</span><span>Special consideration on rates</span>
+            </div>
+            <p class="partner-note">CLETHOS introduces you to the partner—you contract directly for the unified relationship, with relationship priority and special consideration on rates where our agreements apply. We step back once the intro lands; you are not on CLETHOS infrastructure unless you choose to upgrade later.</p>
+          </article>
+        </div>
+        <p class="partner-note" style="text-align: center; margin-top: 0.5rem; max-width: 68rem;">All lanes draw from the same in-house network of <strong>large, regulated partners</strong>—matched to your corridor, entity type, and volume, with <strong>CLETHOS relationship priority</strong> and <strong>special consideration on rates</strong> through our standing introductions.</p>
+      </div>
+    </section>
+
+    <!-- 7 Comparison -->
+    <section class="slide slide--compare" data-slide="7">
+      <div class="slide__inner">
+        <div class="compare-slide__content">
+          <p class="slide__label">Choose your path</p>
+          <h2 class="slide__title">Full platform vs Introductions</h2>
+          <p class="slide__lead" style="margin-bottom: 0.75rem;">Go <strong>full CLETHOS</strong> when stablecoin and digital infrastructure are the strategic priority. Choose <strong>Introductions</strong> when fiat accounts, global FX, and currency exchange are primary—and digital rails are secondary.</p>
+          <div class="compare-scroll" role="region" aria-label="Comparison table (scroll horizontally on small screens)">
+          <table class="compare">
+        <thead>
+          <tr>
+            <th></th>
+            <th>CLETHOS infrastructure</th>
+            <th>CLETHOS Introductions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Best for</td>
+            <td>Businesses pivoting to <strong>stablecoin &amp; digital infrastructure</strong>—wallets, programmable money, on-chain liquidity. Fiat collections and payouts support the model; they are not the lead driver.</td>
+            <td>Businesses where <strong>digital/stablecoins are secondary</strong> and <strong>fiat is primary</strong>—global FX, currency exchange, named accounts, banking access, treasury liquidity, and corridor specialists.</td>
+          </tr>
+          <tr>
+            <td>Onboarding</td>
+            <td>Full digital treasury stack—platform, API, and dashboard access</td>
+            <td>Light intake matched to your fiat/FX/banking need—no full infrastructure rollout</td>
+          </tr>
+          <tr>
+            <td>Relationship</td>
+            <td>You operate on CLETHOS digital rails (stablecoins + integrated fiat where needed)</td>
+            <td>You work directly with our vetted fiat/FX/banking partner; CLETHOS facilitates the intro</td>
+          </tr>
+          <tr>
+            <td>Commercial</td>
+            <td>Platform &amp; usage economics across digital treasury</td>
+            <td>Modest introduction fee held in escrow; refunded if no match</td>
+          </tr>
+          <tr>
+            <td>Upgrade path</td>
+            <td>—</td>
+            <td class="yes">Can move to full CLETHOS when digital infrastructure becomes the priority</td>
+          </tr>
+        </tbody>
+      </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Money movement (FX partner capability) -->
+    <section class="slide slide--treasury slide--dense" data-slide="8">
+      <div class="slide__inner slide__inner--stack">
+        <div class="slide__head-row">
+          <div>
+            <p class="slide__label">FX &amp; payments capability</p>
+            <h2 class="slide__title">Global payments beyond borders</h2>
+            <p class="slide__lead" style="margin: 0.5rem 0 0;">Proactive cross-border payment solutions—best-in-class platforms plus a dedicated specialist team. This is the kind of capability we introduce in the FX lane through CLETHOS Introductions.</p>
+          </div>
+          <span class="pill">FX lane</span>
+        </div>
+        <div class="treasury-grid">
+          <div class="treasury-panel">
+            <h3>What partners in this lane typically deliver</h3>
+            <p><strong>Payments &amp; collections</strong> — Pay, collect, and convert in <strong>130+ currencies</strong> globally and locally, with speed and security. Named <strong>multi-currency accounts in your name</strong> in 30+ currencies—convert balances or pay out directly.</p>
+            <p><strong>Currency risk management</strong> — Hedging strategies aligned to your commercial objectives, competitive environment, and risk appetite—so exchange-rate volatility does not dictate margins.</p>
+            <p><strong>Business finance</strong> — Working-capital and growth finance via access to a broad lender panel (250+ providers) to help close cash-flow gaps when needed.</p>
+            <div class="treasury-panel__mid">
+              <p class="treasury-panel__mid-lead"><strong>One-stop global payment solutions</strong> — Best-in-class payment platforms combined with a dedicated team of currency specialists. Proactive, hands-on support so unpredictable markets do not have to dictate your margins or your growth plans.</p>
+              <ul class="treasury-panel__highlights">
+                <li><strong>Global &amp; local</strong> — Pay, collect, and convert across corridors worldwide and in local currency—one relationship, not a patchwork of providers.</li>
+                <li><strong>Tech + people</strong> — Fast, secure online transfers anytime, anywhere—with specialists assigned as your eyes and ears on rates and routing.</li>
+                <li><strong>Hedging &amp; forwards</strong> — Strategies aligned to your objectives and risk appetite; forward contracts structured with <strong>0% deposit</strong> where available.</li>
+                <li><strong>Transparent pricing</strong> — Highly competitive exchange rates with <strong>no payment fees</strong> or account-opening fees where applicable—no hidden costs on core flows.</li>
+                <li><strong>Finance comparison</strong> — Side-by-side view of working-capital and trade-finance options from the lender panel to find the right facility at the right time.</li>
+              </ul>
+            </div>
+            <div class="callout-dark">
+              <strong>In safe hands</strong> — Named account managers from an attentive problem-solving team; client funds safeguarded via <strong>FCA-regulated e-money partners</strong> held at a credit institution—not commingled with operational balances.
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="stat-grid-4">
+              <div class="stat">
+                <div class="stat__value">130+</div>
+                <div class="stat__label">Currencies</div>
+              </div>
+              <div class="stat">
+                <div class="stat__value">30+</div>
+                <div class="stat__label">Named account currencies</div>
+              </div>
+              <div class="stat">
+                <div class="stat__value">250+</div>
+                <div class="stat__label">Finance partners</div>
+              </div>
+              <div class="stat">
+                <div class="stat__value">0%</div>
+                <div class="stat__label">Forward contract deposits</div>
+              </div>
+            </div>
+            <div class="bullet-box">
+              <h4>Why businesses choose this profile</h4>
+              <ul>
+                <li><strong>Dedicated team</strong> — A named account manager and attentive specialists acting as your eyes and ears on corridors and rates.</li>
+                <li><strong>No hidden costs</strong> — Competitive FX with transparent fee structures on payments and accounts where applicable.</li>
+                <li><strong>Regulated safeguarding</strong> — Client funds held with FCA-regulated e-money partners at a credit institution.</li>
+                <li><strong>Always-on platform</strong> — Fast, secure transfers through an intuitive online experience, globally and locally.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 Fee & process -->
+    <section class="slide slide--fee-process slide--dense" data-slide="9">
+      <div class="slide__inner">
+        <p class="slide__label">Commercial model</p>
+        <h2 class="slide__title">Onboarding fee — simple &amp; fair</h2>
+        <p class="slide__lead">Aligned incentives: we only win when the introduction creates real value for you.</p>
+        <ul class="slide__points">
+          <li>Fee collected at intake and <strong>held in escrow</strong> until you proceed with our partner—or <strong>refunded in full</strong> if you do not</li>
+          <li>Scope and amount confirmed upfront; partner pricing for FX, banking, or other services sits between you and the partner</li>
+        </ul>
+        <div class="fee-visual" aria-label="Client to escrow to outcome">
+          <div class="fee-visual__box">
+            <h4>Client</h4>
+            <p>Pays modest onboarding fee at intake</p>
+          </div>
+          <span class="fee-visual__arrow" aria-hidden="true">→</span>
+          <div class="fee-visual__box fee-visual__box--center">
+            <h4>Escrow</h4>
+            <p>Fee held until partner relationship confirmed or declined</p>
+          </div>
+          <span class="fee-visual__arrow" aria-hidden="true">→</span>
+          <div class="fee-visual__box">
+            <h4>Outcome</h4>
+            <p>Proceed → fee to CLETHOS · No match → full refund</p>
+          </div>
+        </div>
+        <div class="fee-process__how">
+          <h3 class="slide__subhead">How it works</h3>
+          <ol class="steps steps--compact">
+            <li>
+              <div>
+                <strong>Discovery &amp; intake</strong>
+                <span>Share your need, corridors, volumes, and constraints. We confirm Introductions vs full infrastructure.</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong>Fee held in escrow</strong>
+                <span>Modest onboarding fee collected upfront—held, not spent, until outcome is known.</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong>Warm introduction</strong>
+                <span>We introduce the best-fit vetted partner for your specific capability.</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong>Outcome</strong>
+                <span>Fee claimed if you proceed with our partner; full refund if you do not.</span>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="fee-process__fit">
+          <h3 class="slide__subhead">Ideal for</h3>
+          <div class="ideal-for-grid">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">↗</div>
+              <h3 class="card__title">Growing businesses</h3>
+              <p class="card__text">Entering new markets—need banking, FX, or liquidity without a six-month platform rollout.</p>
+            </div>
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">◎</div>
+              <h3 class="card__title">Treasury &amp; finance</h3>
+              <p class="card__text">CFOs and treasury leads who want one vetted specialist while keeping existing ERP and banks.</p>
+            </div>
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">⚙</div>
+              <h3 class="card__title">Platforms &amp; operators</h3>
+              <p class="card__text">Test a corridor or product with a regulated partner before full CLETHOS infrastructure.</p>
+            </div>
+          </div>
+          <p class="ideal-for__note">Not sure which path fits? We’ll recommend Introductions or full onboarding after a short discovery call.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Why -->
+    <section class="slide slide--split slide--accent" data-slide="10">
+      <div class="slide__inner">
+      <div class="slide__col slide__col--text">
+        <p class="slide__label">Why us</p>
+        <h2 class="slide__title">Why CLETHOS Introductions?</h2>
+        <ul class="slide__list slide__list--why">
+          <li><strong>Fully regulated &amp; licensed partners</strong> — Introductions are to providers with appropriate licences and regulatory standing in their markets—not unvetted lead lists.</li>
+          <li><strong>Your own due diligence</strong> — We give you what you need to run licence checks, KYC, and commercial diligence yourself—you decide fit before you proceed.</li>
+          <li><strong>Much faster onboarding</strong> — Light CLETHOS intake plus direct partner onboarding gets you live in weeks when you need accounts, FX, or liquidity—not a six-month platform rollout.</li>
+          <li><strong>Curated in-house network</strong> — Partners we already work with, matched to corridor and volume—not an open marketplace or cold referral.</li>
+          <li><strong>Escrow-backed intro fee</strong> — Modest fee held until outcome; <strong>full refund</strong> if there is no match—clear incentives for everyone.</li>
+          <li><strong>Upgrade when you are ready</strong> — Start with Introductions; move to full CLETHOS infrastructure when volume and strategy justify it.</li>
+        </ul>
+      </div>
+      <div class="slide__col slide__col--media">
+        <div class="illus illus--tall illus--why" aria-hidden="true">
+          <img src="art/security-trust.svg" alt="Regulated partners, client due diligence, and faster onboarding">
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- 11 CTA -->
+    <section class="slide slide--cover" data-slide="11">
+      <img src="../assets+/LOGO TRANSP.png" alt="CLETHOS" class="logo" width="280" height="72">
+      <p class="slide__label">Next steps</p>
+      <h2 class="slide__title">Start a conversation</h2>
+      <p class="slide__subtitle">Tell us what you’re solving—we’ll confirm fit, outline the fee, and introduce the right partner when Introductions is the right model.</p>
+      <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+        <span class="cta-pill">clethos.com/contact</span>
+      </div>
+      <p class="meta" style="margin-top: 2rem;">CLETHOS · Treasury infrastructure for modern business</p>
+    </section>
+  </div>
+
+  <div class="deck-ui">
+    <button type="button" id="prev" aria-label="Previous slide">← Previous</button>
+    <div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+    <span id="counter">1 / 12</span>
+    <button type="button" id="next" aria-label="Next slide">Next →</button>
+    <button type="button" id="fullscreen" aria-label="Fullscreen">Fullscreen</button>
+  </div>
+
+  <script>
+    (function () {
+      var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+      var total = slides.length;
+      var index = 0;
+      var prevBtn = document.getElementById('prev');
+      var nextBtn = document.getElementById('next');
+      var counter = document.getElementById('counter');
+      var progressBar = document.getElementById('progressBar');
+      var fullscreenBtn = document.getElementById('fullscreen');
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      /* Interactive partner lanes (slide 6) */
+      var LANE_ORDER = ['fx', 'banking', 'treasury', 'unified'];
+      var lanesSlideIndex = -1;
+      slides.forEach(function (slide, n) {
+        if (slide.classList.contains('slide--lanes-interactive')) lanesSlideIndex = n;
+      });
+
+      var laneBtns = document.querySelectorAll('.lane-picker__btn');
+      var lanePanels = document.querySelectorAll('.lane-detail__panel');
+      var laneTrackFill = document.getElementById('laneTrackFill');
+      var laneSwitching = false;
+
+      function isOnLanesSlide() {
+        return lanesSlideIndex >= 0 && index === lanesSlideIndex;
+      }
+
+      function getActiveLaneIndex() {
+        var active = document.querySelector('.lane-picker__btn.is-active');
+        if (!active) return 0;
+        var idx = LANE_ORDER.indexOf(active.getAttribute('data-lane'));
+        return idx < 0 ? 0 : idx;
+      }
+
+      function setLane(laneId) {
+        if (laneSwitching) return;
+        var activeBtn = document.querySelector('.lane-picker__btn[data-lane="' + laneId + '"]');
+        if (!activeBtn || activeBtn.classList.contains('is-active')) return;
+
+        laneSwitching = true;
+        var current = document.querySelector('.lane-detail__panel.is-active');
+        var next = document.querySelector('.lane-detail__panel[data-lane-panel="' + laneId + '"]');
+
+        laneBtns.forEach(function (btn) {
+          var on = btn.getAttribute('data-lane') === laneId;
+          btn.classList.toggle('is-active', on);
+          btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+
+        if (laneTrackFill && activeBtn) {
+          laneTrackFill.setAttribute('data-index', activeBtn.getAttribute('data-index') || '0');
+        }
+
+        if (current && next && current !== next) {
+          current.classList.add('is-exiting');
+          current.classList.remove('is-active');
+          window.setTimeout(function () {
+            current.classList.remove('is-exiting');
+            current.hidden = true;
+            next.hidden = false;
+            next.classList.add('is-active');
+            laneSwitching = false;
+            updateDeckNav();
+          }, 220);
+        } else if (next) {
+          lanePanels.forEach(function (p) {
+            var on = p.getAttribute('data-lane-panel') === laneId;
+            p.classList.toggle('is-active', on);
+            p.hidden = !on;
+          });
+          laneSwitching = false;
+          updateDeckNav();
+        } else {
+          laneSwitching = false;
+        }
+      }
+
+      laneBtns.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          setLane(btn.getAttribute('data-lane'));
+        });
+      });
+
+      function updateDeckNav() {
+        prevBtn.disabled = index === 0 && (!isOnLanesSlide() || getActiveLaneIndex() === 0);
+        nextBtn.disabled = index === total - 1 && (!isOnLanesSlide() || getActiveLaneIndex() === LANE_ORDER.length - 1);
+      }
+
+      function deckNext() {
+        if (isOnLanesSlide()) {
+          var laneIdx = getActiveLaneIndex();
+          if (laneIdx < LANE_ORDER.length - 1) {
+            setLane(LANE_ORDER[laneIdx + 1]);
+            return;
+          }
+        }
+        if (index < total - 1) show(index + 1);
+      }
+
+      function deckPrev() {
+        if (isOnLanesSlide()) {
+          var laneIdx = getActiveLaneIndex();
+          if (laneIdx > 0) {
+            setLane(LANE_ORDER[laneIdx - 1]);
+            return;
+          }
+        }
+        if (index > 0) show(index - 1);
+      }
+
+      function slideIndexForTarget(targetNum) {
+        var target = parseInt(targetNum, 10);
+        for (var i = 0; i < slides.length; i++) {
+          if (parseInt(slides[i].getAttribute('data-slide'), 10) === target) return i;
+        }
+        return -1;
+      }
+
+      function agendaMatchesCurrent(btn) {
+        var currentNum = parseInt(slides[index].getAttribute('data-slide'), 10);
+        var targets = (btn.getAttribute('data-slide-targets') || btn.getAttribute('data-slide-target') || '').split(',');
+        for (var t = 0; t < targets.length; t++) {
+          if (parseInt(targets[t].trim(), 10) === currentNum) return true;
+        }
+        return false;
+      }
+
+      function updateAgendaHighlight() {
+        document.querySelectorAll('.agenda__btn').forEach(function (btn) {
+          var on = agendaMatchesCurrent(btn);
+          btn.classList.toggle('is-current', on);
+          var li = btn.closest('li');
+          if (li) li.classList.toggle('is-current', on);
+          btn.setAttribute('aria-current', on ? 'true' : 'false');
+        });
+      }
+
+      document.querySelectorAll('.agenda__btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var i = slideIndexForTarget(btn.getAttribute('data-slide-target'));
+          if (i >= 0) show(i);
+        });
+      });
+
+      function show(i) {
+        index = Math.max(0, Math.min(total - 1, i));
+        slides.forEach(function (slide, n) {
+          slide.classList.toggle('is-active', n === index);
+        });
+        counter.textContent = (index + 1) + ' / ' + total;
+        progressBar.style.width = ((index + 1) / total * 100) + '%';
+        updateDeckNav();
+        updateAgendaHighlight();
+      }
+
+      prevBtn.addEventListener('click', deckPrev);
+      nextBtn.addEventListener('click', deckNext);
+      fullscreenBtn.addEventListener('click', function () {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen && document.exitFullscreen();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault();
+          deckNext();
+        }
+        if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          deckPrev();
+        }
+        if (e.key === 'Home') { e.preventDefault(); show(0); }
+        if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+        if (e.key === 'f' || e.key === 'F') fullscreenBtn.click();
+      });
+
+      /* Touch swipe between slides (ignored on lane/agenda controls) */
+      var deckEl = document.getElementById('deck');
+      var touchStartX = 0;
+      var touchStartY = 0;
+      var touchIgnoreSwipe = false;
+      var touchAxisLocked = false;
+
+      function touchInteractiveTarget(el) {
+        return el && el.closest && el.closest('.lane-picker__btn, .agenda__btn, .compare-scroll, button, a, input, textarea, select, label');
+      }
+
+      deckEl.addEventListener('touchstart', function (e) {
+        if (e.touches.length !== 1) return;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchIgnoreSwipe = !!touchInteractiveTarget(e.target);
+        touchAxisLocked = false;
+      }, { passive: true });
+
+      deckEl.addEventListener('touchmove', function (e) {
+        if (touchIgnoreSwipe || touchAxisLocked || e.touches.length !== 1) return;
+        var dx = e.touches[0].clientX - touchStartX;
+        var dy = e.touches[0].clientY - touchStartY;
+        if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 14) touchAxisLocked = true;
+      }, { passive: true });
+
+      deckEl.addEventListener('touchend', function (e) {
+        if (touchIgnoreSwipe || touchAxisLocked || !e.changedTouches.length) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) < 52) return;
+        if (dx < 0) deckNext();
+        else deckPrev();
+      }, { passive: true });
+
+      show(0);
+    })();
+  </script>
+</body>
+</html>

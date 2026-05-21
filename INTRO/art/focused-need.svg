@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" role="img" aria-labelledby="fn-title">
+  <title id="fn-title">Focused need vs full platform</title>
+  <rect width="640" height="520" rx="20" fill="#f9fafb"/>
+  <text x="320" y="40" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0f172a">Not every problem needs the full stack</text>
+
+  <!-- Full platform (muted) -->
+  <rect x="40" y="64" width="260" height="400" rx="16" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="170" y="96" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#6b7280">Full CLETHOS platform</text>
+  <rect x="64" y="116" width="212" height="44" rx="8" fill="#f3f4f6"/>
+  <text x="80" y="144" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Onboarding &amp; KYC</text>
+  <rect x="64" y="168" width="212" height="44" rx="8" fill="#f3f4f6"/>
+  <text x="80" y="196" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Accounts &amp; wallets</text>
+  <rect x="64" y="220" width="212" height="44" rx="8" fill="#f3f4f6"/>
+  <text x="80" y="248" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Collections &amp; FX</text>
+  <rect x="64" y="272" width="212" height="44" rx="8" fill="#f3f4f6"/>
+  <text x="80" y="300" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Payouts &amp; APIs</text>
+  <rect x="64" y="324" width="212" height="44" rx="8" fill="#f3f4f6"/>
+  <text x="80" y="352" font-family="system-ui,sans-serif" font-size="11" fill="#6b7280">Ongoing ops &amp; support</text>
+  <text x="170" y="420" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#9ca3af">Heavy when need is narrow</text>
+
+  <!-- Introductions (focused) -->
+  <rect x="340" y="64" width="260" height="400" rx="16" fill="#fff" stroke="#22c55e" stroke-width="3"/>
+  <text x="470" y="96" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#15803d">Introductions fit</text>
+  <rect x="364" y="180" width="212" height="120" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="470" y="224" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#15803d">One capability</text>
+  <text x="470" y="248" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#4b5563">FX · Banking · Liquidity</text>
+  <text x="470" y="272" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#4b5563">Niche regulated partner</text>
+  <rect x="364" y="320" width="212" height="56" rx="10" fill="#dcfce7"/>
+  <text x="470" y="346" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#15803d">Warm intro + escrow fee</text>
+  <text x="470" y="366" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">Refund if no match</text>
+  <text x="470" y="420" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#15803d">Faster path to a vetted partner</text>
+
+  <!-- Arrow between -->
+  <circle cx="320" cy="260" r="28" fill="#22c55e"/>
+  <text x="320" y="266" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#fff">vs</text>
+
+  <text x="320" y="492" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#6b7280">We recommend the lightest path that solves the job</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" fill="none" role="img" aria-hidden="true">
+  <rect width="640" height="480" rx="24" fill="#f0fdf4"/>
+  <circle cx="320" cy="240" r="72" fill="#22c55e" fill-opacity="0.15"/>
+  <circle cx="320" cy="240" r="48" fill="#22c55e"/>
+  <path d="M320 208v24M320 248v24M296 240h24M320 240h24" stroke="#022c22" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="120" cy="120" r="36" fill="#fff" stroke="#22c55e" stroke-width="3"/>
+  <circle cx="520" cy="120" r="36" fill="#fff" stroke="#22c55e" stroke-width="3"/>
+  <circle cx="120" cy="360" r="36" fill="#fff" stroke="#15803d" stroke-width="3"/>
+  <circle cx="520" cy="360" r="36" fill="#fff" stroke="#15803d" stroke-width="3"/>
+  <path d="M156 132L284 208M284 272L156 348M364 208L484 132M364 272L484 348" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="6 6"/>
+  <circle cx="120" cy="120" r="8" fill="#22c55e"/>
+  <circle cx="520" cy="120" r="8" fill="#22c55e"/>
+  <circle cx="120" cy="360" r="8" fill="#15803d"/>
+  <circle cx="520" cy="360" r="8" fill="#15803d"/>
+  <text x="88" y="128" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#4b5563">Partner</text>
+  <text x="488" y="128" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#4b5563">Partner</text>
+  <text x="72" y="368" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#4b5563">Partner</text>
+  <text x="472" y="368" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#4b5563">Partner</text>
+  <text x="268" y="248" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#022c22">You</text>
+</svg>

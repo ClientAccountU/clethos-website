@@ -56,6 +56,24 @@ export default defineConfig({
           });
         }
 
+        function copyDirRecursive(srcDir, destDir) {
+          if (!existsSync(destDir)) mkdirSync(destDir, { recursive: true });
+          readdirSync(srcDir).forEach(function (name) {
+            const src = join(srcDir, name);
+            const dest = join(destDir, name);
+            if (statSync(src).isDirectory()) {
+              copyDirRecursive(src, dest);
+            } else {
+              copyFileSync(src, dest);
+            }
+          });
+        }
+
+        const introDir = join(process.cwd(), 'INTRO');
+        if (existsSync(introDir)) {
+          copyDirRecursive(introDir, join(outDir, 'INTRO'));
+        }
+
         const indexPath = join(outDir, 'index.html');
         if (existsSync(indexPath)) {
           let indexHtml = readFileSync(indexPath, 'utf-8');
