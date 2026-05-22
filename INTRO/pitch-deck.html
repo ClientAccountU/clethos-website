@@ -408,18 +408,29 @@
       color: var(--accent-strong);
     }
 
+    .slide--compare {
+      justify-content: flex-start;
+    }
+
     .slide--compare .slide__inner {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       width: 100%;
       text-align: center;
+      flex: 0 0 auto;
+      min-height: 0;
     }
 
     .compare-slide__content {
       width: 100%;
       max-width: min(56rem, 94vw);
+      padding-bottom: 1.25rem;
+    }
+
+    .slide--compare .compare-slide__content > * {
+      flex-shrink: 0;
     }
 
     .slide--compare .slide__label,
@@ -436,9 +447,13 @@
 
     .slide--compare .compare th,
     .slide--compare .compare td {
-      padding: clamp(0.875rem, 1.5vh, 1.25rem) clamp(1rem, 2vw, 1.35rem);
+      padding: clamp(0.65rem, 1.1vh, 0.9rem) clamp(0.875rem, 1.5vw, 1.15rem);
       font-size: var(--fs-base);
-      line-height: 1.5;
+      line-height: 1.45;
+    }
+
+    .slide--compare .compare-scroll {
+      margin-bottom: 0.25rem;
     }
 
     .slide--compare .slide__lead {
@@ -2933,7 +2948,7 @@
     <nav class="deck-dev__links" id="devSlideLinks" aria-label="Jump to slide"></nav>
   </div>
 
-  <p class="help" id="deckHelp"><span class="help__desktop">← → Space · F fullscreen</span><span class="help__mobile">Scroll to read · swipe or tap sides · <span class="help__counter" id="helpCounter">1 / 11</span></span></p>
+  <p class="help" id="deckHelp"><span class="help__desktop">F fullscreen</span><span class="help__mobile">Scroll to read · swipe or tap sides · <span class="help__counter" id="helpCounter">1 / 11</span></span></p>
 
   <div class="deck-tap-nav" aria-hidden="true">
     <button type="button" class="deck-tap deck-tap--prev" id="tapPrev" aria-label="Previous slide" tabindex="-1"></button>
