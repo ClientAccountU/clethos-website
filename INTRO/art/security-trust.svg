@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none" role="img" aria-labelledby="st-title">
-  <title id="st-title">Regulated partners, client due diligence, faster onboarding</title>
+  <title id="st-title">Regulated partners, ongoing representation, commercial advocacy</title>
   <rect width="640" height="520" rx="20" fill="#ecfdf5"/>
-  <text x="320" y="42" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0f172a">Trust you can verify</text>
+  <text x="320" y="42" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0f172a">Trust you can verify — support you keep</text>
 
   <!-- Shield / regulated -->
   <rect x="32" y="72" width="184" height="200" rx="16" fill="#fff" stroke="#22c55e" stroke-width="2.5"/>
@@ -13,39 +13,39 @@
   <text x="124" y="248" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Partners with standing</text>
   <text x="124" y="264" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">in their markets</text>
 
-  <!-- Due diligence -->
+  <!-- Ongoing representation -->
   <rect x="228" y="72" width="184" height="200" rx="16" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
   <g transform="translate(320 128)">
-    <rect x="-58" y="-38" width="72" height="12" rx="3" fill="#f3f4f6"/>
-    <rect x="-58" y="-20" width="58" height="9" rx="2" fill="#e5e7eb"/>
-    <rect x="-58" y="-6" width="64" height="9" rx="2" fill="#e5e7eb"/>
-    <rect x="-58" y="8" width="48" height="9" rx="2" fill="#e5e7eb"/>
-    <circle cx="0" cy="38" r="18" fill="#22c55e"/>
-    <path d="M-6 38l5 5 12-14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="-28" cy="0" r="22" fill="#22c55e"/>
+    <text x="-28" y="5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+    <circle cx="28" cy="0" r="22" fill="#15803d"/>
+    <text x="28" y="5" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#fff">P</text>
+    <path d="M-6 0h12" stroke="#16a34a" stroke-width="3" stroke-linecap="round"/>
+    <rect x="-58" y="32" width="116" height="28" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="0" y="50" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" font-weight="600" fill="#15803d">CLETHOS in the middle</text>
   </g>
-  <text x="320" y="218" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#0f172a">Your due diligence</text>
-  <text x="320" y="240" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Licences, KYC &amp; commercial</text>
-  <text x="320" y="256" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">checks — you decide fit</text>
+  <text x="320" y="218" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#0f172a">Ongoing representation</text>
+  <text x="320" y="240" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Management, escalations</text>
+  <text x="320" y="256" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">&amp; commercial advocacy</text>
 
-  <!-- Fast onboarding -->
+  <!-- Commercial leverage -->
   <rect x="424" y="72" width="184" height="200" rx="16" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
-  <path d="M456 160h120" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
-  <path d="M456 160h88" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
-  <text x="516" y="148" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#15803d">Weeks</text>
-  <text x="516" y="188" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#0f172a">→</text>
-  <text x="516" y="218" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#0f172a">Faster onboarding</text>
-  <text x="516" y="240" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Light intake · direct</text>
-  <text x="516" y="256" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">partner go-live</text>
+  <text x="516" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#15803d">Priority status</text>
+  <text x="516" y="152" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#0f172a">↓</text>
+  <text x="516" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#15803d">Better rates</text>
+  <text x="516" y="218" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#0f172a">Commercial leverage</text>
+  <text x="516" y="240" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">Faster senior</text>
+  <text x="516" y="256" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#6b7280">communication</text>
 
   <!-- Bottom strip -->
   <rect x="48" y="300" width="544" height="188" rx="16" fill="#fff" stroke="#bbf7d0" stroke-width="2"/>
-  <text x="320" y="336" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f172a">CLETHOS Introductions — curated, transparent, built for speed</text>
+  <text x="320" y="336" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0f172a">CLETHOS Consultancy — analyse, match, and stay involved</text>
   <text x="120" y="372" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">✓ In-house partners</text>
   <text x="120" y="394" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">not a marketplace</text>
-  <text x="320" y="372" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">✓ Escrow fee · refund</text>
-  <text x="320" y="394" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">if no match</text>
+  <text x="320" y="372" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">✓ Escrow onboarding</text>
+  <text x="320" y="394" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">+ volume retainer</text>
   <text x="520" y="372" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">✓ Upgrade path to</text>
   <text x="520" y="394" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4b5563">full CLETHOS later</text>
   <rect x="80" y="418" width="480" height="48" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
-  <text x="320" y="448" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#15803d">You contract directly with the partner — we facilitate the introduction</text>
+  <text x="320" y="448" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#15803d">You contract with the partner — CLETHOS represents you throughout</text>
 </svg>

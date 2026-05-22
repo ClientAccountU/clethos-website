@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>CLETHOS Introductions — Client Pitch Deck</title>
+  <title>CLETHOS Consultancy — Client Pitch Deck</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -680,7 +680,7 @@
       line-height: 1.45;
     }
 
-    /* Slide 5 — Introductions overview (single clear story) */
+    /* Slide 5 — Consultancy overview (single clear story) */
     .slide--opportunity .slide__inner {
       display: flex;
       flex-direction: column;
@@ -839,9 +839,22 @@
 
     .intro-steps {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 0.75rem;
       align-items: stretch;
+    }
+
+    .fee-visual--consultancy {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 42rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .fee-visual--consultancy .fee-visual__arrow {
+      display: none;
     }
 
     .intro-step {
@@ -1996,6 +2009,16 @@
         --fs-sm: 0.9375rem;
       }
 
+      body.deck-dev-on .deck-dev {
+        top: auto;
+        bottom: max(0.5rem, env(safe-area-inset-bottom));
+        transform: translateX(-50%);
+      }
+
+      body.deck-dev-on .help {
+        top: max(0.5rem, env(safe-area-inset-top));
+      }
+
       .deck-ui {
         display: none !important;
       }
@@ -2248,7 +2271,8 @@
         line-height: 1.5;
       }
 
-      .fee-visual {
+      .fee-visual,
+      .fee-visual--consultancy {
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -2256,6 +2280,10 @@
         width: 100%;
         max-width: none;
         margin: 0.75rem 0 0;
+      }
+
+      .fee-visual--consultancy {
+        grid-template-columns: none;
       }
 
       .fee-visual__box {
@@ -2656,13 +2684,94 @@
       color: var(--subtle);
       line-height: 1.45;
     }
+
+    /* Local dev toolbar (localhost only) */
+    .deck-dev {
+      display: none;
+      position: fixed;
+      top: max(0.5rem, env(safe-area-inset-top));
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5000;
+      max-width: calc(100vw - 1rem);
+      padding: 0.4rem 0.55rem;
+      border-radius: 0.65rem;
+      background: rgba(15, 23, 42, 0.94);
+      color: #e2e8f0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      pointer-events: auto;
+    }
+
+    body.deck-dev-on .deck-dev {
+      display: flex;
+    }
+
+    body.deck-dev-on .help {
+      top: max(3.25rem, calc(2.75rem + env(safe-area-inset-top)));
+    }
+
+    .deck-dev__tag {
+      padding: 0.2rem 0.45rem;
+      border-radius: 0.35rem;
+      background: #22c55e;
+      color: #022c22;
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .deck-dev__slide {
+      font-variant-numeric: tabular-nums;
+      min-width: 3.5rem;
+      text-align: center;
+    }
+
+    .deck-dev button {
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 0.4rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .deck-dev button:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .deck-dev__links {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .deck-dev__links a {
+      color: #86efac;
+      text-decoration: none;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.35rem;
+    }
+
+    .deck-dev__links a:hover {
+      background: rgba(34, 197, 94, 0.15);
+    }
   </style>
 </head>
 <body class="intro-locked">
   <div id="introGate" class="intro-gate" role="dialog" aria-modal="true" aria-labelledby="introGateTitle">
     <div class="intro-gate__panel">
       <p class="intro-gate__badge">Confidential</p>
-      <h1 class="intro-gate__title" id="introGateTitle">CLETHOS Introductions</h1>
+      <h1 class="intro-gate__title" id="introGateTitle">CLETHOS Consultancy</h1>
       <p class="intro-gate__text">Enter your access code</p>
       <form id="introGateForm" class="intro-gate__form" autocomplete="off">
         <label class="intro-gate__label" for="introGatePin">Access code</label>
@@ -2687,6 +2796,15 @@
     </div>
   </div>
 
+  <div id="deckDev" class="deck-dev" hidden aria-label="Developer tools">
+    <span class="deck-dev__tag">Dev</span>
+    <button type="button" id="devPrev" aria-label="Previous slide">←</button>
+    <span class="deck-dev__slide" id="devSlideLabel">1 / 11</span>
+    <button type="button" id="devNext" aria-label="Next slide">→</button>
+    <button type="button" id="devMobile" aria-label="Open mobile-sized preview window">Mobile</button>
+    <nav class="deck-dev__links" id="devSlideLinks" aria-label="Jump to slide"></nav>
+  </div>
+
   <p class="help" id="deckHelp"><span class="help__desktop">← → Space · F fullscreen</span><span class="help__mobile">Scroll to read · swipe or tap sides · <span class="help__counter" id="helpCounter">1 / 11</span></span></p>
 
   <div class="deck-tap-nav" aria-hidden="true">
@@ -2701,9 +2819,9 @@
         <div class="cover-logo">
           <img src="art/clethos-logo.png" alt="CLETHOS" class="logo" decoding="async">
         </div>
-        <p class="slide__label">Alternative service</p>
-        <h1 class="slide__title">CLETHOS Introductions</h1>
-        <p class="slide__subtitle">Curated connections to specialist partners—when you need one piece of the market done well, not a full platform rollout.</p>
+        <p class="slide__label">Consultancy service</p>
+        <h1 class="slide__title">CLETHOS Consultancy</h1>
+        <p class="slide__subtitle">Analysis, partner matching, and ongoing representation—when you need regulated FX, banking, or treasury capability without a full platform rollout.</p>
         <figure class="slide__hero-visual">
           <img src="../assets+/hhj.png" alt="Global payments and partner connectivity" width="800" height="450">
         </figure>
@@ -2717,15 +2835,15 @@
         <div>
           <p class="slide__label">Overview</p>
           <h2 class="slide__title">Today’s agenda</h2>
-          <p class="slide__lead" style="margin-bottom: 0;">How Introductions fits alongside full CLETHOS treasury infrastructure.</p>
+          <p class="slide__lead" style="margin-bottom: 0;">How Consultancy fits alongside full CLETHOS treasury infrastructure.</p>
         </div>
         <ol class="agenda" aria-label="Jump to section">
-          <li data-n="01"><button type="button" class="agenda__btn" data-slide-target="3">CLETHOS &amp; the Introductions offer</button></li>
+          <li data-n="01"><button type="button" class="agenda__btn" data-slide-target="3">CLETHOS &amp; the Consultancy offer</button></li>
           <li data-n="02"><button type="button" class="agenda__btn" data-slide-target="4">When you don’t need the full stack</button></li>
-          <li data-n="03"><button type="button" class="agenda__btn" data-slide-target="5">What CLETHOS Introductions is</button></li>
-          <li data-n="04"><button type="button" class="agenda__btn" data-slide-target="7">Full platform vs Introductions</button></li>
+          <li data-n="03"><button type="button" class="agenda__btn" data-slide-target="5">What CLETHOS Consultancy is</button></li>
+          <li data-n="04"><button type="button" class="agenda__btn" data-slide-target="7">Full platform vs Consultancy</button></li>
           <li data-n="05"><button type="button" class="agenda__btn" data-slide-target="8">Money movement &amp; FX</button></li>
-          <li data-n="06"><button type="button" class="agenda__btn" data-slide-target="9">Fee, process &amp; who it’s ideal for</button></li>
+          <li data-n="06"><button type="button" class="agenda__btn" data-slide-target="9">Fees, process &amp; who it’s ideal for</button></li>
           <li data-n="07"><button type="button" class="agenda__btn" data-slide-target="10" data-slide-targets="10,11">Why CLETHOS &amp; next steps</button></li>
         </ol>
       </div>
@@ -2749,8 +2867,8 @@
           </ul>
 
           <div class="intro-callout">
-            <p class="slide__label">Why this deck focuses on Introductions</p>
-            <p>Not every business needs the full CLETHOS rollout on day one. <strong>CLETHOS Introductions</strong> is our alternative path: we connect you with closely vetted, in-house partners for FX, banking, treasury—or a single <strong>unified</strong> partner who covers the full fiat stack—so you work directly with the right provider while we handle matching and a fair, escrow-backed onboarding fee.</p>
+            <p class="slide__label">Why this deck focuses on Consultancy</p>
+            <p>Not every business needs the full CLETHOS rollout on day one. <strong>CLETHOS Consultancy</strong> is our alternative path: we analyse your requirements and jurisdictions, design an efficiency plan, match you to vetted in-house partners for FX, banking, treasury—or a <strong>unified</strong> provider—and stay involved as your ongoing representative: relationship management, commercial leverage, and faster lines to the right people.</p>
           </div>
         </div>
         <div class="slide__col slide__col--media">
@@ -2768,40 +2886,40 @@
         <h2 class="slide__title">You don’t always need the full stack</h2>
         <p class="slide__lead">Many businesses need a single capability executed well—FX, banking access, treasury liquidity—not an end-to-end platform on day one.</p>
         <ul class="slide__list">
-          <li>Full onboarding is heavy when the immediate need is narrow (one corridor, one product)</li>
-          <li>Finding a regulated partner in a new market takes months of research and compliance</li>
-          <li>Open directories and cold outreach rarely offer vetted, in-house relationships</li>
-          <li>Wrong partner fit wastes time, fees, and internal legal review</li>
+          <li>Full platform onboarding is heavy when the immediate need is narrow (one corridor, one product)</li>
+          <li>Finding a regulated partner in a new market takes months of research, compliance, and relationship-building</li>
+          <li>A one-off introduction leaves you without an advocate when pricing, service, or disputes arise</li>
+          <li>Open directories and cold outreach rarely offer vetted partners with ongoing senior coverage</li>
           <li>Teams still need expert FX, banking, or liquidity—without rebuilding treasury from zero</li>
         </ul>
-        <p class="slide__lead" style="margin-top: 0.75rem;"><strong>Introductions</strong> is the lighter path: one curated partner, one escrow-backed fee, direct commercial terms.</p>
+        <p class="slide__lead" style="margin-top: 0.75rem;"><strong>CLETHOS Consultancy</strong> is the lighter, sustained path: deep discovery, a matched partner, escrow-backed onboarding—and ongoing representation on a volume-based retainer.</p>
       </div>
     </section>
 
-    <!-- 5 What Introductions is -->
+    <!-- 5 What Consultancy is -->
     <section class="slide slide--intro-overview" data-slide="5">
       <div class="slide__inner intro-overview">
         <header class="intro-overview__header">
-          <p class="slide__label">CLETHOS Introductions</p>
-          <h2 class="slide__title">We introduce you to the right partner—you keep the relationship</h2>
-          <p class="slide__lead">When you need FX, banking, treasury—or one <strong>unified</strong> partner for all of it—<strong>without</strong> full CLETHOS infrastructure, we match you from our in-house network. You contract <strong>directly</strong> with the partner; we facilitate the intro and step back.</p>
+          <p class="slide__label">CLETHOS Consultancy</p>
+          <h2 class="slide__title">We analyse, match, and stay in the room with you</h2>
+          <p class="slide__lead">When you need FX, banking, treasury—or one <strong>unified</strong> partner—<strong>without</strong> full CLETHOS infrastructure, we start with your exact requirements, jurisdictions, and goals. We design an efficiency plan, onboard you to Consultancy, match the right regulated partner, and remain your <strong>ongoing representative</strong> to that partner—not a one-off handoff.</p>
         </header>
 
-        <div class="intro-points" role="list" aria-label="How Introductions works">
+        <div class="intro-points" role="list" aria-label="How Consultancy works">
           <article class="intro-point" role="listitem">
             <div class="intro-point__icon" aria-hidden="true">✓</div>
-            <h3 class="intro-point__title">Curated match</h3>
-            <p class="intro-point__text">Regulated specialists we already work with—not an open directory or cold referral.</p>
+            <h3 class="intro-point__title">Discovery &amp; plan</h3>
+            <p class="intro-point__text">We map your needs, entities, corridors, and regulatory context—then design what you need to obtain and how to get there.</p>
           </article>
           <article class="intro-point" role="listitem">
             <div class="intro-point__icon" aria-hidden="true">→</div>
-            <h3 class="intro-point__title">Your relationship</h3>
-            <p class="intro-point__text">Commercial terms and contracts sit between you and the partner. CLETHOS is not in the middle.</p>
+            <h3 class="intro-point__title">Matched partner</h3>
+            <p class="intro-point__text">Vetted, regulated specialists from our in-house network—chosen for fit, not pulled from an open directory.</p>
           </article>
           <article class="intro-point" role="listitem">
             <div class="intro-point__icon" aria-hidden="true">◇</div>
-            <h3 class="intro-point__title">Fee only if it lands</h3>
-            <p class="intro-point__text">Modest introduction fee held in escrow—released on proceed, <strong>refunded</strong> if there is no fit.</p>
+            <h3 class="intro-point__title">Ongoing representation</h3>
+            <p class="intro-point__text">CLETHOS is your middle point to the partner: relationship priority, dispute handling, commercial leverage, and faster communication.</p>
           </article>
         </div>
 
@@ -2829,21 +2947,26 @@
           </article>
         </div>
 
-        <div class="intro-steps" aria-label="Introductions in three steps">
+        <div class="intro-steps" aria-label="Consultancy in four steps">
           <article class="intro-step">
             <span class="intro-step__num">Step 1</span>
-            <h3 class="intro-step__title">You define the need</h3>
-            <p class="intro-step__text">Corridor, product, volume—light intake, no full platform rollout.</p>
+            <h3 class="intro-step__title">Analyse &amp; plan</h3>
+            <p class="intro-step__text">Deep intake on requirements, jurisdictions, volumes, and constraints—then a clear efficiency plan.</p>
           </article>
           <article class="intro-step intro-step--accent">
             <span class="intro-step__num">Step 2</span>
-            <h3 class="intro-step__title">CLETHOS introduces</h3>
-            <p class="intro-step__text">We match you to the vetted partner that fits your lane and market.</p>
+            <h3 class="intro-step__title">Onboard</h3>
+            <p class="intro-step__text">Join CLETHOS Consultancy; onboarding fee held in escrow with refund if the programme does not proceed.</p>
           </article>
           <article class="intro-step">
             <span class="intro-step__num">Step 3</span>
-            <h3 class="intro-step__title">You work together</h3>
-            <p class="intro-step__text">Direct commercial relationship; CLETHOS steps back once the intro lands.</p>
+            <h3 class="intro-step__title">Partner match</h3>
+            <p class="intro-step__text">We identify and connect the best-fit regulated partner for your lane and operating model.</p>
+          </article>
+          <article class="intro-step">
+            <span class="intro-step__num">Step 4</span>
+            <h3 class="intro-step__title">Manage &amp; oversee</h3>
+            <p class="intro-step__text">Ongoing representation, relationship management, and commercial advocacy on a volume-based retainer.</p>
           </article>
         </div>
       </div>
@@ -2853,7 +2976,7 @@
     <section class="slide slide--lanes-interactive slide--dense" data-slide="6">
       <div class="slide__inner">
         <p class="slide__label">Partner lanes</p>
-        <h2 class="slide__title">Partner lanes we introduce</h2>
+        <h2 class="slide__title">Partner lanes we cover</h2>
 
         <div class="lane-picker" role="tablist" aria-label="Choose a partner lane">
           <button type="button" class="lane-picker__btn is-active" data-lane="fx" data-index="0" role="tab" aria-selected="true" aria-controls="lane-panel-fx" id="lane-tab-fx">
@@ -2905,9 +3028,9 @@
         <div class="lane-detail">
           <article class="lane-detail__panel is-active" id="lane-panel-fx" data-lane-panel="fx" role="tabpanel" aria-labelledby="lane-tab-fx">
             <p class="lane-detail__label">Lane 01 · FX &amp; currency</p>
-            <h3 class="lane-detail__title">What we introduce in this lane</h3>
-            <p class="lane-detail__lead">Through Introductions, we connect you to <strong>large, regulated</strong> currency and payments specialists from our in-house network—combining global platform capability with dedicated expert support for your corridor and volume.</p>
-            <p class="lane-detail__edge"><strong>Not a marketplace.</strong> Every partner here is a major, regulated institution. Your introduction carries <strong>CLETHOS relationship priority</strong> and access to <strong>special consideration on rates</strong> negotiated through our standing—not retail onboarding queues.</p>
+            <h3 class="lane-detail__title">What we deliver in this lane</h3>
+            <p class="lane-detail__lead">Through Consultancy, we connect you to <strong>large, regulated</strong> currency and payments specialists from our in-house network—then stay involved as your representative for corridor strategy, commercial terms, and day-to-day escalation.</p>
+            <p class="lane-detail__edge"><strong>Not a marketplace.</strong> Every partner here is a major, regulated institution. Your engagement carries <strong>CLETHOS relationship priority</strong>, <strong>special consideration on rates</strong>, and ongoing senior coverage through us—not a one-off referral and silence.</p>
             <ul class="feature-list">
               <li><strong>Payments &amp; collections</strong> Pay, collect, and convert in 130+ currencies. Named multi-currency accounts in 30+ currencies; convert balances or pay out directly.</li>
               <li><strong>Currency risk management</strong> Hedging strategies aligned to your objectives and risk appetite—so FX volatility doesn’t dictate margins.</li>
@@ -2916,14 +3039,14 @@
             <div class="platform-tags" aria-label="Typical capabilities">
               <span>130+ currencies</span><span>Named accounts</span><span>Hedging</span><span>Regulated custody</span><span>Relationship priority</span><span>Special consideration on rates</span>
             </div>
-            <p class="partner-note">CLETHOS introduces you to the partner—you contract directly, with relationship priority and preferential commercial terms where our agreements apply. Funds safeguarded via regulated e-money institutions where applicable.</p>
+            <p class="partner-note">You contract with the partner; CLETHOS Consultancy manages the relationship on your behalf—priority status, preferential terms where our agreements apply, and continuous oversight. Funds safeguarded via regulated e-money institutions where applicable.</p>
           </article>
 
           <article class="lane-detail__panel" id="lane-panel-banking" data-lane-panel="banking" role="tabpanel" aria-labelledby="lane-tab-banking" hidden>
             <p class="lane-detail__label">Lane 02 · Banking</p>
-            <h3 class="lane-detail__title">What we introduce in this lane</h3>
-            <p class="lane-detail__lead">When you need bank accounts and local payment rails—not a full digital treasury build—we introduce <strong>large, regulated banking partners</strong> who open and operate named accounts in the corridors that matter to you.</p>
-            <p class="lane-detail__edge"><strong>Established institutions only.</strong> We work with major regulated banks and banking groups—not introducers of unknown providers. You benefit from <strong>CLETHOS relationship priority</strong> and <strong>special consideration on rates</strong>, fees, and commercial terms where our partnerships allow.</p>
+            <h3 class="lane-detail__title">What we deliver in this lane</h3>
+            <p class="lane-detail__lead">When you need bank accounts and local payment rails—not a full digital treasury build—we match you to <strong>large, regulated banking partners</strong> and remain your advocate through onboarding, account operations, and commercial discussions.</p>
+            <p class="lane-detail__edge"><strong>Established institutions only.</strong> We work with major regulated banks and banking groups—not introducers of unknown providers. You benefit from <strong>CLETHOS relationship priority</strong>, <strong>special consideration on rates</strong>, and ongoing account-level support through Consultancy.</p>
             <ul class="feature-list">
               <li><strong>Account opening</strong> Support for entity setup, KYC, and onboarding with banking partners in target markets.</li>
               <li><strong>Local rails</strong> Access to domestic clearing and collection where cross-border fintech alone is not enough.</li>
@@ -2932,14 +3055,14 @@
             <div class="platform-tags">
               <span>Named accounts</span><span>Local rails</span><span>Multi-entity</span><span>Regulatory onboarding</span><span>Relationship priority</span><span>Special consideration on rates</span>
             </div>
-            <p class="partner-note">CLETHOS introduces you to the partner—you contract directly for account terms, fees, and ongoing banking relationship, with preferential terms through our introduction where applicable.</p>
+            <p class="partner-note">You contract with the partner; CLETHOS Consultancy handles ongoing banking relationship management, escalations, and commercial advocacy with preferential terms where applicable.</p>
           </article>
 
           <article class="lane-detail__panel" id="lane-panel-treasury" data-lane-panel="treasury" role="tabpanel" aria-labelledby="lane-tab-treasury" hidden>
             <p class="lane-detail__label">Lane 03 · Treasury</p>
-            <h3 class="lane-detail__title">What we introduce in this lane</h3>
-            <p class="lane-detail__lead">For teams that need to hold, move, and optimise balances across currencies and entities without adopting full CLETHOS infrastructure—we match you to <strong>large, regulated treasury and liquidity specialists</strong>.</p>
-            <p class="lane-detail__edge"><strong>Scale and regulation matter.</strong> Partners in this lane are substantial, regulated operators—not niche tools. Introductions reflect <strong>CLETHOS relationship priority</strong>, including <strong>special consideration on rates</strong> and faster access to senior coverage where our agreements apply.</p>
+            <h3 class="lane-detail__title">What we deliver in this lane</h3>
+            <p class="lane-detail__lead">For teams that need to hold, move, and optimise balances across currencies and entities without adopting full CLETHOS infrastructure—we match you to <strong>large, regulated treasury and liquidity specialists</strong> and oversee the partnership long term.</p>
+            <p class="lane-detail__edge"><strong>Scale and regulation matter.</strong> Partners in this lane are substantial, regulated operators—not niche tools. Consultancy gives you <strong>CLETHOS relationship priority</strong>, <strong>special consideration on rates</strong>, and sustained access to senior treasury coverage through us.</p>
             <ul class="feature-list">
               <li><strong>Multi-currency balances</strong> Hold and view positions across currencies from a treasury-led operating model.</li>
               <li><strong>Internal liquidity moves</strong> Transfers between entities, accounts, and corridors with less friction.</li>
@@ -2948,27 +3071,27 @@
             <div class="platform-tags">
               <span>Multi-currency</span><span>Liquidity</span><span>Internal transfers</span><span>Cash visibility</span><span>Relationship priority</span><span>Special consideration on rates</span>
             </div>
-            <p class="partner-note">CLETHOS introduces you to the partner—you contract directly for treasury services and commercial terms, with relationship priority and preferential pricing through our standing where applicable.</p>
+            <p class="partner-note">You contract with the partner; CLETHOS Consultancy provides continuous treasury relationship management, commercial leverage, and preferential pricing through our standing where applicable.</p>
           </article>
 
           <article class="lane-detail__panel" id="lane-panel-unified" data-lane-panel="unified" role="tabpanel" aria-labelledby="lane-tab-unified" hidden>
             <p class="lane-detail__label">Lane 04 · Unified partner</p>
             <h3 class="lane-detail__title">Everything under one roof</h3>
-            <p class="lane-detail__lead">When you want <strong>banking, global FX, currency exchange, and treasury</strong> from one <strong>large, regulated institution</strong>—not three separate introductions—we connect you to <strong>tier-one unified providers</strong> from our in-house network who operate the full fiat money movement stack at scale.</p>
-            <p class="lane-detail__edge"><strong>Big, regulated companies—one relationship.</strong> Lane 04 is for businesses that need a single major, fully regulated partner covering banking, FX, and treasury. Your introduction comes with <strong>CLETHOS relationship priority</strong>—faster routing, senior coverage, and <strong>special consideration on rates</strong> across the stack that reflect our ongoing partnerships, not standard retail pricing.</p>
+            <p class="lane-detail__lead">When you want <strong>banking, global FX, currency exchange, and treasury</strong> from one <strong>large, regulated institution</strong>—not three separate engagements—we connect you to <strong>tier-one unified providers</strong> and manage that single relationship on your behalf.</p>
+            <p class="lane-detail__edge"><strong>Big, regulated companies—one relationship.</strong> Lane 04 is for businesses that need one major partner covering banking, FX, and treasury. Consultancy delivers <strong>CLETHOS relationship priority</strong>—faster routing, senior coverage, <strong>special consideration on rates</strong>, and ongoing dispute and service management across the stack.</p>
             <ul class="feature-list">
-              <li><strong>Banking &amp; named accounts</strong> Multi-currency accounts, local rails, and collections in the corridors you operate—without stitching together separate banking introductions.</li>
+              <li><strong>Banking &amp; named accounts</strong> Multi-currency accounts, local rails, and collections in the corridors you operate—without stitching together separate banking relationships alone.</li>
               <li><strong>Global FX &amp; currency exchange</strong> Pay, collect, convert, and hedge across currencies on the same platform and commercial relationship as your accounts.</li>
               <li><strong>Treasury &amp; liquidity</strong> Hold, move, and optimise balances across entities and currencies with treasury tooling built into the same partner stack.</li>
-              <li><strong>One contract, one relationship</strong> Single onboarding with a regulated institution at scale—unified support, aligned economics, and <strong>preferential terms through CLETHOS</strong> when breadth matters more than best-of-breed point solutions.</li>
+              <li><strong>One contract, one relationship</strong> Single onboarding with a regulated institution at scale—unified support, aligned economics, and <strong>preferential terms through CLETHOS Consultancy</strong> when breadth matters more than best-of-breed point solutions.</li>
             </ul>
             <div class="platform-tags" aria-label="Typical capabilities">
               <span>Banking</span><span>Global FX</span><span>Currency exchange</span><span>Treasury</span><span>Regulated tier-one</span><span>Relationship priority</span><span>Special consideration on rates</span>
             </div>
-            <p class="partner-note">CLETHOS introduces you to the partner—you contract directly for the unified relationship, with relationship priority and special consideration on rates where our agreements apply. We step back once the intro lands; you are not on CLETHOS infrastructure unless you choose to upgrade later.</p>
+            <p class="partner-note">You contract with the partner; CLETHOS Consultancy remains your ongoing representative for the unified relationship—commercial advocacy, escalations, and preferential terms where our agreements apply. Upgrade to full CLETHOS infrastructure later if strategy shifts.</p>
           </article>
         </div>
-        <p class="partner-note" style="text-align: center; margin-top: 0.5rem; max-width: 68rem;">All lanes draw from the same in-house network of <strong>large, regulated partners</strong>—matched to your corridor, entity type, and volume, with <strong>CLETHOS relationship priority</strong> and <strong>special consideration on rates</strong> through our standing introductions.</p>
+        <p class="partner-note" style="text-align: center; margin-top: 0.5rem; max-width: 68rem;">All lanes draw from the same in-house network of <strong>large, regulated partners</strong>—matched to your corridor, entity type, and volume, with <strong>ongoing CLETHOS representation</strong>, relationship priority, and special consideration on rates.</p>
       </div>
     </section>
 
@@ -2977,37 +3100,37 @@
       <div class="slide__inner">
         <div class="compare-slide__content">
           <p class="slide__label">Choose your path</p>
-          <h2 class="slide__title">Full platform vs Introductions</h2>
-          <p class="slide__lead" style="margin-bottom: 0.75rem;">Go <strong>full CLETHOS</strong> when stablecoin and digital infrastructure are the strategic priority. Choose <strong>Introductions</strong> when fiat accounts, global FX, and currency exchange are primary—and digital rails are secondary.</p>
+          <h2 class="slide__title">Full platform vs Consultancy</h2>
+          <p class="slide__lead" style="margin-bottom: 0.75rem;">Go <strong>full CLETHOS</strong> when stablecoin and digital infrastructure are the strategic priority. Choose <strong>Consultancy</strong> when fiat accounts, global FX, and currency exchange are primary—and you want a sustained partner representative, not a one-off match.</p>
           <div class="compare-scroll" role="region" aria-label="Comparison table (scroll horizontally on small screens)">
           <table class="compare">
         <thead>
           <tr>
             <th></th>
             <th>CLETHOS infrastructure</th>
-            <th>CLETHOS Introductions</th>
+            <th>CLETHOS Consultancy</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Best for</td>
             <td>Businesses pivoting to <strong>stablecoin &amp; digital infrastructure</strong>—wallets, programmable money, on-chain liquidity. Fiat collections and payouts support the model; they are not the lead driver.</td>
-            <td>Businesses where <strong>digital/stablecoins are secondary</strong> and <strong>fiat is primary</strong>—global FX, currency exchange, named accounts, banking access, treasury liquidity, and corridor specialists.</td>
+            <td>Businesses where <strong>fiat is primary</strong>—global FX, banking, treasury, or unified partners—and you want analysis, matching, and <strong>ongoing CLETHOS oversight</strong> on a retainer.</td>
           </tr>
           <tr>
             <td>Onboarding</td>
             <td>Full digital treasury stack—platform, API, and dashboard access</td>
-            <td>Light intake matched to your fiat/FX/banking need—no full infrastructure rollout</td>
+            <td>Discovery &amp; efficiency plan, then Consultancy onboarding (escrow fee)—no full infrastructure rollout</td>
           </tr>
           <tr>
             <td>Relationship</td>
             <td>You operate on CLETHOS digital rails (stablecoins + integrated fiat where needed)</td>
-            <td>You work directly with our vetted fiat/FX/banking partner; CLETHOS facilitates the intro</td>
+            <td>You contract with the partner; <strong>CLETHOS stays in the middle</strong> as your representative—management, escalations, and commercial advocacy</td>
           </tr>
           <tr>
             <td>Commercial</td>
             <td>Platform &amp; usage economics across digital treasury</td>
-            <td>Modest introduction fee held in escrow; refunded if no match</td>
+            <td>Onboarding fee in escrow (refund if programme does not proceed) + <strong>monthly retainer</strong> scaled to volume</td>
           </tr>
           <tr>
             <td>Upgrade path</td>
@@ -3028,7 +3151,7 @@
           <div>
             <p class="slide__label">FX &amp; payments capability</p>
             <h2 class="slide__title">Global payments beyond borders</h2>
-            <p class="slide__lead" style="margin: 0.5rem 0 0;">Proactive cross-border payment solutions—best-in-class platforms plus a dedicated specialist team. This is the kind of capability we introduce in the FX lane through CLETHOS Introductions.</p>
+            <p class="slide__lead" style="margin: 0.5rem 0 0;">Proactive cross-border payment solutions—best-in-class platforms plus a dedicated specialist team. This is the kind of capability we source and manage in the FX lane through CLETHOS Consultancy.</p>
           </div>
           <span class="pill">FX lane</span>
         </div>
@@ -3089,26 +3212,29 @@
     <section class="slide slide--fee-process slide--dense" data-slide="9">
       <div class="slide__inner">
         <p class="slide__label">Commercial model</p>
-        <h2 class="slide__title">Onboarding fee — simple &amp; fair</h2>
-        <p class="slide__lead">Aligned incentives: we only win when the introduction creates real value for you.</p>
+        <h2 class="slide__title">Onboarding + ongoing — aligned incentives</h2>
+        <p class="slide__lead">We only succeed when Consultancy delivers real value: a matched partner, a live programme, and a relationship we manage with you over time.</p>
         <ul class="slide__points">
-          <li>Fee collected at intake and <strong>held in escrow</strong> until you proceed with our partner—or <strong>refunded in full</strong> if you do not</li>
-          <li>Scope and amount confirmed upfront; partner pricing for FX, banking, or other services sits between you and the partner</li>
+          <li><strong>Onboarding fee</strong> collected at intake and <strong>held in escrow</strong>—released when the programme proceeds, or <strong>refunded in full</strong> if nothing materialises from the engagement</li>
+          <li><strong>Monthly retainer</strong> based on volume for ongoing management, oversight, and representation with your partner</li>
+          <li>Partner pricing for FX, banking, treasury, or unified services sits between you and the partner—with CLETHOS advocating on your behalf</li>
         </ul>
-        <div class="fee-visual" aria-label="Client to escrow to outcome">
+        <div class="fee-visual fee-visual--consultancy" aria-label="Consultancy commercial model">
           <div class="fee-visual__box">
-            <h4>Client</h4>
-            <p>Pays modest onboarding fee at intake</p>
+            <h4>Onboarding</h4>
+            <p>One-time fee at intake—held in escrow until the programme outcome is clear</p>
           </div>
-          <span class="fee-visual__arrow" aria-hidden="true">→</span>
           <div class="fee-visual__box fee-visual__box--center">
-            <h4>Escrow</h4>
-            <p>Fee held until partner relationship confirmed or declined</p>
+            <h4>Consultancy</h4>
+            <p>Analysis, efficiency plan, partner match, and structured onboarding</p>
           </div>
-          <span class="fee-visual__arrow" aria-hidden="true">→</span>
           <div class="fee-visual__box">
-            <h4>Outcome</h4>
-            <p>Proceed → fee to CLETHOS · No match → full refund</p>
+            <h4>Partnership</h4>
+            <p>Live relationship with your matched regulated partner</p>
+          </div>
+          <div class="fee-visual__box">
+            <h4>Ongoing</h4>
+            <p>Monthly retainer by volume—management, oversight &amp; representation</p>
           </div>
         </div>
         <div class="fee-process__how">
@@ -3116,26 +3242,32 @@
           <ol class="steps steps--compact">
             <li>
               <div>
-                <strong>Discovery &amp; intake</strong>
-                <span>Share your need, corridors, volumes, and constraints. We confirm Introductions vs full infrastructure.</span>
+                <strong>Discovery &amp; analysis</strong>
+                <span>We map your requirements, jurisdictions, entities, volumes, and goals—confirming Consultancy vs full infrastructure.</span>
               </div>
             </li>
             <li>
               <div>
-                <strong>Fee held in escrow</strong>
-                <span>Modest onboarding fee collected upfront—held, not spent, until outcome is known.</span>
+                <strong>Efficiency plan</strong>
+                <span>A clear plan for what you want to obtain, which lane fits, and how we will run the engagement.</span>
               </div>
             </li>
             <li>
               <div>
-                <strong>Warm introduction</strong>
-                <span>We introduce the best-fit vetted partner for your specific capability.</span>
+                <strong>Onboard + escrow</strong>
+                <span>Consultancy onboarding fee collected upfront—held until the programme proceeds or refunded if it does not.</span>
               </div>
             </li>
             <li>
               <div>
-                <strong>Outcome</strong>
-                <span>Fee claimed if you proceed with our partner; full refund if you do not.</span>
+                <strong>Partner match</strong>
+                <span>We connect you to the best-fit vetted partner—with CLETHOS relationship priority from day one.</span>
+              </div>
+            </li>
+            <li>
+              <div>
+                <strong>Ongoing management</strong>
+                <span>We represent you to the partner on a volume-based retainer—commercial leverage, escalations, and continuity.</span>
               </div>
             </li>
           </ol>
@@ -3146,20 +3278,20 @@
             <div class="card">
               <div class="card__icon" aria-hidden="true">▣</div>
               <h3 class="card__title">Established enterprises</h3>
-              <p class="card__text">Large, mature businesses that need regulated banking, FX, or treasury in new corridors—without committing to a full CLETHOS stack or a heavy, months-long platform onboarding.</p>
+              <p class="card__text">Large, mature businesses that need regulated banking, FX, or treasury in new corridors—with a dedicated advocate, not a one-off introduction.</p>
             </div>
             <div class="card">
               <div class="card__icon" aria-hidden="true">◎</div>
               <h3 class="card__title">Treasury &amp; finance</h3>
-              <p class="card__text">CFOs and treasury leads who want one vetted specialist while keeping existing ERP and banks.</p>
+              <p class="card__text">CFOs and treasury leads who want one vetted specialist plus ongoing CLETHOS representation while keeping existing ERP and banks.</p>
             </div>
             <div class="card">
               <div class="card__icon" aria-hidden="true">⚙</div>
               <h3 class="card__title">Platforms &amp; operators</h3>
-              <p class="card__text">Test a corridor or product with a regulated partner before full CLETHOS infrastructure.</p>
+              <p class="card__text">Run a corridor or product with a regulated partner under Consultancy before committing to full CLETHOS infrastructure.</p>
             </div>
           </div>
-          <p class="ideal-for__note">Not sure which path fits? We’ll recommend Introductions or full onboarding after a short discovery call.</p>
+          <p class="ideal-for__note">Not sure which path fits? We’ll recommend Consultancy or full platform onboarding after a short discovery call.</p>
         </div>
       </div>
     </section>
@@ -3169,19 +3301,20 @@
       <div class="slide__inner">
       <div class="slide__col slide__col--text">
         <p class="slide__label">Why us</p>
-        <h2 class="slide__title">Why CLETHOS Introductions?</h2>
+        <h2 class="slide__title">Why CLETHOS Consultancy?</h2>
         <ul class="slide__list slide__list--why">
-          <li><strong>Fully regulated &amp; licensed partners</strong> — Introductions are to providers with appropriate licences and regulatory standing in their markets—not unvetted lead lists.</li>
-          <li><strong>Your own due diligence</strong> — We give you what you need to run licence checks, KYC, and commercial diligence yourself—you decide fit before you proceed.</li>
-          <li><strong>Much faster onboarding</strong> — Light CLETHOS intake plus direct partner onboarding gets you live in weeks when you need accounts, FX, or liquidity—not a six-month platform rollout.</li>
-          <li><strong>Curated in-house network</strong> — Partners we already work with, matched to corridor and volume—not an open marketplace or cold referral.</li>
-          <li><strong>Escrow-backed intro fee</strong> — Modest fee held until outcome; <strong>full refund</strong> if there is no match—clear incentives for everyone.</li>
-          <li><strong>Upgrade when you are ready</strong> — Start with Introductions; move to full CLETHOS infrastructure when volume and strategy justify it.</li>
+          <li><strong>Fully regulated &amp; licensed partners</strong> — Engagements are with providers that hold appropriate licences and regulatory standing in their markets—not unvetted lead lists.</li>
+          <li><strong>Deep discovery first</strong> — We analyse your requirements, jurisdictions, and operating model before recommending a lane or partner—not a generic referral.</li>
+          <li><strong>Your representative to the partner</strong> — CLETHOS stays in the relationship: disputes, service issues, and commercial discussions run through us as your advocate.</li>
+          <li><strong>Superior partner status</strong> — Relationship priority and special consideration on rates because partners are <strong>our</strong> long-standing counterparts—you benefit without years of direct history.</li>
+          <li><strong>Faster, senior communication</strong> — Quicker pipelines to the right people at the partner—not retail queues or rotating call centres.</li>
+          <li><strong>Escrow onboarding + retainer</strong> — Onboarding fee held until the programme proceeds (<strong>full refund</strong> if it does not); ongoing work on a transparent volume-based retainer.</li>
+          <li><strong>Upgrade when you are ready</strong> — Start with Consultancy; move to full CLETHOS infrastructure when digital treasury becomes the strategic priority.</li>
         </ul>
       </div>
       <div class="slide__col slide__col--media">
         <div class="illus illus--tall illus--why" aria-hidden="true">
-          <img src="art/security-trust.svg" alt="Regulated partners, client due diligence, and faster onboarding">
+          <img src="art/security-trust.svg" alt="Regulated partners, ongoing representation, and commercial advocacy">
         </div>
       </div>
       </div>
@@ -3195,7 +3328,7 @@
         </div>
         <p class="slide__label">Next steps</p>
         <h2 class="slide__title">Start a conversation</h2>
-        <p class="slide__subtitle">Tell us what you’re solving—we’ll confirm fit, outline the fee, and introduce the right partner when Introductions is the right model.</p>
+        <p class="slide__subtitle">Tell us what you’re solving—we’ll confirm fit, outline onboarding and retainer, and scope how Consultancy can represent you with the right partner.</p>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
           <span class="cta-pill">clethos.com/contact</span>
         </div>
@@ -3408,6 +3541,61 @@
         updateHelpCounter();
         updateDeckNav();
         updateAgendaHighlight();
+        updateDevBar();
+      }
+
+      function setupDevBar() {
+        if (!window.CLETHOS_INTRO_DEV) return;
+        var dev = document.getElementById('deckDev');
+        if (!dev) return;
+        dev.hidden = false;
+        document.body.classList.add('deck-dev-on');
+
+        var devPrev = document.getElementById('devPrev');
+        var devNext = document.getElementById('devNext');
+        var devMobile = document.getElementById('devMobile');
+        var devLinks = document.getElementById('devSlideLinks');
+
+        if (devPrev) devPrev.addEventListener('click', deckPrev);
+        if (devNext) devNext.addEventListener('click', deckNext);
+
+        if (devMobile) {
+          devMobile.addEventListener('click', function () {
+            var url = location.pathname + location.search;
+            var num = slides[index] ? slides[index].getAttribute('data-slide') : String(index + 1);
+            if (!/[?&]slide=/i.test(url)) {
+              url += (url.indexOf('?') >= 0 ? '&' : '?') + 'slide=' + num;
+            }
+            window.open(
+              url,
+              'clethos-deck-mobile',
+              'width=400,height=860,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes'
+            );
+          });
+        }
+
+        if (devLinks) {
+          slides.forEach(function (slide) {
+            var num = slide.getAttribute('data-slide');
+            if (!num) return;
+            var a = document.createElement('a');
+            a.href = '?slide=' + num;
+            a.textContent = num;
+            a.addEventListener('click', function (e) {
+              e.preventDefault();
+              var i = slideIndexForTarget(num);
+              if (i >= 0) show(i);
+            });
+            devLinks.appendChild(a);
+          });
+        }
+      }
+
+      function updateDevBar() {
+        if (!window.CLETHOS_INTRO_DEV) return;
+        var label = document.getElementById('devSlideLabel');
+        var num = slides[index] ? slides[index].getAttribute('data-slide') : String(index + 1);
+        if (label) label.textContent = num + ' / ' + total;
       }
 
       if (prevBtn) prevBtn.addEventListener('click', deckPrev);
@@ -3473,7 +3661,10 @@
       }
 
       setupMobileSlideScroll();
-      show(0);
+      setupDevBar();
+      var jumpMatch = location.search.match(/[?&]slide=(\d+)/i);
+      var jumpIndex = jumpMatch ? slideIndexForTarget(jumpMatch[1]) : -1;
+      show(jumpIndex >= 0 ? jumpIndex : 0);
     }
 
     function bootPitchDeck() {

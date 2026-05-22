@@ -1,6 +1,8 @@
 (function () {
   var STORAGE_KEY = 'clethos-intro-unlocked';
   var FADE_MS = 520;
+  var host = location.hostname;
+  window.CLETHOS_INTRO_DEV = host === 'localhost' || host === '127.0.0.1';
   var gate = document.getElementById('introGate');
   var form = document.getElementById('introGateForm');
   var input = document.getElementById('introGatePin');
@@ -54,10 +56,10 @@
   var pinLength = expectedPin.length;
 
   if (pinLength < 4 || pinLength > 8) {
-    console.warn('CLETHOS Introductions: set an access code (4–8 digits) in INTRO/access-config.js');
+    console.warn('CLETHOS Consultancy: set an access code (4–8 digits) in INTRO/access-config.js');
   }
 
-  if (isUnlocked()) {
+  if (isUnlocked() || window.CLETHOS_INTRO_DEV) {
     unlock({ animate: false });
     return;
   }
