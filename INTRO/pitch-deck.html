@@ -697,6 +697,58 @@
       line-height: 1.45;
     }
 
+    /* Slide 3 — Problem framing */
+    .slide--problem .slide__inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 1rem;
+      max-width: min(64rem, 96vw);
+      margin: 0 auto;
+      padding-bottom: 1.25rem;
+    }
+
+    .slide--problem .slide__lead {
+      margin-bottom: 0.25rem;
+      max-width: 60rem;
+    }
+
+    .slide--problem .slide__grid {
+      margin-top: 0.25rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.875rem;
+    }
+
+    .slide--problem .card {
+      height: 100%;
+      padding: 1rem 1.125rem;
+    }
+
+    .slide--problem .slide__points {
+      margin-top: 0.35rem;
+      gap: 0.4rem;
+    }
+
+    .slide--problem .slide__points li {
+      font-size: var(--fs-sm);
+      line-height: 1.42;
+      color: var(--muted);
+    }
+
+    .slide--problem .problem-outcome {
+      border: 1px solid #bbf7d0;
+      border-radius: 0.9rem;
+      background: linear-gradient(180deg, #f0fdf4 0%, var(--surface) 100%);
+      padding: 0.9rem 1.1rem;
+    }
+
+    .slide--problem .problem-outcome p {
+      margin: 0;
+      font-size: var(--fs-base);
+      line-height: 1.5;
+      color: var(--text);
+    }
+
     /* Slide 5 — Consultancy overview (single clear story) */
     .slide--opportunity .slide__inner {
       display: flex;
@@ -2254,6 +2306,10 @@
         justify-content: flex-start;
       }
 
+      .slide--problem .slide__grid {
+        grid-template-columns: 1fr;
+      }
+
       .slide--cover-grid .slide__inner,
       .slide--split .slide__inner,
       .slide--agenda .slide__inner,
@@ -2942,13 +2998,13 @@
   <div id="deckDev" class="deck-dev" hidden aria-label="Developer tools">
     <span class="deck-dev__tag">Dev</span>
     <button type="button" id="devPrev" aria-label="Previous slide">←</button>
-    <span class="deck-dev__slide" id="devSlideLabel">1 / 11</span>
+    <span class="deck-dev__slide" id="devSlideLabel">1 / 12</span>
     <button type="button" id="devNext" aria-label="Next slide">→</button>
     <button type="button" id="devMobile" aria-label="Open mobile-sized preview window">Mobile</button>
     <nav class="deck-dev__links" id="devSlideLinks" aria-label="Jump to slide"></nav>
   </div>
 
-  <p class="help" id="deckHelp"><span class="help__desktop">F fullscreen</span><span class="help__mobile">Scroll to read · swipe or tap sides · <span class="help__counter" id="helpCounter">1 / 11</span></span></p>
+  <p class="help" id="deckHelp"><span class="help__desktop">F fullscreen</span><span class="help__mobile">Scroll to read · swipe or tap sides · <span class="help__counter" id="helpCounter">1 / 12</span></span></p>
 
   <div class="deck-tap-nav" aria-hidden="true">
     <button type="button" class="deck-tap deck-tap--prev" id="tapPrev" aria-label="Previous slide" tabindex="-1"></button>
@@ -2981,19 +3037,68 @@
           <p class="slide__lead" style="margin-bottom: 0;">How Consultancy fits alongside full CLETHOS treasury infrastructure.</p>
         </div>
         <ol class="agenda" aria-label="Jump to section">
-          <li data-n="01"><button type="button" class="agenda__btn" data-slide-target="3">CLETHOS &amp; the Consultancy offer</button></li>
-          <li data-n="02"><button type="button" class="agenda__btn" data-slide-target="4">When you don’t need the full stack</button></li>
-          <li data-n="03"><button type="button" class="agenda__btn" data-slide-target="5">What CLETHOS Consultancy is</button></li>
-          <li data-n="04"><button type="button" class="agenda__btn" data-slide-target="7">Full platform vs Consultancy</button></li>
-          <li data-n="05"><button type="button" class="agenda__btn" data-slide-target="8">Money movement &amp; FX</button></li>
-          <li data-n="06"><button type="button" class="agenda__btn" data-slide-target="9">Fees, process &amp; who it’s ideal for</button></li>
-          <li data-n="07"><button type="button" class="agenda__btn" data-slide-target="10" data-slide-targets="10,11">Why CLETHOS &amp; next steps</button></li>
+          <li data-n="01"><button type="button" class="agenda__btn" data-slide-target="3">The payment problem most teams face</button></li>
+          <li data-n="02"><button type="button" class="agenda__btn" data-slide-target="4">CLETHOS &amp; the Consultancy offer</button></li>
+          <li data-n="03"><button type="button" class="agenda__btn" data-slide-target="5">When you don’t need the full stack</button></li>
+          <li data-n="04"><button type="button" class="agenda__btn" data-slide-target="6">What CLETHOS Consultancy is</button></li>
+          <li data-n="05"><button type="button" class="agenda__btn" data-slide-target="8">Full platform vs Consultancy</button></li>
+          <li data-n="06"><button type="button" class="agenda__btn" data-slide-target="9">Money movement &amp; FX</button></li>
+          <li data-n="07"><button type="button" class="agenda__btn" data-slide-target="10">Fees, process &amp; who it’s ideal for</button></li>
+          <li data-n="08"><button type="button" class="agenda__btn" data-slide-target="11" data-slide-targets="11,12">Why CLETHOS &amp; next steps</button></li>
         </ol>
       </div>
     </section>
 
-    <!-- 3 Who we are -->
-    <section class="slide slide--split slide--about slide--dense" data-slide="3">
+    <!-- 3 The problem -->
+    <section class="slide slide--problem slide--dense" data-slide="3">
+      <div class="slide__inner">
+        <div>
+          <p class="slide__label">The problem</p>
+          <h2 class="slide__title">Cross-border money movement is still too slow, costly, and fragmented</h2>
+          <p class="slide__lead">Most businesses are not blocked by demand - they are blocked by rails, partner quality, and execution. Collection, conversion, payout, and treasury operations are often split across disconnected providers, each adding delay and cost.</p>
+        </div>
+        <div class="slide__grid">
+          <article class="card">
+            <h3 class="card__title">Collections and payouts take too long</h3>
+            <ul class="slide__points">
+              <li>Settlement frequently takes days instead of minutes</li>
+              <li>Reconciliation and status tracking are still manual</li>
+              <li>Operational teams spend cycles chasing updates</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Costs stack up across the chain</h3>
+            <ul class="slide__points">
+              <li>FX spreads, transfer fees, and hidden handling charges erode margin</li>
+              <li>Pricing power is weak without established partner relationships</li>
+              <li>Commercial negotiations are hard when you are not a priority client</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Provider quality and coverage are inconsistent</h3>
+            <ul class="slide__points">
+              <li>Open-directory options are rarely vetted for your exact corridor and model</li>
+              <li>Onboarding can be heavy without clear match criteria</li>
+              <li>Service quality drops after the initial introduction</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 class="card__title">No one owns the relationship after go-live</h3>
+            <ul class="slide__points">
+              <li>Escalations, disputes, and pricing reviews become internal firefights</li>
+              <li>Teams lose leverage once contracted directly with the partner</li>
+              <li>Growth slows when treasury execution cannot keep pace</li>
+            </ul>
+          </article>
+        </div>
+        <div class="problem-outcome">
+          <p><strong>What this creates:</strong> slower customer collections, expensive cross-border flows, weaker treasury visibility, and avoidable risk. CLETHOS Consultancy is designed to fix this end-to-end through discovery, matched regulated partners, and ongoing representation after launch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Who we are -->
+    <section class="slide slide--split slide--about slide--dense" data-slide="4">
       <div class="slide__inner">
         <div class="slide__col slide__col--text">
           <p class="slide__label">Who we are</p>
@@ -3022,8 +3127,8 @@
       </div>
     </section>
 
-    <!-- 4 Problem -->
-    <section class="slide slide--opportunity" data-slide="4">
+    <!-- 5 Why Consultancy -->
+    <section class="slide slide--opportunity" data-slide="5">
       <div class="slide__inner">
         <p class="slide__label">The opportunity</p>
         <h2 class="slide__title">You don’t always need the full stack</h2>
@@ -3039,8 +3144,8 @@
       </div>
     </section>
 
-    <!-- 5 What Consultancy is -->
-    <section class="slide slide--intro-overview" data-slide="5">
+    <!-- 6 What Consultancy is -->
+    <section class="slide slide--intro-overview" data-slide="6">
       <div class="slide__inner intro-overview">
         <header class="intro-overview__header">
           <p class="slide__label">CLETHOS Consultancy</p>
@@ -3115,8 +3220,8 @@
       </div>
     </section>
 
-    <!-- 6 Partner lanes (interactive) -->
-    <section class="slide slide--lanes-interactive slide--dense" data-slide="6">
+    <!-- 7 Partner lanes (interactive) -->
+    <section class="slide slide--lanes-interactive slide--dense" data-slide="7">
       <div class="slide__inner">
         <p class="slide__label">Partner lanes</p>
         <h2 class="slide__title">Partner lanes we cover</h2>
@@ -3238,8 +3343,8 @@
       </div>
     </section>
 
-    <!-- 7 Comparison -->
-    <section class="slide slide--compare" data-slide="7">
+    <!-- 8 Comparison -->
+    <section class="slide slide--compare" data-slide="8">
       <div class="slide__inner">
         <div class="compare-slide__content">
           <p class="slide__label">Choose your path</p>
@@ -3287,8 +3392,8 @@
       </div>
     </section>
 
-    <!-- 8 Money movement (FX partner capability) -->
-    <section class="slide slide--treasury slide--dense" data-slide="8">
+    <!-- 9 Money movement (FX partner capability) -->
+    <section class="slide slide--treasury slide--dense" data-slide="9">
       <div class="slide__inner slide__inner--stack">
         <div class="slide__head-row">
           <div>
@@ -3351,8 +3456,8 @@
       </div>
     </section>
 
-    <!-- 9 Fee & process -->
-    <section class="slide slide--fee-process slide--dense" data-slide="9">
+    <!-- 10 Fee & process -->
+    <section class="slide slide--fee-process slide--dense" data-slide="10">
       <div class="slide__inner">
         <p class="slide__label">Commercial model</p>
         <h2 class="slide__title">Onboarding + ongoing — aligned incentives</h2>
@@ -3439,8 +3544,8 @@
       </div>
     </section>
 
-    <!-- 10 Why -->
-    <section class="slide slide--split slide--accent" data-slide="10">
+    <!-- 11 Why -->
+    <section class="slide slide--split slide--accent" data-slide="11">
       <div class="slide__inner">
       <div class="slide__col slide__col--text">
         <p class="slide__label">Why us</p>
@@ -3463,8 +3568,8 @@
       </div>
     </section>
 
-    <!-- 11 CTA -->
-    <section class="slide slide--cover slide--cover-end" data-slide="11">
+    <!-- 12 CTA -->
+    <section class="slide slide--cover slide--cover-end" data-slide="12">
       <div class="slide__scroll slide__scroll--cover">
         <div class="cover-logo">
           <img src="art/clethos-logo.png" alt="CLETHOS" class="logo" decoding="async">
@@ -3483,7 +3588,7 @@
   <div class="deck-ui">
     <button type="button" id="prev" aria-label="Previous slide">← Previous</button>
     <div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
-    <span id="counter">1 / 11</span>
+    <span id="counter">1 / 12</span>
     <button type="button" id="next" aria-label="Next slide">Next →</button>
     <button type="button" id="fullscreen" aria-label="Fullscreen">Fullscreen</button>
   </div>
