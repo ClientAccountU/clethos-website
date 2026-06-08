@@ -16,8 +16,12 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('intro-active');
 
     const onDone = () => {
-      // Redirect to main landing page and mark that we've just come from the loader
-      window.location.href = 'index.html?fromLoader=1';
+      try {
+        sessionStorage.setItem('clethosLoaderDone', '1');
+      } catch (e) {
+        // Ignore if sessionStorage is unavailable
+      }
+      window.location.href = '/';
     };
 
     overlay.addEventListener('transitionend', onDone, { once: true });
