@@ -2065,12 +2065,28 @@
 
     .cta-pill {
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 0.875rem 1.75rem;
       background: var(--accent);
       color: var(--on-accent);
       font-weight: 600;
       font-size: 1.125rem;
       border-radius: 0.75rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .cta-pill:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .cta-pill:focus-visible {
+      outline: 2px solid var(--accent-strong);
+      outline-offset: 3px;
     }
 
     .meta {
@@ -3578,7 +3594,7 @@
         <h2 class="slide__title">Start a conversation</h2>
         <p class="slide__subtitle">Tell us what you’re solving—we’ll confirm fit, outline onboarding and retainer, and scope how Consultancy can represent you with the right partner.</p>
         <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-          <span class="cta-pill">clethos.com/contact</span>
+          <a href="/contact" class="cta-pill">Contact</a>
         </div>
         <p class="meta" style="margin-top: 2rem;">CLETHOS · Treasury infrastructure for modern business</p>
       </div>
